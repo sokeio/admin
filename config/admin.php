@@ -1,10 +1,10 @@
 <?php
 
-use Sokeio\Action;
 use Sokeio\Facades\Platform;
 use Sokeio\Admin\FieldView;
 use Sokeio\Item;
 use Sokeio\Admin\Widget;
+use Sokeio\Facades\Action;
 
 return [
     'name' => 'Admin',
