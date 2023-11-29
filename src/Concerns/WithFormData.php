@@ -2,7 +2,7 @@
 
 namespace Sokeio\Admin\Concerns;
 
-use Sokeio\ItemForm;
+use Sokeio\Admin\ItemForm;
 
 trait WithFormData
 {

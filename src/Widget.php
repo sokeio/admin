@@ -2,6 +2,7 @@
 
 namespace Sokeio\Admin;
 
+use Sokeio\Facades\Action;
 use Sokeio\Item;
 
 class Widget extends BaseManager
@@ -124,7 +125,7 @@ class Widget extends BaseManager
 
     public function getColumnSize()
     {
-        return Item::getSize($this->getColumn());
+        return column_size($this->getColumn());
     }
     public function ActionData($ActionData)
     {

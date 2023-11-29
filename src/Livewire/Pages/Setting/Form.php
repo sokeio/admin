@@ -4,9 +4,9 @@ namespace Sokeio\Admin\Livewire\Pages\Setting;
 
 use Sokeio\Component;
 use Sokeio\Admin\Facades\SettingForm;
-use Sokeio\Facades\Theme;
-use Sokeio\ItemForm;
 use Sokeio\Admin\Concerns\WithItemManager;
+use Sokeio\Admin\ItemForm;
+use Sokeio\Facades\Theme;
 
 class Form extends Component
 {
@@ -41,7 +41,7 @@ class Form extends Component
         $this->form->CheckValidate();
         foreach ($this->form->toArray() as $key => $value) {
             if ($key == 'page_site_theme') {
-                admin::find($value)?->Active();
+                Theme::find($value)?->Active();
             } else {
                 set_setting($key, $value);
             }

@@ -2,9 +2,9 @@
 
 namespace Sokeio\Admin\Concerns;
 
-use Sokeio\DataForm;
-use Sokeio\ItemForm;
-use Sokeio\ItemForms;
+use Sokeio\Admin\DataForm;
+use Sokeio\Admin\ItemForm;
+use Sokeio\Admin\ItemForms;
 use Sokeio\Concerns\WithPagination;
 
 trait WithTableData
@@ -38,7 +38,7 @@ trait WithTableData
     }
     public function mount()
     {
-        $this->pageSize = $this->getItemManager()?->getPageSize(self::PAGE_SIZE) ?? self::PAGE_SIZE;
+        $this->pageSize = $this->getItemManager()?->getPageSize(self::$PAGE_SIZE) ?? self::$PAGE_SIZE;
     }
     public function clearSort()
     {

@@ -2,7 +2,7 @@
 
 namespace Sokeio\Admin;
 
-use Sokeio\ArrayStatus;
+use Sokeio\Platform\PlatformStatus;
 
 class Dashboard
 {
@@ -39,12 +39,12 @@ class Dashboard
     }
     public static function ActiveWidget($widgetId, $widgetSetting)
     {
-        ArrayStatus::Key(self::KEY_STATUS)->Active($widgetId);
+        PlatformStatus::Key(self::KEY_STATUS)->Active($widgetId);
         set_setting(self::KEY_STATUS . '-' . $widgetId, $widgetSetting);
     }
     public static function UnActiveWidget($widgetId)
     {
-        ArrayStatus::Key(self::KEY_STATUS)->UnActive($widgetId);
+        PlatformStatus::Key(self::KEY_STATUS)->UnActive($widgetId);
         set_setting(self::KEY_STATUS . '-' . $widgetId, null);
     }
     public static function getWidgetSettingByKey($widgetId)
@@ -53,7 +53,7 @@ class Dashboard
     }
     public static function GetWidgetActives()
     {
-        return collect(ArrayStatus::Key(self::KEY_STATUS)->getArr())->map(function ($item) {
+        return collect(PlatformStatus::Key(self::KEY_STATUS)->getArr())->map(function ($item) {
             return self::getWidgetSettingByKey($item);
         })->where(function ($item) {
             return $item != null;
@@ -61,7 +61,7 @@ class Dashboard
     }
     public static function GetWidgetIdActives()
     {
-        return collect(ArrayStatus::Key(self::KEY_STATUS)->getArr())->map(function ($item) {
+        return collect(PlatformStatus::Key(self::KEY_STATUS)->getArr())->map(function ($item) {
             return self::getWidgetSettingByKey($item);
         })->where(function ($item) {
             return $item != null;

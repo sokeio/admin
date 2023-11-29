@@ -43,3 +43,4 @@ if (!function_exists('table_render')) {
         ])->render();
     }
 }
+
