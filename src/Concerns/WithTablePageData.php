@@ -12,11 +12,11 @@ trait WithTablePageData
 
     public function render()
     {
-        page_title($this->getItemManager()?->getTitle(), true);
         return view('admin::tables.page', [
             'itemManager' => $this->getItemManager(),
             'dataItems' => $this->getDataItems(),
-            'cardBodyClass' => $this->cardBodyClass()
+            'cardBodyClass' => $this->cardBodyClass(),
+            'page_title' => $this->getItemManager()?->getTitle()
         ]);
     }
 }

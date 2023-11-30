@@ -23,9 +23,9 @@ class Index extends Component
     }
     public function render()
     {
-        page_title(str($this->ExtentionType)->studly());
         return view('admin::extentions.index', [
-            'mode_dev' => sokeio_mode_dev()
+            'mode_dev' => sokeio_mode_dev(),
+            'page_title' => str($this->ExtentionType)->studly()
         ]);
     }
 }

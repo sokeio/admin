@@ -34,9 +34,9 @@ class Dashboard extends Component
 
     public function render()
     {
-        page_title('Dashboard', true);
         return view('admin::dashboard', [
-            'locked' => $this->locked
+            'locked' => $this->locked,
+            'page_title' => __('Dashboard')
         ]);
     }
 }

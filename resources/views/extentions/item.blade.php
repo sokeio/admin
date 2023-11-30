@@ -26,7 +26,7 @@
                         <ul class="dropdown-menu" aria-labelledby="dr{{ $item->getId() }}">
                             <li><a class="dropdown-item"
                                     sokeio:modal="{{ route('admin.create-extention-file', ['ExtentionType' => $ExtentionType, 'ExtentionId' => $item->getName()]) }}"
-                                    sokeio:modal-title="Create File In {{ page_title() }}">Add File</a></li>
+                                    sokeio:modal-title="Create File In {!! $page_title ?? '' !!}">Add File</a></li>
                             <li><a @click="alert('devlop....')" class="dropdown-item" href="#">Add CURD</a></li>
                             @if ($ExtentionType == 'module')
                                 <li><a @click="alert('devlop....')" class="dropdown-item" href="#">Add Theme</a>

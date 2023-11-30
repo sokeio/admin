@@ -36,9 +36,9 @@ trait WithFormData
     }
     public function render()
     {
-        page_title($this->getItemManager()?->getTitle());
         return view($this->getView(), [
-            'itemManager' => $this->getItemManager()
+            'itemManager' => $this->getItemManager(),
+            'page_title' => $this->getItemManager()?->getTitle()
         ]);
     }
 }
