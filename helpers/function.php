@@ -5,7 +5,7 @@
 use Sokeio\Admin\BaseManager;
 use Sokeio\Admin\Facades\Menu;
 use Sokeio\Admin\FieldView;
-use Sokeio\Item;
+use Sokeio\Admin\Item;
 
 if (!function_exists('menu_render')) {
     function menu_render($_position = '')

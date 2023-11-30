@@ -4,7 +4,7 @@ namespace Sokeio\Admin\Crud;
 
 use Sokeio\Admin\Button;
 use Sokeio\Admin\CrudManager;
-use Sokeio\Item;
+use Sokeio\Admin\Item;
 use Sokeio\Admin\ItemManager;
 use Sokeio\Models\Role;
 use Sokeio\Models\User;

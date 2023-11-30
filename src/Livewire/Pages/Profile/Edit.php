@@ -3,7 +3,7 @@
 namespace Sokeio\Admin\Livewire\Pages\Profile;
 
 use Sokeio\Component;
-use Sokeio\Item;
+use Sokeio\Admin\Item;
 use Sokeio\ItemForm;
 use Sokeio\Admin\ItemManager;
 use Sokeio\Admin\Models\User;

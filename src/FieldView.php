@@ -2,7 +2,7 @@
 
 namespace Sokeio\Admin;
 
-use Sokeio\Item;
+use Sokeio\Admin\Item;
 use Illuminate\Support\Traits\Macroable;
 
 class FieldView

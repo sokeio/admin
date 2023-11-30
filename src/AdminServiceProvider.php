@@ -10,7 +10,7 @@ use Sokeio\Laravel\ServicePackage;
 use Sokeio\Concerns\WithServiceProvider;
 use Sokeio\Facades\Platform;
 use Sokeio\Facades\Theme;
-use Sokeio\Item;
+use Sokeio\Admin\Item;
 use Illuminate\Support\Facades\Request;
 
 class AdminServiceProvider extends ServiceProvider
@@ -46,18 +46,7 @@ class AdminServiceProvider extends ServiceProvider
                 FieldView::RegisterField($fieldTypes);
             }
         }
-        if ($widgetTypes = config($this->package->shortName() . '.widgets')) {
-            if (is_array($widgetTypes) && count($widgetTypes) > 0) {
-                Dashboard::Register($widgetTypes, $this->package->shortName());
-            }
-        }
         Platform::Ready(function () {
-            add_filter(PLATFORM_HOMEPAGE, function ($view) {
-                if (adminUrl() == '') {
-                    redirect(route('admin.dashboard'));
-                }
-                return $view;
-            });
             SettingForm::Register(function (\Sokeio\Admin\ItemManager $form) {
                 $form->Title('System Information')->Item([
                     Item::Add('page_logo')->Type('images')->Title('Logo')->Attribute(function () {

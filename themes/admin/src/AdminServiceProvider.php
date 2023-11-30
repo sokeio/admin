@@ -10,7 +10,7 @@ use Sokeio\Admin\Facades\Menu;
 use Sokeio\Concerns\WithServiceProvider;
 use Sokeio\Admin\Facades\SettingForm;
 use Sokeio\Facades\Theme;
-use Sokeio\Item;
+use Sokeio\Admin\Item;
 
 class AdminServiceProvider extends ServiceProvider
 {

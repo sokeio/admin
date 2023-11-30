@@ -3,7 +3,7 @@
 namespace Sokeio\Admin;
 
 use Sokeio\Facades\Action;
-use Sokeio\Item;
+use Sokeio\Admin\Item;
 
 class Widget extends BaseManager
 {

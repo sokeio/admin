@@ -4,7 +4,7 @@ namespace Sokeio\Admin\Livewire;
 
 use Sokeio\Component;
 use Sokeio\Admin\Concerns\WithFormData;
-use Sokeio\Item;
+use Sokeio\Admin\Item;
 use Sokeio\Admin\ItemManager;
 
 class SeoBox extends Component
