@@ -12,6 +12,7 @@ use Sokeio\Facades\Platform;
 use Sokeio\Facades\Theme;
 use Sokeio\Admin\Item;
 use Illuminate\Support\Facades\Request;
+use Sokeio\Admin\Widgets\WidgetServiceProvider;
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -37,6 +38,7 @@ class AdminServiceProvider extends ServiceProvider
     }
     public function packageRegistered()
     {
+        $this->app->register(WidgetServiceProvider::class);
         Item::macro('ConvertToButton', function () {
             return Button::Create($this->getTitle())->Manager($this->getManager())->Data($this->getData());
         });
