@@ -8,7 +8,7 @@
     <div class="card-footer bg-transparent mt-auto">
         <div class="btn-list justify-content-end">
             <a wire:click='saveSetting()' class="btn btn-primary">
-                Save
+                Save Change
             </a>
         </div>
     </div>

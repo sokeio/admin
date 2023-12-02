@@ -12,7 +12,7 @@
                         @if ($mode_dev)
                             <button class="btn btn-primary"
                                 sokeio:modal="{{ route('admin.create-extention', ['ExtentionType' => $ExtentionType]) }}"
-                                sokeio:modal-title="Create {{ page_title() }}">
+                                sokeio:modal-title="Create {{ $page_title??'' }}">
                                 Add New
                             </button>
                         @endif

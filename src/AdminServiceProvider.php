@@ -50,13 +50,13 @@ class AdminServiceProvider extends ServiceProvider
         }
         Platform::Ready(function () {
             SettingForm::Register(function (\Sokeio\Admin\ItemManager $form) {
-                $form->Title('System Information')->Item([
+                $form->Title(__('General'))->Item([
                     Item::Add('page_logo')->Type('images')->Title('Logo')->Attribute(function () {
                         return 'style="max-width:200px;"';
                     }),
-    
+
                     Item::Add('page_site_title')->Column(Item::Col12)->Title('Page Title')->Required(),
-    
+
                     Item::Add('page_description')->Attribute(function () {
                         return 'rows="10"';
                     })->Column(Item::Col12)->Type('tinymce')->Title('Page Description'), //tinymce//textarea
