@@ -188,7 +188,7 @@ class UserCrud extends CrudManager
                         });
                     }),
                     Item::Add('PermissionIds')->Title('Permissions')->Column(Item::Col12)->Type('toggle-multiple')->DataOption(function () {
-                        return \Sokeio\Admin\Models\Permission::all()->map(function ($item) {
+                        return \Sokeio\Models\Permission::all()->map(function ($item) {
                             return [
                                 'value' => $item->id,
                                 'text' => $item->name
