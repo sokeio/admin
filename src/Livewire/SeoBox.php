@@ -25,7 +25,7 @@ class SeoBox extends Component
             $component->showMessage($manager->getMessage());
             // $component->closeComponent();
             $component->refreshRefComponent();
-        })->Message(function(){
+        })->Message(function () {
             return "seo update successfully";
         });
     }
