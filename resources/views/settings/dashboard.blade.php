@@ -1,6 +1,6 @@
 <div class="list-group list-group-flush">
     @foreach ($widgets as $key => $widget)
-        <div class="list-group-item p-2">
+        <div class="list-group-item p-3">
             <div class="row">
                 <div class="col-auto">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-dot" width="44"
@@ -11,14 +11,14 @@
                         <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
                     </svg>
                 </div>
-                <div class="col-auto">
-                    <label class="form-check">
-                        <input class="form-check-input" wire:change="changeWidget($event.target.value)"
+                <span class="col">{{ $widget->getName() }}</span>
+                <span class="col-auto">
+                    <label class="form-check form-check-single form-switch">
+                        <input class="form-check-input" type="checkbox" wire:change="changeWidget($event.target.value)"
                             value="{{ $key }}" type="checkbox"
                             @if ($widget->isActive()) checked="" @endif>
-                        <span class="form-check-label"> {{ $widget->getName() }}</span>
                     </label>
-                </div>
+                </span>
             </div>
         </div>
     @endforeach

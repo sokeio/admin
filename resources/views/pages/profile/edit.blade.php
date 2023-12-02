@@ -2,19 +2,18 @@
     <div class="container-fluid">
         <div class="card">
             <div class="row g-0">
-                <div class="col-3 d-none d-md-block border-end">
+                <div class="col-2 d-none d-md-block border-end">
                     <div class="card-body">
-                        <h4 class="subheader">Account settings</h4>
+                        <h4 class="subheader">@lang('Account settings')</h4>
                         <div class="list-group list-group-transparent">
                             <a href="{{ route('admin.profile') }}"
-                                class="list-group-item list-group-item-action d-flex align-items-center active">My
-                                Account</a>
+                                class="list-group-item list-group-item-action d-flex align-items-center active">@lang('My Account')</a>
                         </div>
                     </div>
                 </div>
                 <div class="col d-flex flex-column">
                     <div class="card-body">
-                        <h2 class="mb-4">My Account</h2>
+                        <h2 class="mb-4">@lang('My Account')</h2>
                         <div class="row">
                             {!! form_render($itemManager, $form) !!}
                             <div class="col-6">
