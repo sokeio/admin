@@ -15,6 +15,6 @@ class RoleTotalWidget extends Widget
                 'widgetTitle' => __('Role Total'),
                 'widgetData' => Role::count()
             ];
-        });
+        })->Column('col4');
     }
 }

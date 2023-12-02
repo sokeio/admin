@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div class="page-body">
+    <div class="page-body mt-2">
         <div class="container-fluid">
             <livewire:admin::widget.widget-list wire:key='widget-list-{{ $___number_loading }}' />
         </div>

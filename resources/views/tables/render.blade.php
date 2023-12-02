@@ -35,31 +35,13 @@ $watch('checkAll', (value) => {
     $wire.selectIds = selectIds;
 })">
     <div class="row mb-2 mt-2 align-items-center">
-        @if ($checkBoxInTable)
-            <div class="col btn-bulk-actions">
-
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Bulk Actions
-                    </button>
-                    <ul class="dropdown-menu">
-                        @if ($ButtonInAction)
-                            @foreach ($ButtonInAction as $button)
-                                <li class="dropdown-item" :disabled="!$wire.selectIds.length">
-                                    {!! $button->render() !!}
-                                </li>
-                            @endforeach
-                        @endif
-                        <li class="dropdown-item">
-                            <button @click="$wire.selectIds=[];checkAll=false;" class="btn btn-block">
-                                Clear selection
-                            </button>
-                        </li>
-                    </ul>
-                </div>
+        @isset($page_title)
+            <div class="col">
+                <span class="page-title">
+                    {{ $page_title }}
+                </span>
             </div>
-        @endif
+        @endisset
         <div class="col-auto ms-auto d-print-none">
             <div class="btn-list">
                 @if ($buttonOnPage)
@@ -69,8 +51,9 @@ $watch('checkAll', (value) => {
                 @endif
             </div>
         </div>
+
     </div>
-    <div class="table-responsive" style="min-height: 50px;">
+    <div class="table-responsive pb-6">
 
         <table class="table table-bordered">
             <thead>
@@ -160,6 +143,32 @@ $watch('checkAll', (value) => {
         </table>
         <div class="p-1">
             <div class="row g-1 align-items-center mb-6">
+                @if ($checkBoxInTable)
+                    <div class="col-auto btn-bulk-actions">
+
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn bg-yellow text-yellow-fg dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Actions
+                            </button>
+                            <ul class="dropdown-menu">
+                                @if ($ButtonInAction)
+                                    @foreach ($ButtonInAction as $button)
+                                        <li class="dropdown-item" :disabled="!$wire.selectIds.length">
+                                            {!! $button->render() !!}
+                                        </li>
+                                    @endforeach
+                                @endif
+                                <li class="dropdown-item">
+                                    <button @click="$wire.selectIds=[];checkAll=false;" class="btn btn-block">
+                                        Clear selection
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+                <div class="col"></div>
                 <div class="col-auto py-3">
                     <select wire:model.live='pageSize' class="form-select form-select-sm">
                         @foreach ($pageSizeList as $item)
@@ -167,7 +176,7 @@ $watch('checkAll', (value) => {
                         @endforeach
                     </select>
                 </div>
-                <div class="col">
+                <div class="col-auto">
                     @if ($items)
                         {{ $items->links('sokeio::pagination') }}
                     @endif
