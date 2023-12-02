@@ -10,8 +10,9 @@ use Sokeio\Laravel\ServicePackage;
 use Sokeio\Concerns\WithServiceProvider;
 use Sokeio\Facades\Platform;
 use Sokeio\Facades\Theme;
-use Sokeio\Item;
+use Sokeio\Admin\Item;
 use Illuminate\Support\Facades\Request;
+use Sokeio\Admin\Widgets\WidgetServiceProvider;
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -37,6 +38,7 @@ class AdminServiceProvider extends ServiceProvider
     }
     public function packageRegistered()
     {
+        $this->app->register(WidgetServiceProvider::class);
         Item::macro('ConvertToButton', function () {
             return Button::Create($this->getTitle())->Manager($this->getManager())->Data($this->getData());
         });
@@ -46,26 +48,15 @@ class AdminServiceProvider extends ServiceProvider
                 FieldView::RegisterField($fieldTypes);
             }
         }
-        if ($widgetTypes = config($this->package->shortName() . '.widgets')) {
-            if (is_array($widgetTypes) && count($widgetTypes) > 0) {
-                Dashboard::Register($widgetTypes, $this->package->shortName());
-            }
-        }
         Platform::Ready(function () {
-            add_filter(PLATFORM_HOMEPAGE, function ($view) {
-                if (adminUrl() == '') {
-                    redirect(route('admin.dashboard'));
-                }
-                return $view;
-            });
             SettingForm::Register(function (\Sokeio\Admin\ItemManager $form) {
-                $form->Title('System Information')->Item([
+                $form->Title(__('General'))->Item([
                     Item::Add('page_logo')->Type('images')->Title('Logo')->Attribute(function () {
                         return 'style="max-width:200px;"';
                     }),
-    
+
                     Item::Add('page_site_title')->Column(Item::Col12)->Title('Page Title')->Required(),
-    
+
                     Item::Add('page_description')->Attribute(function () {
                         return 'rows="10"';
                     })->Column(Item::Col12)->Type('tinymce')->Title('Page Description'), //tinymce//textarea
@@ -106,21 +97,15 @@ class AdminServiceProvider extends ServiceProvider
                             $menu->route(['name' => 'admin.theme-options', 'params' => []], 'Theme Options', '', [], 'admin.theme-options');
                         }
                     }, 9999999999999);
-                    menu::subMenu('Extension', '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-puzzle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1"></path>
-                 </svg>', function (MenuBuilder $menu) {
-                        $menu->setTargetId('system_extension_menu');
-                        $menu->route(['name' => 'admin.module', 'params' => []], 'Modules', '', [], 'admin.module');
-                        $menu->route(['name' => 'admin.plugin', 'params' => []], 'Plugins', '', [], 'admin.plugin');
-                    }, 9999999999999);
                     menu::subMenu('Settings', '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
        <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path>
        <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
     </svg>', function (MenuBuilder $menu) {
                         $menu->setTargetId('system_setting_menu');
-                        $menu->route('admin.setting', 'System Setting', '', [], 'admin.setting');
+                        $menu->route('admin.setting', 'Setting', '', [], 'admin.setting');
+                        $menu->route(['name' => 'admin.module', 'params' => []], 'Modules', '', [], 'admin.module');
+                        $menu->route(['name' => 'admin.plugin', 'params' => []], 'Plugins', '', [], 'admin.plugin');
                     }, 99999999999999);
                 }
             });

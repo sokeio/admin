@@ -5,7 +5,7 @@
 use Sokeio\Admin\BaseManager;
 use Sokeio\Admin\Facades\Menu;
 use Sokeio\Admin\FieldView;
-use Sokeio\Item;
+use Sokeio\Admin\Item;
 
 if (!function_exists('menu_render')) {
     function menu_render($_position = '')
@@ -31,7 +31,7 @@ if (!function_exists('form_render')) {
 }
 
 if (!function_exists('table_render')) {
-    function table_render(BaseManager $itemManager, $dataItems = null, $dataFilters = null, $dataSorts = null, $formTable = null, $selectIds = null)
+    function table_render(BaseManager $itemManager, $dataItems = null, $dataFilters = null, $dataSorts = null, $formTable = null, $selectIds = null,$page_title=null)
     {
         return view('admin::tables.render', [
             'manager' => $itemManager,
@@ -40,6 +40,8 @@ if (!function_exists('table_render')) {
             'sorts' => $dataSorts,
             'formTable' => $formTable,
             'selectIds' => $selectIds,
+            'page_title' => $page_title,
         ])->render();
     }
 }
+

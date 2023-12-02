@@ -3,11 +3,11 @@
 namespace Sokeio\Admin\Livewire\Pages\Profile;
 
 use Sokeio\Component;
-use Sokeio\Item;
-use Sokeio\ItemForm;
+use Sokeio\Admin\Item;
 use Sokeio\Admin\ItemManager;
 use Sokeio\Admin\Models\User;
 use Sokeio\Admin\Concerns\WithItemManager;
+use Sokeio\Admin\ItemForm;
 
 class Edit extends Component
 {
@@ -43,9 +43,9 @@ class Edit extends Component
     }
     public function render()
     {
-        page_title('Profile Edit');
         return view('admin::pages.profile.edit', [
-            'itemManager' => $this->getItemManager()
+            'itemManager' => $this->getItemManager(),
+            'page_title' => __('Profile Edit')
         ]);
     }
 }

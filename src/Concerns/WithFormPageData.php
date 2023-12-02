@@ -11,9 +11,9 @@ trait WithFormPageData
     }
     public function render()
     {
-        page_title($this->getItemManager()?->getTitle(),true);
         return view('admin::forms.page', [
-            'itemManager' => $this->getItemManager()
+            'itemManager' => $this->getItemManager(),
+            'page_title' => $this->getItemManager()?->getTitle()
         ]);
     }
 }

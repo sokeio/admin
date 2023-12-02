@@ -2,7 +2,7 @@
     <div class="container container-tight py-4">
         <form class="card card-md" wire:submit.prevent='DoWork()' autocomplete="off" novalidate>
             <div class="card-body">
-                <h2 class="card-title text-center mb-4">{{page_title()}}</h2>
+                <h2 class="card-title text-center mb-4">{!! $page_title ?? '' !!}</h2>
                 <p class="text-muted mb-4">Enter your email to recover your password
                 </p>
                 <div class="mb-3">
@@ -20,7 +20,7 @@
                             </path>
                             <path d="M3 7l9 6l9 -6"></path>
                         </svg>
-                       Send code.
+                        Send code.
                     </button>
                 </div>
             </div>

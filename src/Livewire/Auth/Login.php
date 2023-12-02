@@ -29,7 +29,8 @@ class Login extends Component
     }
     public function render()
     {
-        page_title('Login to your account');
-        return view('admin::auth.login');
+        return view_scope('admin::auth.login', [
+            'page_title' => __('Login to your account')
+        ]);
     }
 }

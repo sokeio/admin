@@ -2,8 +2,8 @@
     <div class="row align-items-center">
         <div class="col-auto">
             <span class="bg-primary text-white avatar">
-                @if (isset($WidgetSetting['modelLogo']) && !is_array($WidgetSetting['modelLogo']))
-                    {!! $WidgetSetting['modelLogo'] !!}
+                @if (isset($WidgetIcon))
+                    {!! $WidgetIcon !!}
                 @else
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -18,10 +18,10 @@
         </div>
         <div class="col">
             <div class="font-weight-medium">
-                {{ isset($WidgetSetting['title']) && !is_array($WidgetSetting['title']) ? $WidgetSetting['title'] : '' }}
+                {{ isset($widgetTitle) ? $widgetTitle : '' }}
             </div>
             <div class="text-secondary">
-                {{ isset($WidgetData['number']) && !is_array($WidgetData['number']) ? $WidgetData['number'] : 0 }}
+                {{ isset($widgetData) ? $widgetData : 0 }}
             </div>
         </div>
     </div>

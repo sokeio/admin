@@ -4,7 +4,7 @@
             <div class="row g-2 align-items-center">
                 <div class="col">
                     <h2 class="page-title ps-2">
-                        {{ page_title() }}
+                        {!! $page_title ?? '' !!}
                     </h2>
                 </div>
                 <div class="col-auto ms-auto d-print-none">
@@ -12,7 +12,7 @@
                         @if ($mode_dev)
                             <button class="btn btn-primary"
                                 sokeio:modal="{{ route('admin.create-extention', ['ExtentionType' => $ExtentionType]) }}"
-                                sokeio:modal-title="Create {{ page_title() }}">
+                                sokeio:modal-title="Create {{ $page_title??'' }}">
                                 Add New
                             </button>
                         @endif

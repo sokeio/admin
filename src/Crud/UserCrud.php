@@ -4,7 +4,7 @@ namespace Sokeio\Admin\Crud;
 
 use Sokeio\Admin\Button;
 use Sokeio\Admin\CrudManager;
-use Sokeio\Item;
+use Sokeio\Admin\Item;
 use Sokeio\Admin\ItemManager;
 use Sokeio\Models\Role;
 use Sokeio\Models\User;
@@ -188,7 +188,7 @@ class UserCrud extends CrudManager
                         });
                     }),
                     Item::Add('PermissionIds')->Title('Permissions')->Column(Item::Col12)->Type('toggle-multiple')->DataOption(function () {
-                        return \Sokeio\Admin\Models\Permission::all()->map(function ($item) {
+                        return \Sokeio\Models\Permission::all()->map(function ($item) {
                             return [
                                 'value' => $item->id,
                                 'text' => $item->name

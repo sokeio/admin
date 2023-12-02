@@ -58,7 +58,6 @@
                     </div>
                 </form>
             </div>
-            {{ apply_filters(PLATFORM_LOGIN_PAGE_AFTER, '') }}
         </div>
         <div class="text-center text-muted mt-3">
             Don't have account yet? <a href="{{ route('admin.sign-up') }}" tabindex="-1">Sign up</a>

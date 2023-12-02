@@ -29,7 +29,8 @@ class ForgotPassword extends Component
     }
     public function render()
     {
-        page_title('Forgot password');
-        return view_scope('admin::auth.forgot-password');
+        return view_scope('admin::auth.forgot-password',[
+            'page_title'=>__('Forgot password')
+        ]);
     }
 }

@@ -16,9 +16,10 @@ class Index extends Component
     }
     public function render()
     {
-        page_title('Setting');
+
         return view('admin::pages.setting.index', [
-            'formWithTitle' => SettingForm::getFormWithTitles()
+            'formWithTitle' => SettingForm::getFormWithTitles(),
+            'page_title' => __('Setting')
         ]);
     }
 }
