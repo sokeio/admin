@@ -11,5 +11,7 @@ class WidgetServiceProvider extends ServiceProvider
     {
         Dashboard::Register(UserTotalWidget::class);
         Dashboard::Register(RoleTotalWidget::class);
+        Dashboard::Register(TestWidget::class);
+        
     }
 }

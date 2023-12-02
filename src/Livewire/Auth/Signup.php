@@ -3,7 +3,6 @@
 namespace Sokeio\Admin\Livewire\Auth;
 
 use Sokeio\Component;
-use Illuminate\Support\Facades\Auth;
 
 class Signup extends Component
 {
@@ -38,8 +37,8 @@ class Signup extends Component
     }
     public function render()
     {
-        page_title('Sigup account');
-
-        return view('admin::auth.sign-up');
+        return view_scope('admin::auth.sign-up', [
+            'page_title' => __('Sigup account')
+        ]);
     }
 }

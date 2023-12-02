@@ -7,11 +7,11 @@ use Sokeio\Component;
 
 class Index extends Component
 {
+    
     public function render()
     {
         return view('admin::pages.dashboard.index', [
-            'page_title' => __('Dashboard'),
-            'widgets' => Dashboard::getWidget()
+            'page_title' => __('Dashboard')
         ]);
     }
 }

@@ -3,12 +3,8 @@
         <div class="container-fluid">
             <div class="row g-2 align-items-center">
                 <div class="col">
-                    <!-- Page pre-title -->
-                    <div class="page-pretitle">
-                        Overview
-                    </div>
                     <h2 class="page-title">
-                        Dashboard
+                        @lang('Dashboard')
                     </h2>
                 </div>
                 <!-- Page title actions -->
@@ -40,13 +36,7 @@
     </div>
     <div class="page-body">
         <div class="container-fluid">
-            @foreach ($widgets as $key => $widget)
-                @if ($widget->isActive())
-                    <div class="p-2">
-                        {{ $widget->getName() }}
-                    </div>
-                @endif
-            @endforeach
+            <livewire:admin::widget.widget-list wire:key='widget-list-{{ $___number_loading }}' />
         </div>
     </div>
 </div>
