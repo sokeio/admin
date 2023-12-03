@@ -5,11 +5,6 @@ namespace Sokeio\Admin;
 
 class ItemForms extends DataForm
 {
-    public function InitForm()
-    {
-        $this->___enableBindData = false;
-        parent::InitForm();
-    }
     public function BindData($arr)
     {
         foreach ($arr as $item) {

@@ -3,7 +3,6 @@
 namespace Sokeio\Admin\Concerns;
 
 use Sokeio\Admin\DataForm;
-use Sokeio\Admin\ItemForm;
 use Sokeio\Admin\ItemForms;
 use Sokeio\Concerns\WithPagination;
 
@@ -15,7 +14,7 @@ trait WithTableData
     public DataForm $dataFilters;
     public DataForm $dataSorts;
     public ItemForms $formTable;
-    public ItemForm $formSearch;
+    public DataForm $formSearch;
 
     public $selectIds = [];
     public $pageIds = [];
@@ -24,9 +23,6 @@ trait WithTableData
     private static $PAGE_SIZE = 15;
     public function Booted()
     {
-        $this->dataFilters->___checkProperty = false;
-        $this->dataSorts->___checkProperty = false;
-        $this->formSearch->___checkProperty = false;
         if (!$this->selectIds) {
             $this->selectIds = request('selectIds') ?? [];
         }
@@ -110,7 +106,7 @@ trait WithTableData
     {
         return view('admin::tables.index', [
             'itemManager' => $this->getItemManager(),
-            'dataItems' => $this->getDataItems()
+            'dataItems' => $this->getDataItems(),
         ]);
     }
 }

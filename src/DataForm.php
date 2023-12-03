@@ -24,7 +24,7 @@ class DataForm extends FormBase
             });
         return $this;
     }
-    protected $___enableBindData = true;
+    protected $___enableBindData = false;
     public $___checkProperty =  false;
     public function InitForm()
     {

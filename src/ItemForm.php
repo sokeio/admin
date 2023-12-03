@@ -29,6 +29,7 @@ class ItemForm extends DataForm
     }
     public function InitForm()
     {
+        $this->___enableBindData = true;
         parent::InitForm();
         if (method_exists($this->getComponent(), 'getDataId')) {
             $this->setDataId($this->getComponent()->getDataId());
@@ -130,6 +131,7 @@ class ItemForm extends DataForm
                     if (method_exists($this->itemManager, 'getBeforeSave'))
                         $dataModel = $this->itemManager->getBeforeSave($dataModel);
                     $dataModel->save();
+
                     if (method_exists($this->itemManager, 'getAfterSave'))
                         $dataModel = $this->itemManager->getAfterSave($dataModel);
                 });
