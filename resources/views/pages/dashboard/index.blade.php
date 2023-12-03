@@ -10,7 +10,7 @@
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a class="btn btn-primary d-none d-sm-inline-block"
+                        <a class="btn btn-primary p-2"
                             sokeio:modal="{{ route('admin.dashboard-setting') }}" sokeio:modal-size="modal-lg"
                             sokeio:modal-title="@lang('Setting')">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home-cog"

@@ -9,9 +9,7 @@
                 'THEME_ADMIN_SIDEBAR_LOGO',
                 ' <a href="' .
                     route('admin.dashboard') .
-                    '">
-                                    <span class=" fw-bold fs-1 p-1">Admin System</span>
-                                </a>',
+                    '"><span class=" fw-bold fs-1 p-1">Sokeio Admin</span></a>',
             ) !!}
 
         </h1>
@@ -21,6 +19,9 @@
             {!! apply_filters('THEME_SIDEBAR_BEFORE', '') !!}
             {!! menu_render() !!}
             {!! apply_filters('THEME_SIDEBAR_AFTTER', '') !!}
+            <div class=" text-center p-1 text-bold">
+                <a href="https://sokeio.com" target="_blank">Sokeio Framework {{ sokeio_version() }}</a>
+            </div>
         </div>
     </div>
 </aside>

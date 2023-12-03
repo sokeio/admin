@@ -12,7 +12,7 @@
         </div>
         <div class="card-body p-3">
             <h3 class="card-title">{{ $item->getTitle() }} <span
-                    class="badge rounded-pill bg-success">{{ $item->getVersionn() ?? 'dev-main' }}</span></h3>
+                    class="badge rounded-pill bg-success">{{ $item->getVersion() ?? 'dev-main' }}</span></h3>
             <p class="text-secondary">{!! $item->getDescription() !!}</p>
         </div>
         <div class="card-footer">

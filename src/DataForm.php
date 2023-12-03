@@ -8,10 +8,10 @@ use Sokeio\Form as FormBase;
 class DataForm extends FormBase
 {
     function __construct(
-         Component $component,
-         $propertyName
+        Component $component,
+        $propertyName
     ) {
-        parent::__construct( $component,$propertyName);
+        parent::__construct($component, $propertyName);
         $this->InitForm();
     }
     protected $itemManager;
