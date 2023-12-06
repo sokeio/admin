@@ -72,24 +72,15 @@ trait WithTableData
         $query = $this->getQuery();
         if (!$query) return null;
         $arrSort = $this->dataSorts->toArray();
-        if (isset($arrSort)) {
-            foreach ($arrSort as $key => $value) {
-                if ($value == 1) {
-                    $query->orderBy($key, 'desc');
-                } else {
-                    $query->orderBy($key, 'asc');
-                }
-            }
-        }
-        $arrFilters = $this->dataFilters->toArray();
-        if (isset($arrFilters)) {
-            foreach ($arrFilters as $key => $value) {
-                if ($key && $value) {
-                    $query->where($key, $value);
-                }
-            }
-        }
-        $data = $query->paginate($this->pageSize, pageName: $this->getItemManager()->getPageName());
+        // if (isset($arrSort)) {
+        //     foreach ($arrSort as $key => $value) {
+        //         if ($value == 1) {
+        //             $query->orderBy($key, 'desc');
+        //         } else {
+        //             $query->orderBy($key, 'asc');
+        //         }
+        //     }
+    Manager()->getPageName());
         $this->pageIds = collect($data->items())->map(function ($item) {
             return $item->id;
         });

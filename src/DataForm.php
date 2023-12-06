@@ -30,14 +30,16 @@ class DataForm extends FormBase
     {
         if (method_exists($this->component, 'getItemManager')) {
             $this->itemManager = $this->component->getItemManager();
-            if (!!$this->itemManager && $this->___enableBindData) {
-                $this->itemManager->Data(function () {
-                    return $this;
-                });
+            $this->itemManager->Data(function () {
+                return $this;
+            });
+            if (!!$this->itemManager) {
                 if (method_exists($this->itemManager, 'getItems')) {
                     foreach ($this->itemManager->getItems() as $item) {
-                        if ($item->getWhen() && !$item->getNoBindData()) {
+                        if ($item->getWhen()) {
                             $this->{$item->getField()} =  $item->getValueDefault();
+
+        echo $item->getField();
                         }
                     }
                 }

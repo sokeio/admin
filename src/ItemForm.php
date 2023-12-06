@@ -29,7 +29,7 @@ class ItemForm extends DataForm
     }
     public function InitForm()
     {
-        $this->___enableBindData = true;
+        // $this->___enableBindData = true;
         parent::InitForm();
         if (method_exists($this->getComponent(), 'getDataId')) {
             $this->setDataId($this->getComponent()->getDataId());
