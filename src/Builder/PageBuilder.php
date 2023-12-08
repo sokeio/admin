@@ -2,7 +2,7 @@
 
 namespace Sokeio\Admin\Builder;
 
-use Sokeio\ItemCallback;
+use Sokeio\Admin\ItemCallback;
 
 class PageBuilder extends ItemCallback
 {

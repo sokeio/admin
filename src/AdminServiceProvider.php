@@ -18,6 +18,7 @@ class AdminServiceProvider extends ServiceProvider
 {
     use WithServiceProvider;
 
+
     public function configurePackage(ServicePackage $package): void
     {
         /*
@@ -65,8 +66,8 @@ class AdminServiceProvider extends ServiceProvider
                 ]);
                 return $form;
             });
-            Menu::Register(function () {
-                if (sokeio_is_admin()) {
+            if (sokeio_is_admin()) {
+                Menu::Register(function () {
                     Menu::route('admin.dashboard', __('Dashboard'), '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-dashboard" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M12 13m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
@@ -107,18 +108,21 @@ class AdminServiceProvider extends ServiceProvider
                         $menu->route(['name' => 'admin.module', 'params' => []], 'Modules', '', [], 'admin.module');
                         $menu->route(['name' => 'admin.plugin', 'params' => []], 'Plugins', '', [], 'admin.plugin');
                     }, 99999999999999);
-                }
-            });
-            if (Request::isMethod('get')) {
-                if (sokeio_is_admin()) {
+                });
+                if (Request::isMethod('get')) {
                     add_filter(PLATFORM_CONFIG_JS, function ($rs) {
                         return [
                             ...$rs,
-                            'sokeio_shortcode_setting' => route('shortcode-setting'),
+                            'sokeio_shortcode_setting' => route('admin.shortcode-setting'),
                         ];
                     });
-                    Menu::DoRegister();
                 }
+            }
+        });
+        Platform::ReadyAfter(function () {
+
+            if (sokeio_is_admin()) {
+                Menu::DoRegister();
             }
         });
     }

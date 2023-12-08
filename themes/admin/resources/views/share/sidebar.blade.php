@@ -7,9 +7,7 @@
         <h1 class="navbar-brand navbar-brand-autodark">
             {!! apply_filters(
                 'THEME_ADMIN_SIDEBAR_LOGO',
-                ' <a href="' .
-                    route('admin.dashboard') .
-                    '"><span class=" fw-bold fs-1 p-1">Sokeio Admin</span></a>',
+                ' <a href="' . route('admin.dashboard') . '"><span class=" fw-bold fs-1 p-1">Sokeio Admin</span></a>',
             ) !!}
 
         </h1>
@@ -22,6 +20,8 @@
             <div class=" text-center p-1 text-bold">
                 <a href="https://sokeio.com" target="_blank">Sokeio Framework {{ sokeio_version() }}</a>
             </div>
+
+            <div class="text-center">Page Loaded:{{ sokeio_time() }}ms</div>
         </div>
     </div>
 </aside>

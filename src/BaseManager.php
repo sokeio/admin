@@ -2,7 +2,7 @@
 
 namespace Sokeio\Admin;
 
-use Sokeio\ItemCallback;
+use Sokeio\Admin\ItemCallback;
 
 class BaseManager extends ItemCallback
 {

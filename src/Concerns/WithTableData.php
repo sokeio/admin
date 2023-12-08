@@ -2,19 +2,18 @@
 
 namespace Sokeio\Admin\Concerns;
 
-use Sokeio\Admin\DataForm;
-use Sokeio\Admin\ItemForms;
 use Sokeio\Concerns\WithPagination;
+use Sokeio\Form;
 
 trait WithTableData
 {
     use WithItemManager;
     use WithPagination;
 
-    public DataForm $dataFilters;
-    public DataForm $dataSorts;
-    public ItemForms $formTable;
-    public DataForm $formSearch;
+    public Form $dataFilters;
+    public Form $dataSorts;
+    public Form $formTable;
+    public Form $formSearch;
 
     public $selectIds = [];
     public $pageIds = [];
@@ -38,14 +37,14 @@ trait WithTableData
     }
     public function clearSort()
     {
-        $this->dataSorts->Clear();
+        $this->dataFilters->clear();
     }
     public function doReset()
     {
     }
     public function clearFilter()
     {
-        $this->dataFilters->Clear();
+        $this->dataFilters->clear();
     }
     public function resetSelectIds()
     {
@@ -72,15 +71,27 @@ trait WithTableData
         $query = $this->getQuery();
         if (!$query) return null;
         $arrSort = $this->dataSorts->toArray();
-        // if (isset($arrSort)) {
-        //     foreach ($arrSort as $key => $value) {
-        //         if ($value == 1) {
-        //             $query->orderBy($key, 'desc');
-        //         } else {
-        //             $query->orderBy($key, 'asc');
-        //         }
-        //     }
-    Manager()->getPageName());
+        if (isset($arrSort)) {
+            foreach ($arrSort as $key => $value) {
+                if ($value == 1) {
+                    $query->orderBy($key, 'desc');
+                } else {
+                    $query->orderBy($key, 'asc');
+                }
+            }
+        }
+        $arrFilters = $this->dataFilters->toArray();
+        if (isset($arrFilters)) {
+            foreach ($arrFilters as $key => $value) {
+                if ($key && $value) {
+                    $query->where($key, $value);
+                }
+            }
+        }
+        $data = $query->paginate($this->pageSize, pageName: $this->getItemManager()->getPageName());
+        $this->pageIds = collect($data->items())->map(function ($item) {
+            return $item->id;
+        });
         $this->pageIds = collect($data->items())->map(function ($item) {
             return $item->id;
         });

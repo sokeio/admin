@@ -11,15 +11,11 @@
 |
 */
 
-use Sokeio\Admin\Livewire\ShortcodeSetting;
 use Illuminate\Support\Facades\Route;
 use Sokeio\Admin\Livewire\Auth\ForgotPassword;
 use Sokeio\Admin\Livewire\Auth\Login;
 use Sokeio\Admin\Livewire\Auth\Signup;
 
-Route::group(['middleware' => ['web', 'auth']], function () {
-    Route::post('shortcode-setting/', ShortcodeSetting::class)->name('shortcode-setting');
-});
 
 Route::prefix(adminUrl())->middleware(\Sokeio\Middleware\ThemeAdmin::class)->group(function () {
     Route::name('admin.')->prefix('auth')->middleware('themelayout:none')->group(function () {

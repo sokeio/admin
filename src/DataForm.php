@@ -38,8 +38,6 @@ class DataForm extends FormBase
                     foreach ($this->itemManager->getItems() as $item) {
                         if ($item->getWhen()) {
                             $this->{$item->getField()} =  $item->getValueDefault();
-
-        echo $item->getField();
                         }
                     }
                 }
