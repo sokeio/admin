@@ -72,19 +72,37 @@ trait WithTableData
         if (!$query) return null;
         $arrSort = $this->dataSorts->toArray();
         if (isset($arrSort)) {
-            foreach ($arrSort as $key => $value) {
-                if ($value == 1) {
-                    $query->orderBy($key, 'desc');
-                } else {
-                    $query->orderBy($key, 'asc');
+            if ($this->isModelTranslatable()) {
+                foreach ($arrSort as $key => $value) {
+                    if ($value == 1) {
+                        $query->OrderByTranslation($key, 'desc');
+                    } else {
+                        $query->OrderByTranslation($key, 'asc');
+                    }
+                }
+            } else {
+                foreach ($arrSort as $key => $value) {
+                    if ($value == 1) {
+                        $query->orderBy($key, 'desc');
+                    } else {
+                        $query->orderBy($key, 'asc');
+                    }
                 }
             }
         }
         $arrFilters = $this->dataFilters->toArray();
         if (isset($arrFilters)) {
-            foreach ($arrFilters as $key => $value) {
-                if ($key && $value) {
-                    $query->where($key, $value);
+            if ($this->isModelTranslatable()) {
+                foreach ($arrFilters as $key => $value) {
+                    if ($key && $value) {
+                        $query->WhereTranslation($key, $value);
+                    }
+                }
+            } else {
+                foreach ($arrFilters as $key => $value) {
+                    if ($key && $value) {
+                        $query->where($key, $value);
+                    }
                 }
             }
         }

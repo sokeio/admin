@@ -27,6 +27,15 @@ class ItemManager extends BaseManager
                 })
                 ->EditInTable(function () {
                     return false;
+                })->Action('changeStatus', function ($params, $compoent) {
+                    ['id' => $id, 'status' => $status] = $params;
+                    $compoent->UpdateById([
+                        'status' => $status
+                    ], $id);
+                })->Action('deleteRow', function ($params, $compoent) {
+                    ['id' => $id] = $params;
+                    $compoent->DeleteById($id);
+                    $compoent->showMessage("Delete record successfully.");
                 });
         } else {
             $this->useMethodPost()->Manager($this)->FormDoSave(function ($params, $component, $manager) {
