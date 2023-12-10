@@ -50,23 +50,30 @@ class AdminServiceProvider extends ServiceProvider
             }
         }
         Platform::Ready(function () {
-            SettingForm::Register(function (\Sokeio\Admin\ItemManager $form) {
-                $form->Title(__('General'))->Item([
-                    Item::Add('page_logo')->Type('images')->Title('Logo')->Attribute(function () {
-                        return 'style="max-width:200px;"';
-                    }),
 
-                    Item::Add('page_site_title')->Column(Item::Col12)->Title('Page Title')->Required(),
-
-                    Item::Add('page_description')->Attribute(function () {
-                        return 'rows="10"';
-                    })->Column(Item::Col12)->Type('tinymce')->Title('Page Description'), //tinymce//textarea
-                    Item::Add('page_google_analytics')->Title('Google analytics'),
-                    Item::Add('page_google_console')->Title('Google console'),
-                ]);
-                return $form;
-            });
             if (sokeio_is_admin()) {
+                SettingForm::Register(function (\Sokeio\Admin\ItemManager $form) {
+                    $form->Title(__('General'))->Item([
+                        Item::Add('page_logo')->Type('images')->Title('Logo')->Attribute(function () {
+                            return 'style="max-width:200px;"';
+                        }),
+
+                        Item::Add('page_site_title')->Column(Item::Col12)->Title('Page Title')->Required(),
+
+                        Item::Add('page_description')->Attribute(function () {
+                            return 'rows="10"';
+                        })->Column(Item::Col12)->Type('tinymce')->Title('Page Description'), //tinymce//textarea
+                    ]);
+                    return $form;
+                });
+                SettingForm::Register(function (\Sokeio\Admin\ItemManager $form) {
+                    $form->Title(__('Google API'))->Item([
+                        Item::Add('page_google_analytics')->Title('Google analytics'),
+                        Item::Add('page_google_console')->Title('Google console'),
+                        Item::Add('page_google_adsense')->Title('Google Adsense'),
+                    ]);
+                    return $form;
+                }, 'google');
                 Menu::Register(function () {
                     Menu::route('admin.dashboard', __('Dashboard'), '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-dashboard" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
