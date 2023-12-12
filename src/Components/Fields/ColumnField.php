@@ -7,7 +7,7 @@ class ColumnField extends BaseField
 {
     protected function __construct($value)
     {
-        $this->Columns($value);
+        $this->Columns($value)->Name('col');
     }
     public function Columns($Columns)
     {

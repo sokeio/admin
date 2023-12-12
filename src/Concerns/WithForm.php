@@ -15,10 +15,14 @@ trait WithForm
     {
         return 'admin::components.form.index';
     }
+    public function getLayout()
+    {
+    }
     public function render()
     {
         return view($this->getView(), [
-            'title' => $this->getTitle()
+            'title' => $this->getTitle(),
+            'columns' => $this->getLayout()
         ]);
     }
 }
