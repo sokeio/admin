@@ -16,7 +16,6 @@ use Sokeio\Admin\Livewire\Auth\ForgotPassword;
 use Sokeio\Admin\Livewire\Auth\Login;
 use Sokeio\Admin\Livewire\Auth\Signup;
 
-
 Route::prefix(adminUrl())->middleware(\Sokeio\Middleware\ThemeAdmin::class)->group(function () {
     Route::name('admin.')->prefix('auth')->middleware('themelayout:none')->group(function () {
         Route::get('login', route_theme(Login::class))->name('login');
@@ -40,7 +39,7 @@ Route::get('routes', function () {
     echo "<td width='70%'><h4>Corresponding Action</h4></td>";
     echo "</tr>";
     foreach ($routeCollection as $value) {
-        
+
         echo "<tr>";
         echo "<td>" . $value->methods()[0] . "</td>";
         echo "<td>" . $value->uri() . "</td>";

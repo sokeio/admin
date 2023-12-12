@@ -9,4 +9,5 @@ use Sokeio\Component;
 class Form extends Component
 {
     use WithModelQuery, WithForm;
+    
 }

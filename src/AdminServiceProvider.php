@@ -2,6 +2,8 @@
 
 namespace Sokeio\Admin;
 
+use Illuminate\Support\Facades\Request;
+use Sokeio\Admin\Widgets\WidgetServiceProvider;
 use Sokeio\Admin\Facades\Menu;
 use Sokeio\Admin\Facades\SettingForm;
 use Sokeio\Admin\Menu\MenuBuilder;
@@ -11,8 +13,6 @@ use Sokeio\Concerns\WithServiceProvider;
 use Sokeio\Facades\Platform;
 use Sokeio\Facades\Theme;
 use Sokeio\Admin\Item;
-use Illuminate\Support\Facades\Request;
-use Sokeio\Admin\Widgets\WidgetServiceProvider;
 
 class AdminServiceProvider extends ServiceProvider
 {
