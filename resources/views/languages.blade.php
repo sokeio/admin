@@ -1,4 +1,4 @@
-<div class="dropdown mx-2">
+<div class="dropdown mx-2 border rounded ">
     <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         {{ __('admin::locales.' . $currentLocale) }} </button>
     <ul class="dropdown-menu">
