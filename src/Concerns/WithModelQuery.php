@@ -14,6 +14,11 @@ trait WithModelQuery
     public function getQuery()
     {
     }
+    private $columns=[];
+    public function addColumn($column){
+        $this->columns[]=$column;
+        return $this;
+    }
     public function getColumns()
     {
     }
