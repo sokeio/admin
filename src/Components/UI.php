@@ -6,11 +6,16 @@ use Illuminate\Support\Traits\Macroable;
 use Sokeio\Admin\Components\Commons\Box;
 use Sokeio\Admin\Components\Commons\Column;
 use Sokeio\Admin\Components\Commons\Row;
+use Sokeio\Admin\Components\Commons\Tab;
 use Sokeio\Admin\Components\Fields\TextField;
 
-class Field
+class UI
 {
     use Macroable;
+    public static function Tab()
+    {
+        return Tab::make('');
+    }
     public static function Text($value)
     {
         return TextField::make($value);

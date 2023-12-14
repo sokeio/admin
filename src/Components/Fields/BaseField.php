@@ -8,7 +8,7 @@ class BaseField extends Base
 {
     public function boot()
     {
-        $this->getManaager()?->addColumn($this);
+        $this->getManager()?->addColumn($this);
     }
     protected function __construct($value)
     {

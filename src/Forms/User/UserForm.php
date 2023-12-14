@@ -2,7 +2,7 @@
 
 namespace Sokeio\Admin\Forms\User;
 
-use Sokeio\Admin\Components\Field;
+use Sokeio\Admin\Components\UI;
 use Sokeio\Admin\Components\Form;
 
 class UserForm extends Form
@@ -10,17 +10,37 @@ class UserForm extends Form
     public function getLayout()
     {
         return [
-            Field::Row([
-                Field::Column5([
-                    Field::Box([
-                        Field::Text('dfdff')
+            UI::Tab()
+                ->addTab([
+                    UI::Row([
+                        UI::Column6([
+                            UI::Text('dfdff')
+                        ]),
+                        UI::Column6([
+                            UI::Text('dfdff')
+                        ])
                     ]),
+                ], 'Thông tin')
+                ->addTab([
+                    UI::Row([
+                        UI::Column6([
+                            UI::Text('dfdff')
+                        ]),
+                        UI::Column6([
+                            UI::Text('dfdff')
+                        ])
+                    ]),
+                ], 'SEO'),
+            UI::Box([
+                UI::Row([
+                    UI::Column6([
+                        UI::Text('dfdff')
+                    ]),
+                    UI::Column6([
+                        UI::Text('dfdff')
+                    ])
                 ]),
-                Field::Column6([])
-            ]),
-            Field::Box([
-                Field::Text('dfdff')
-            ])->Title('Noi dung')->ClassName('mt-2')
+            ])->Title('Nội dung dữ liệu'),
         ];
     }
 }
