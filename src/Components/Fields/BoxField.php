@@ -3,19 +3,15 @@
 namespace Sokeio\Admin\Components\Fields;
 
 
-class BoxField extends BaseField
+class BoxField extends BaseContentField
 {
-    protected function __construct($value)
+    public function Title($Title)
     {
-        $this->Columns($value);
+        return $this->setKeyValue('Title', $Title);
     }
-    public function Columns($Columns)
+    public function getTitle()
     {
-        return $this->setKeyValue('Columns', $Columns);
-    }
-    public function getColumns()
-    {
-        return $this->getValue('Columns');
+        return $this->getValue('Title');
     }
     public function getView()
     {

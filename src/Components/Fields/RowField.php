@@ -3,7 +3,7 @@
 namespace Sokeio\Admin\Components\Fields;
 
 
-class RowField extends BaseField
+class RowField extends BaseContentField
 {
     protected function __construct($value)
     {

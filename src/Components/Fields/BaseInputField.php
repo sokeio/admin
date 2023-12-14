@@ -9,6 +9,14 @@ class BaseInputField extends BaseField
     {
         $this->Name($value);
     }
+    public function Name($Name)
+    {
+        return $this->setKeyValue('Name', $Name);
+    }
+    public function getName()
+    {
+        return $this->getValue('Name');
+    }
     public function Prex($Prex)
     {
         return $this->setKeyValue('Prex', $Prex);
@@ -17,13 +25,37 @@ class BaseInputField extends BaseField
     {
         return $this->getValue('Prex');
     }
-    public function AttributeBox($AttributeBox)
+    public function AttributeInput($AttributeInput)
     {
-        return $this->setKeyValue('AttributeBox', $AttributeBox);
+        return $this->setKeyValue('AttributeInput', $AttributeInput);
     }
-    public function getAttributeBox()
+    public function getAttributeInput()
     {
-        return $this->getValue('AttributeBox');
+        return $this->getValue('AttributeInput');
+    }
+    public function ClassInput($ClassInput)
+    {
+        return $this->setKeyValue('ClassInput', $ClassInput);
+    }
+    public function getClassInput()
+    {
+        return $this->getValue('ClassInput');
+    }
+    public function AttributeLabel($AttributeLabel)
+    {
+        return $this->setKeyValue('AttributeLabel', $AttributeLabel);
+    }
+    public function getAttributeLabel()
+    {
+        return $this->getValue('AttributeLabel');
+    }
+    public function AttributeInput($AttributeInput)
+    {
+        return $this->setKeyValue('AttributeInput', $AttributeInput);
+    }
+    public function getAttributeInput()
+    {
+        return $this->getValue('AttributeInput');
     }
     public function Title($Title)
     {
