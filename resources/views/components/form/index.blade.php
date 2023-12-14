@@ -1,5 +1,5 @@
-<div class="">
-    @foreach ($columns as $item)
+<div>
+    @foreach ($layout as $item)
         @includeIf($item->getView(), ['column' => $item])
     @endforeach
 </div>

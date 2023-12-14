@@ -7,6 +7,7 @@ use Sokeio\Form;
 trait WithForm
 {
     public Form $data;
+    private $layout;
     public function getRules()
     {
         return null;
@@ -18,11 +19,23 @@ trait WithForm
     public function getLayout()
     {
     }
+    
+    public function boot(){
+        if(!$this->layout) {
+            $this->layout=$this->getLayout();
+            foreach ($this->layout as $item) {
+                if($item){
+                    $item->Manager($this);
+                    $item->boot();
+                }
+            }
+        }
+    }
     public function render()
     {
         return view($this->getView(), [
             'title' => $this->getTitle(),
-            'columns' => $this->getLayout()
+            'layout' => $this->layout
         ]);
     }
 }

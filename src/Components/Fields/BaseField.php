@@ -6,6 +6,9 @@ use Sokeio\Laravel\BaseCallback;
 
 class BaseField extends BaseCallback
 {
+    public function boot(){
+
+    }
     protected function __construct($value)
     {
     }

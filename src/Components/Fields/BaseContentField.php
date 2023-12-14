@@ -9,6 +9,16 @@ class BaseContentField extends BaseField
     {
         $this->Content($value);
     }
+    public function boot(){
+        if(! ($content=$this->getContent())) {
+            foreach ($content as $item) {
+                if($item){
+                    $item->Manager($this->getManager());
+                    $item->boot();
+                }
+            }
+        }
+    }
     public function Content($Content)
     {
         return $this->setKeyValue('Content', $Content);
@@ -25,6 +35,4 @@ class BaseContentField extends BaseField
     {
         return $this->getValue('AttributeBox');
     }
-   
-   
 }

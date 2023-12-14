@@ -5,6 +5,9 @@ namespace Sokeio\Admin\Components\Fields;
 
 class BaseInputField extends BaseField
 {
+    public function boot(){
+        $this->getManaager()?->addColumn($this);
+    }
     protected function __construct($value)
     {
         $this->Name($value);
