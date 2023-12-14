@@ -1,9 +1,13 @@
 <?php
 
-namespace Sokeio\Admin\Components\Fields;
+namespace Sokeio\Admin\Components\Commons;
 
 
+<<<<<<< Updated upstream:src/Components/Fields/ButtonField.php
 class ButtonField extends BaseContentField
+=======
+class Button extends BaseCommon
+>>>>>>> Stashed changes:src/Components/Commons/Button.php
 {
     public function Title($Title)
     {

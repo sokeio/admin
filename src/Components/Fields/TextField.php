@@ -3,7 +3,7 @@
 namespace Sokeio\Admin\Components\Fields;
 
 
-class TextField extends BaseInputField
+class TextField extends BaseField
 {
     public function getView()
     {

@@ -2,10 +2,12 @@
 
 namespace Sokeio\Admin\Components\Fields;
 
+use Sokeio\Admin\Components\Base;
 
-class BaseInputField extends BaseField
+class BaseField extends Base
 {
-    public function boot(){
+    public function boot()
+    {
         $this->getManaager()?->addColumn($this);
     }
     protected function __construct($value)
@@ -52,13 +54,13 @@ class BaseInputField extends BaseField
     {
         return $this->getValue('AttributeLabel');
     }
-    public function AttributeInput($AttributeInput)
+    public function ClassLabel($ClassLabel)
     {
-        return $this->setKeyValue('AttributeInput', $AttributeInput);
+        return $this->setKeyValue('ClassLabel', $ClassLabel);
     }
-    public function getAttributeInput()
+    public function getClassLabel()
     {
-        return $this->getValue('AttributeInput');
+        return $this->getValue('ClassLabel');
     }
     public function Title($Title)
     {
@@ -68,5 +70,4 @@ class BaseInputField extends BaseField
     {
         return $this->getValue('Title');
     }
-   
 }

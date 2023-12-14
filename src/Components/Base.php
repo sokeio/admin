@@ -1,13 +1,13 @@
 <?php
 
-namespace Sokeio\Admin\Components\Fields;
+namespace Sokeio\Admin\Components;
 
 use Sokeio\Laravel\BaseCallback;
 
-class BaseField extends BaseCallback
+class Base extends BaseCallback
 {
-    public function boot(){
-
+    public function boot()
+    {
     }
     protected function __construct($value)
     {
@@ -24,7 +24,7 @@ class BaseField extends BaseCallback
     {
         return $this->getValue('Attribute');
     }
-   
+
     public function ClassName($ClassName)
     {
         return $this->setKeyValue('ClassName', $ClassName);
