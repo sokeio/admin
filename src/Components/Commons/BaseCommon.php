@@ -27,7 +27,7 @@ class BaseCommon extends Base
     }
     public function getContent()
     {
-        return $this->getValue('Prex');
+        return $this->getValue('Content');
     }
     public function AttributeBox($AttributeBox)
     {

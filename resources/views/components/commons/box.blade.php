@@ -3,7 +3,7 @@
         @if ($title = $column->getTitle())
             <h3 class="card-title">{{ $title }}</h3>
         @endif
-        @foreach ($column->getColumns() as $item)
+        @foreach ($column->getContent() as $item)
             @includeIf($item->getView(), ['column' => $item])
         @endforeach
     </div>

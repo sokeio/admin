@@ -3,26 +3,75 @@
 namespace Sokeio\Admin\Components\Commons;
 
 
-<<<<<<< Updated upstream:src/Components/Fields/ColumnField.php
-class ColumnField extends BaseContentField
-=======
 class Column extends BaseCommon
->>>>>>> Stashed changes:src/Components/Commons/Column.php
 {
     protected function __construct($value)
     {
-        $this->Columns($value)->Name('col');
+        parent::__construct($value);
+        $this->Col('col');
     }
-    public function Columns($Columns)
+    public function Col($Col)
     {
-        return $this->setKeyValue('Columns', $Columns);
+        return $this->setKeyValue('Col', $Col);
     }
-    public function getColumns()
+    public function getCol()
     {
-        return $this->getValue('Columns');
+        return $this->getValue('Col');
+    }
+    public function Col1()
+    {
+        return $this->Col('col1');
+    }
+    public function Col2()
+    {
+        return $this->Col('col2');
+    }
+    public function Col3()
+    {
+        return $this->Col('col3');
+    }
+    public function Col4()
+    {
+        return $this->Col('col4');
+    }
+    public function Col5()
+    {
+        return $this->Col('col5');
+    }
+    public function Col6()
+    {
+        return $this->Col('col6');
+    }
+    public function Col7()
+    {
+        return $this->Col('col7');
+    }
+    public function Col8()
+    {
+        return $this->Col('col8');
+    }
+    public function Col9()
+    {
+        return $this->Col('col9');
+    }
+    public function Col10()
+    {
+        return $this->Col('col10');
+    }
+    public function Col11()
+    {
+        return $this->Col('col11');
+    }
+    public function Col12()
+    {
+        return $this->Col('col12');
+    }
+    public function ColAuto()
+    {
+        return $this->Col('auto');
     }
     public function getView()
     {
-        return 'admin::components.fields.column';
+        return 'admin::components.commons.column';
     }
 }

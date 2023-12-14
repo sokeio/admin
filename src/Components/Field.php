@@ -3,9 +3,9 @@
 namespace Sokeio\Admin\Components;
 
 use Illuminate\Support\Traits\Macroable;
-use Sokeio\Admin\Components\Fields\BoxField;
-use Sokeio\Admin\Components\Fields\ColumnField;
-use Sokeio\Admin\Components\Fields\RowField;
+use Sokeio\Admin\Components\Commons\Box;
+use Sokeio\Admin\Components\Commons\Column;
+use Sokeio\Admin\Components\Commons\Row;
 use Sokeio\Admin\Components\Fields\TextField;
 
 class Field
@@ -17,62 +17,66 @@ class Field
     }
     public static function Box($value)
     {
-        return BoxField::make($value);
+        return Box::make($value);
     }
     public static function Row($value)
     {
-        return RowField::make($value);
+        return Row::make($value);
     }
     public static function Column($value)
     {
-        return ColumnField::make($value)->Name('col');
+        return Column::make($value);
     }
     public static function Column1($value)
     {
-        return ColumnField::make($value)->Name('col1');
+        return Column::make($value)->Col1();
     }
     public static function Column2($value)
     {
-        return ColumnField::make($value)->Name('col2');
+        return Column::make($value)->Col2();
     }
     public static function Column3($value)
     {
-        return ColumnField::make($value)->Name('col3');
+        return Column::make($value)->Col3();
     }
     public static function Column4($value)
     {
-        return ColumnField::make($value)->Name('col4');
+        return Column::make($value)->Col4();
     }
     public static function Column5($value)
     {
-        return ColumnField::make($value)->Name('col5');
+        return Column::make($value)->Col5();
     }
     public static function Column6($value)
     {
-        return ColumnField::make($value)->Name('col6');
+        return Column::make($value)->Col6();
     }
     public static function Column7($value)
     {
-        return ColumnField::make($value)->Name('col7');
+        return Column::make($value)->Col7();
     }
     public static function Column8($value)
     {
-        return ColumnField::make($value)->Name('col8');
+        return Column::make($value)->Col8();
     }
     public static function Column9($value)
     {
-        return ColumnField::make($value)->Name('col9');
+        return Column::make($value)->Col9();
     }
     public static function Column10($value)
     {
-        return ColumnField::make($value)->Name('col10');
+        return Column::make($value)->Col10();
     }
     public static function Column11($value)
     {
-        return ColumnField::make($value)->Name('col11');
+        return Column::make($value)->Col11();
     }
     public static function Column12($value)
     {
-        return ColumnField::make($value)->Name('col12');
+        return Column::make($value)->Col12();
+    }
+    public static function ColumnAuto($value)
+    {
+        return Column::make($value)->ColAuto();
     }
 }

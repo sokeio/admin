@@ -1,5 +1,5 @@
-<div class=" {{ $column->getClassName() ?? '' }} {{ column_size($column->getName() ?? 'col') }}">
-    @foreach ($column->getColumns() as $item)
+<div class=" {{ $column->getClassName() ?? '' }} {{ column_size($column->getCol() ?? 'col') }}">
+    @foreach ($column->getContent() as $item)
         @includeIf($item->getView(), ['column' => $item])
     @endforeach
 </div>

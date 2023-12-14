@@ -19,14 +19,17 @@ trait WithForm
     public function getLayout()
     {
     }
-    
-    public function boot(){
-        if(!$this->layout) {
-            $this->layout=$this->getLayout();
-            foreach ($this->layout as $item) {
-                if($item){
-                    $item->Manager($this);
-                    $item->boot();
+
+    public function boot()
+    {
+        if (!$this->layout) {
+            $this->layout = $this->getLayout();
+            if ($this->layout && is_array($this->layout)) {
+                foreach ($this->layout as $item) {
+                    if ($item) {
+                        $item->Manager($this);
+                        $item->boot();
+                    }
                 }
             }
         }
