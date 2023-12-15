@@ -12,7 +12,7 @@ class Tab extends Base
     }
     public function boot()
     {
-        if (($tabs = $this->getTabs())) {
+        if (!$this->tabs && ($tabs = $this->getTabs())) {
             foreach ($tabs as $item) {
                 if (isset($item['content'])) {
                     if (is_array($item['content'])) {

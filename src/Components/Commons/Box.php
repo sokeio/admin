@@ -9,10 +9,7 @@ class Box extends BaseCommon
     {
         parent::__construct($value);
     }
-    public function getView()
-    {
-        return 'admin::components.commons.box';
-    }
+   
     public function Title($Title)
     {
         return $this->setKeyValue('Title', $Title);
@@ -20,5 +17,9 @@ class Box extends BaseCommon
     public function getTitle()
     {
         return $this->getValue('Title');
+    }
+    public function getView()
+    {
+        return 'admin::components.commons.box';
     }
 }

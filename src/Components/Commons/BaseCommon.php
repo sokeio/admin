@@ -12,7 +12,7 @@ class BaseCommon extends Base
     }
     public function boot()
     {
-        if (($content = $this->getContent())) {
+        if (!$this->checkKey('Content') && ($content = $this->getContent())) {
             foreach ($content as $item) {
                 if ($item) {
                     $item->Manager($this->getManager());
