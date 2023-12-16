@@ -13,5 +13,8 @@ trait WithCommon
     {
         return Card::make($value);
     }
-    
+    public static function Container($value)
+    {
+        return Container::make($value);
+    }
 }

@@ -17,10 +17,12 @@ class Tab extends Base
                 if (isset($item['content'])) {
                     if (is_array($item['content'])) {
                         foreach ($item['content'] as $column) {
+                            $item->Prex($this->getPrex());
                             $column->Manager($this->getManager());
                             $column->boot();
                         }
                     } else {
+                        $item['content']->Prex($this->getPrex());
                         $item['content']->Manager($this->getManager());
                         $item['content']->boot();
                     }
@@ -28,18 +30,27 @@ class Tab extends Base
             }
         }
     }
-    private $tabs = [];
+    private $tabs;
     public function getTabs()
     {
-        return $this->tabs;
+        return $this->tabs ?? [];
     }
-    public function addTab($content, $title = '', $icon = '', $active = false)
+    public static function TabItem($title = '', $icon = '', $active = false)
     {
-        $this->tabs[] = [
-            'content' => $content,
+        return [
             'title' => $title,
             'icon' => $icon,
             'active' => $active == true
+        ];
+    }
+    public function addTab($tabItem, $content)
+    {
+        if (is_string($tabItem)) {
+            $tabItem = self::TabItem($tabItem);
+        }
+        $this->tabs[] = [
+            ...$tabItem,
+            'content' => $content,
         ];
         return $this;
     }
