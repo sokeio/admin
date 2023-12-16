@@ -25,7 +25,7 @@ class UserForm extends Form
                             UI::Text('dfdff')->Title('Nội dung')
                         ])
                     ]),
-                ], 'Thông tin')
+                ], __('Thông tin'))
                 ->addTab([
                     UI::Row([
                         UI::Column6([

@@ -47,7 +47,14 @@ class BaseField extends Base
         if ($this->checkPrex()) return $this->getPrex() . '.' . $this->getName();
         return $this->getName();
     }
+
+
     private $fieldValueCallback = null;
+    public function FieldValue($callback)
+    {
+        $this->fieldValueCallback = $callback;
+        return $this;
+    }
     public function getFieldValue($row)
     {
         if ($this->fieldValueCallback) return call_user_func($this->fieldValueCallback, $row, $this, $this->getManager());
