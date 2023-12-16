@@ -14,10 +14,10 @@ class UserForm extends Form
                 ->addTab([
                     UI::Row([
                         UI::Column6([
-                            UI::Text('dfdff')
+                            UI::Text('dfdff')->Title('Xin chào mọi người')
                         ]),
                         UI::Column6([
-                            UI::Text('dfdff')
+                            UI::Text('dfdff')->Title('Nội dung')
                         ])
                     ]),
                 ], 'Thông tin')
@@ -31,7 +31,7 @@ class UserForm extends Form
                         ])
                     ]),
                 ], 'SEO'),
-            UI::Box([
+            UI::Card([
                 UI::Row([
                     UI::Column6([
                         UI::Text('dfdff')

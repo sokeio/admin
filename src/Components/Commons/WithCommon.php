@@ -9,9 +9,9 @@ trait WithCommon
     {
         return Tab::make('');
     }
-    public static function Box($value)
+    public static function Card($value)
     {
-        return Box::make($value);
+        return Card::make($value);
     }
     public static function Row($value)
     {

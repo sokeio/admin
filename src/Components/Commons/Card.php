@@ -3,7 +3,7 @@
 namespace Sokeio\Admin\Components\Commons;
 
 
-class Box extends BaseCommon
+class Card extends BaseCommon
 {
     protected function __construct($value)
     {

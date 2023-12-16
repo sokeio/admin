@@ -22,8 +22,40 @@ class BaseField extends Base
     {
         return $this->getValue('Name');
     }
+    public function Placeholder($Placeholder)
+    {
+        return $this->setKeyValue('Placeholder', $Placeholder);
+    }
+    public function getPlaceholder()
+    {
+        return $this->getValue('Placeholder');
+    }
+    public function Format($Format)
+    {
+        return $this->setKeyValue('Format', $Format);
+    }
+    public function getFormat()
+    {
+        return $this->getValue('Format');
+    }
+    public function checkPrex()
+    {
+        return $this->checkKey('Prex');
+    }
+    public function getFormField()
+    {
+        if ($this->checkPrex()) return $this->getPrex() . '.' . $this->getName();
+        return $this->getName();
+    }
+    private $fieldValueCallback = null;
+    public function getFieldValue($row)
+    {
+        if ($this->fieldValueCallback) return call_user_func($this->fieldValueCallback, $row, $this, $this->getManager());
+        return data_get($row, $this->getName());
+    }
     public function Prex($Prex)
     {
+        if ($this->checkPrex()) return;
         return $this->setKeyValue('Prex', $Prex);
     }
     public function getPrex()
