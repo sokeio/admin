@@ -24,12 +24,14 @@ trait WithForm
     {
         if (!$this->layout) {
             $this->layout = $this->getLayout();
-            if ($this->layout && is_array($this->layout)) {
-                foreach ($this->layout as $item) {
-                    if ($item) {
-                        $item->Manager($this);
-                        $item->boot();
-                    }
+            if (!$this->layout) return null;
+            if (is_object($this->layout)) {
+                $this->layout = [$this->layout];
+            }
+            foreach ($this->layout as $item) {
+                if ($item) {
+                    $item->Manager($this);
+                    $item->boot();
                 }
             }
         }

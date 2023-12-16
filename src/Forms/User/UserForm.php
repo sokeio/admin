@@ -15,18 +15,9 @@ class UserForm extends Form
     }
     public function getLayout()
     {
-        return [
+        return
             UI::Container([
-                UI::Card([
-                    UI::Row([
-                        UI::Column6([
-                            UI::Text('dfdff')
-                        ]),
-                        UI::Column6([
-                            UI::Text('dfdff')
-                        ])
-                    ]),
-                ])->ClassName('mb-4')->Title('Nội dung dữ liệu'),
+                UI::Card([])->ClassName('mb-4')->Title('Nội dung dữ liệu'),
                 UI::Tab()
                     ->addTab(
                         Tab::TabItem(__('Thông tin')),
@@ -51,8 +42,7 @@ class UserForm extends Form
                             ])
                         ]),
                     ]),
-              
-            ])->Prex('data')
-        ];
+
+            ])->Prex('data');
     }
 }

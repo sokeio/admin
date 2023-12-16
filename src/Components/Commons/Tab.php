@@ -12,12 +12,12 @@ class Tab extends Base
     }
     public function boot()
     {
-        if (!$this->tabs && ($tabs = $this->getTabs())) {
+        if (($tabs = $this->getTabs())) {
             foreach ($tabs as $item) {
                 if (isset($item['content'])) {
                     if (is_array($item['content'])) {
                         foreach ($item['content'] as $column) {
-                            $item->Prex($this->getPrex());
+                            $column->Prex($this->getPrex());
                             $column->Manager($this->getManager());
                             $column->boot();
                         }
