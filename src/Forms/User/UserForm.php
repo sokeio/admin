@@ -4,9 +4,14 @@ namespace Sokeio\Admin\Forms\User;
 
 use Sokeio\Admin\Components\UI;
 use Sokeio\Admin\Components\Form;
+use Sokeio\Models\User;
 
 class UserForm extends Form
 {
+    public function getModel()
+    {
+        return User::class;
+    }
     public function getLayout()
     {
         return [
