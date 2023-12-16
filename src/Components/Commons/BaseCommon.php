@@ -20,6 +20,7 @@ class BaseCommon extends Base
                 }
             }
         }
+        parent::boot();
     }
     public function Content($Content)
     {

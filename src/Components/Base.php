@@ -33,6 +33,19 @@ class Base extends BaseCallback
     {
         return $this->getValue('ClassName');
     }
+    public function checkPrex()
+    {
+        return $this->checkKey('Prex');
+    }
+    public function Prex($Prex)
+    {
+        if ($this->checkPrex()) return;
+        return $this->setKeyValue('Prex', $Prex);
+    }
+    public function getPrex()
+    {
+        return $this->getValue('Prex');
+    }
     public function getView()
     {
     }

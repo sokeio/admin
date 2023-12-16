@@ -6,8 +6,9 @@
 @endphp
 <div class=" {{ $column->getClassName() ?? 'mb-3' }}">
     <label class="form-label">{{ $modelTitle }}</label>
-    <input type="text" class="form-control" name="field-{{ $modelField }}" placeholder="{{ $modelPlaceholder }}">
-    @error($modelField)
+    <input type="text" class="form-control" name="field-{{ $modelField }}" placeholder="{{ $modelPlaceholder }}"
+        {!! $column->getWireAttribute() !!}>
+    @error($formField)
         <div>
             <span class="error">{{ $message }}</span>
         </div>
