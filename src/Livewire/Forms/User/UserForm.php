@@ -5,6 +5,7 @@ namespace Sokeio\Admin\Livewire\Forms\User;
 use Sokeio\Admin\Components\Common\Tab;
 use Sokeio\Admin\Components\UI;
 use Sokeio\Admin\Components\Form;
+use Sokeio\Breadcrumb;
 use Sokeio\Models\Role;
 
 class UserForm extends Form
@@ -13,14 +14,19 @@ class UserForm extends Form
     {
         return __('Thêm mới Tài khoản');
     }
+    public function getBreadcrumb()
+    {
+        return [
+            Breadcrumb::Item(__('Home'), route('admin.dashboard'))
+        ];
+    }
+    public function getButtons()
+    {
+        return [];
+    }
     public function getModel()
     {
         return Role::class;
-    }
-    public function doTest()
-    {
-        $this->validate();
-        $this->showMessage('xin cha9f');
     }
     public function layoutUI()
     {

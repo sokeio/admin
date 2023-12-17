@@ -1,5 +1,3 @@
 <div>
-    @foreach ($layout as $item)
-        @includeIf($item->getView(), ['column' => $item])
-    @endforeach
+    @includeIf('admin::components.layout', ['layout' => $layout])
 </div>

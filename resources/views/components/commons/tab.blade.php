@@ -27,9 +27,7 @@
                 <div class="tab-pane @if ($tabActive == $key) active show @endif" id="tabs-{{ $key }}"
                     role="tabpanel">
                     @isset($item['content'])
-                        @foreach ($item['content'] as $column)
-                            @includeIf($column->getView(), ['column' => $column])
-                        @endforeach
+                        @includeIf('admin::components.layout', ['layout' => $item['content']])
                     @endisset
                 </div>
             @endforeach

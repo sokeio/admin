@@ -2,9 +2,20 @@
 
 namespace Sokeio\Admin\Concerns;
 
+use Sokeio\Breadcrumb;
+
 trait WithModelQuery
 {
     public function getTitle()
+    {
+    }
+    public function getBreadcrumb()
+    {
+        return [
+            Breadcrumb::Item(__('Home'), route('admin.dashboard'))
+        ];
+    }
+    protected function getModel()
     {
     }
     /**
@@ -12,7 +23,7 @@ trait WithModelQuery
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function getQuery()
+    protected function getQuery()
     {
         return ($this->getModel())::query();
     }
@@ -28,7 +39,7 @@ trait WithModelQuery
      *
      * @return \Sokeio\Admin\Components\Field\BaseField[]
      */
-    public function getColumns()
+    protected function getColumns()
     {
         return  $this->columns;
     }

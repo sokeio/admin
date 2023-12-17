@@ -3,8 +3,6 @@
         @if ($title = $column->getTitle())
             <h3 class="card-title">{{ $title }}</h3>
         @endif
-        @foreach ($column->getContent() as $item)
-            @includeIf($item->getView(), ['column' => $item])
-        @endforeach
+        @includeIf('admin::components.layout', ['layout' => $column->getContent()])
     </div>
 </div>

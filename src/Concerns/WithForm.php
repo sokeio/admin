@@ -3,8 +3,8 @@
 namespace Sokeio\Admin\Concerns;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Url;
+use Sokeio\Facades\Theme;
 use Sokeio\Form;
 
 trait WithForm
@@ -15,7 +15,10 @@ trait WithForm
     public $copyId;
     public Form $data;
     private $layout;
-
+    protected function getButtons()
+    {
+        return [];
+    }
     public function loadData()
     {
         $query = $this->getQuery();
@@ -32,7 +35,6 @@ trait WithForm
     }
     protected function FormRules()
     {
-
         $rules = [];
         $messages = [];
         $attributes = [];
@@ -40,7 +42,7 @@ trait WithForm
             if ($column->checkRule()) {
                 $rules[$column->getFormField()] = $column->getRules();
                 $attributes[$column->getFormField()] = $column->getLabel();
-            
+
                 // $messages[$column->getFormField()] = $column->getMessages();
             }
         }
@@ -48,9 +50,14 @@ trait WithForm
     }
     protected function getView()
     {
+        if ($this->currentIsPage()) {
+            Theme::setTitle($this->getTitle());
+            breadcrumb()->Title($this->getTitle())->Breadcrumb($this->getBreadcrumb());
+            return 'admin::components.form.page';
+        }
         return 'admin::components.form.index';
     }
-    public function layoutUI()
+    protected function layoutUI()
     {
     }
 
@@ -108,6 +115,7 @@ trait WithForm
     {
         return view($this->getView(), [
             'title' => $this->getTitle(),
+            'buttons' => $this->getButtons(),
             'layout' => $this->layout
         ]);
     }
