@@ -17,4 +17,8 @@ trait WithCommon
     {
         return Container::make($value);
     }
+    public static function Prex($prex, $value)
+    {
+        return Container::make($value)->Prex($prex);
+    }
 }

@@ -6,8 +6,18 @@ use Sokeio\Form;
 
 trait WithForm
 {
+    use WithModelQuery;
+    public $dataId;
+    public $copyId;
     public Form $data;
     private $layout;
+
+    public function loadData()
+    {
+        $query = $this->getQuery();
+        $data = $query->first();
+        $this->data->fill($data);
+    }
     public function getRules()
     {
         return null;
@@ -20,6 +30,10 @@ trait WithForm
     {
     }
 
+    public function doSave()
+    {
+        $this->getColumns();
+    }
     public function boot()
     {
         if (!$this->layout) {
@@ -35,6 +49,10 @@ trait WithForm
                 }
             }
         }
+    }
+    public function mount()
+    {
+        $this->loadData();
     }
     public function render()
     {

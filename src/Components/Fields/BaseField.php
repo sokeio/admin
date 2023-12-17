@@ -136,12 +136,12 @@ class BaseField extends Base
     {
         return $this->getValue('ClassLabel');
     }
-    public function Title($Title)
+    public function Label($Label)
     {
-        return $this->setKeyValue('Title', $Title);
+        return $this->setKeyValue('Label', $Label);
     }
-    public function getTitle()
+    public function getLabel()
     {
-        return $this->getValue('Title');
+        return $this->getValue('Label');
     }
 }

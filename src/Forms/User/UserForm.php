@@ -9,6 +9,10 @@ use Sokeio\Models\User;
 
 class UserForm extends Form
 {
+    public function getTitle()
+    {
+        return __('Thêm mới Tài khoản');
+    }
     public function getModel()
     {
         return User::class;
@@ -16,33 +20,36 @@ class UserForm extends Form
     public function getLayout()
     {
         return
-            UI::Container([
-                UI::Card([])->ClassName('mb-4')->Title('Nội dung dữ liệu'),
-                UI::Tab()
-                    ->addTab(
-                        Tab::TabItem(__('Thông tin')),
-                        [
+            UI::Prex(
+                'data',
+                [
+                    UI::Card([])->ClassName('mb-4')->Title('Nội dung dữ liệu'),
+                    UI::Tab()
+                        ->addTab(
+                            Tab::TabItem(__('Thông tin')),
+                            [
+                                UI::Row([
+                                    UI::Column6([
+                                        UI::Text('name')->Label('Xin chào mọi người')
+                                    ]),
+                                    UI::Column6([
+                                        UI::Text('dfdff')->Label('Nội dung')
+                                    ])
+                                ]),
+                            ],
+                        )
+                        ->addTab('SEO', [
                             UI::Row([
                                 UI::Column6([
-                                    UI::Text('dfdff')->Title('Xin chào mọi người')
+                                    UI::Text('dfdff')
                                 ]),
                                 UI::Column6([
-                                    UI::Text('dfdff')->Title('Nội dung')
+                                    UI::Text('dfdff')
                                 ])
                             ]),
-                        ],
-                    )
-                    ->addTab('SEO', [
-                        UI::Row([
-                            UI::Column6([
-                                UI::Text('dfdff')
-                            ]),
-                            UI::Column6([
-                                UI::Text('dfdff')
-                            ])
                         ]),
-                    ]),
 
-            ])->Prex('data');
+                ]
+            );
     }
 }

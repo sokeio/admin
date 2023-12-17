@@ -1,11 +1,11 @@
 @php
     $modelField = $column->getName();
-    $modelTitle = $column->getTitle() ?? $modelField;
-    $modelPlaceholder = $column->getPlaceholder() ?? $modelTitle;
+    $modelLabel = $column->getLabel() ?? $modelField;
+    $modelPlaceholder = $column->getPlaceholder() ?? $modelLabel;
     $formField = $column->getFormField();
 @endphp
 <div class=" {{ $column->getClassName() ?? 'mb-3' }}">
-    <label class="form-label">{{ $modelTitle }}</label>
+    <label class="form-label">{{ $modelLabel }}</label>
     <input type="text" class="form-control" name="field-{{ $modelField }}" placeholder="{{ $modelPlaceholder }}"
         {!! $column->getWireAttribute() !!}>
     @error($formField)
