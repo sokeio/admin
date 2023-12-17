@@ -1,6 +1,6 @@
 <?php
 
-namespace Sokeio\Admin\Forms\User;
+namespace Sokeio\Admin\Livewire\Forms\User;
 
 use Sokeio\Admin\Components\Common\Tab;
 use Sokeio\Admin\Components\UI;
@@ -17,13 +17,19 @@ class UserForm extends Form
     {
         return User::class;
     }
+    public function doTest()
+    {
+        $this->showMessage('xin cha9f');
+    }
     public function getLayout()
     {
         return
             UI::Prex(
                 'data',
                 [
-                    UI::Card([])->ClassName('mb-4')->Title('Nội dung dữ liệu'),
+                    UI::Card([
+                        UI::Button('Xin chào')->WireClick('doTest()')
+                    ])->ClassName('mb-4')->Title('Nội dung dữ liệu'),
                     UI::Tab()
                         ->addTab(
                             Tab::TabItem(__('Thông tin')),

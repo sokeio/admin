@@ -2,14 +2,12 @@
 
 namespace Sokeio\Admin\Concerns;
 
-use Sokeio\Models\User;
-
 trait WithModelQuery
 {
     public function getTitle()
     {
     }
-      /**
+    /**
      * Get a new query builder for the model's table.
      *
      * @return \Illuminate\Database\Eloquent\Builder
@@ -24,6 +22,12 @@ trait WithModelQuery
         $this->columns[] = $column;
         return $this;
     }
+    /**
+     * Get a new query builder for the model's table.
+     *
+     *
+     * @return \Sokeio\Admin\Components\Field\BaseField
+     */
     public function getColumns()
     {
     }

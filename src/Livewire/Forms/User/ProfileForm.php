@@ -1,6 +1,6 @@
 <?php
 
-namespace Sokeio\Admin\Forms\User;
+namespace Sokeio\Admin\Livewire\Forms\User;
 
 use Sokeio\Admin\Components\Form;
 

@@ -2,12 +2,14 @@
 
 namespace Sokeio\Admin\Concerns;
 
+use Livewire\Attributes\Url;
 use Sokeio\Form;
 
 trait WithForm
 {
     use WithModelQuery;
     public $dataId;
+    #[Url]
     public $copyId;
     public Form $data;
     private $layout;
@@ -17,15 +19,21 @@ trait WithForm
         $query = $this->getQuery();
         if ($this->dataId) {
             $query =  $query->where('id', $this->dataId);
+            $data = $query->first();
+            $this->data->fill($data);
         } else if ($this->copyId) {
             $query =  $query->where('id', $this->copyId);
+            $data = $query->first();
+            $this->data->fill($data);
         }
-        $data = $query->first();
-        $this->data->fill($data);
     }
-    protected function getRules()
+    protected function rules()
     {
-        return null;
+        $arr = [];
+        foreach ($this->getColumns() as $column) {
+            $arr[$column->getFormField()] = $column->getRules();
+        }
+        return  $arr;
     }
     protected function getView()
     {
@@ -37,6 +45,12 @@ trait WithForm
 
     public function doSave()
     {
+        $this->validate();
+
+        foreach ($this->getColumns() as $column) {
+            $arr[$column->getFormField()] = $column->getRules();
+        }
+        
         $this->getColumns();
     }
     public function boot()
