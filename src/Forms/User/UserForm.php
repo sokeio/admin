@@ -2,7 +2,7 @@
 
 namespace Sokeio\Admin\Forms\User;
 
-use Sokeio\Admin\Components\Commons\Tab;
+use Sokeio\Admin\Components\Common\Tab;
 use Sokeio\Admin\Components\UI;
 use Sokeio\Admin\Components\Form;
 use Sokeio\Models\User;

@@ -1,10 +1,13 @@
 <?php
 
-namespace Sokeio\Admin\Components\Commons;
+namespace Sokeio\Admin\Components\Concerns;
+
+use Sokeio\Admin\Components\Common\Card;
+use Sokeio\Admin\Components\Common\Container;
+use Sokeio\Admin\Components\Common\Tab;
 
 trait WithCommon
 {
-
     public static function Tab()
     {
         return Tab::make('');

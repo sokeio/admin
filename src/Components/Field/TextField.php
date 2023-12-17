@@ -1,6 +1,6 @@
 <?php
 
-namespace Sokeio\Admin\Components\Fields;
+namespace Sokeio\Admin\Components\Field;
 
 
 class TextField extends BaseField

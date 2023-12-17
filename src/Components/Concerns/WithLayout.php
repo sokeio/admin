@@ -1,6 +1,9 @@
 <?php
 
-namespace Sokeio\Admin\Components\Commons;
+namespace Sokeio\Admin\Components\Concerns;
+
+use Sokeio\Admin\Components\Common\Column;
+use Sokeio\Admin\Components\Common\Row;
 
 trait WithLayout
 {

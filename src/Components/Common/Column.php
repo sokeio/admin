@@ -1,6 +1,6 @@
 <?php
 
-namespace Sokeio\Admin\Components\Commons;
+namespace Sokeio\Admin\Components\Common;
 
 
 class Column extends BaseCommon

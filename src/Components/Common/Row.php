@@ -1,9 +1,9 @@
 <?php
 
-namespace Sokeio\Admin\Components\Commons;
+namespace Sokeio\Admin\Components\Common;
 
 
-class Container extends BaseCommon
+class Row extends BaseCommon
 {
     protected function __construct($value)
     {
@@ -11,6 +11,7 @@ class Container extends BaseCommon
     }
     public function getView()
     {
-        return 'admin::components.commons.container';
+        return 'admin::components.commons.row';
     }
 }
+

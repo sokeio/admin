@@ -15,10 +15,15 @@ trait WithForm
     public function loadData()
     {
         $query = $this->getQuery();
+        if ($this->dataId) {
+            $query =  $query->where('id', $this->dataId);
+        } else if ($this->copyId) {
+            $query =  $query->where('id', $this->copyId);
+        }
         $data = $query->first();
         $this->data->fill($data);
     }
-    public function getRules()
+    protected function getRules()
     {
         return null;
     }
