@@ -2,6 +2,8 @@
 
 namespace Sokeio\Admin\Concerns;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Url;
 use Sokeio\Form;
 
@@ -20,6 +22,7 @@ trait WithForm
         if ($this->dataId) {
             $query =  $query->where('id', $this->dataId);
             $data = $query->first();
+            if (!$data) return abort(404);
             $this->data->fill($data);
         } else if ($this->copyId) {
             $query =  $query->where('id', $this->copyId);
@@ -27,36 +30,64 @@ trait WithForm
             $this->data->fill($data);
         }
     }
-    protected function rules()
+    protected function FormRules()
     {
-        $arr = [];
+
+        $rules = [];
+        $messages = [];
+        $attributes = [];
         foreach ($this->getColumns() as $column) {
-            $arr[$column->getFormField()] = $column->getRules();
+            if ($column->checkRule()) {
+                $rules[$column->getFormField()] = $column->getRules();
+                $attributes[$column->getFormField()] = $column->getLabel();
+            
+                // $messages[$column->getFormField()] = $column->getMessages();
+            }
         }
-        return  $arr;
+        return  ['rules' => $rules, 'messages' => $messages, 'attributes' => $attributes];
     }
     protected function getView()
     {
         return 'admin::components.form.index';
     }
-    public function getLayout()
+    public function layoutUI()
     {
     }
 
     public function doSave()
     {
-        $this->validate();
-
-        foreach ($this->getColumns() as $column) {
-            $arr[$column->getFormField()] = $column->getRules();
+        ['rules' => $rules, 'messages' => $messages, 'attributes' => $attributes] = $this->FormRules();
+        // $this->showMessage(json_encode(['rules' => $rules, 'messages' => $messages, 'attributes' => $attributes]));
+        // return;
+        if ($rules && count($rules)) {
+            $this->validate($rules, $messages, $attributes);
         }
-        
-        $this->getColumns();
+        $objData = new ($this->getModel());
+        if ($this->dataId) {
+            $query = $this->getQuery();
+            $query =  $query->where('id', $this->dataId);
+            $objData = $query->first();
+            if (!$objData) $objData = new ($this->getModel());
+        }
+        foreach ($this->getColumns() as $column) {
+            data_set($objData, $column->getName(), data_get($this, $column->getFormField()));
+        }
+        DB::transaction(function () use ($objData) {
+            if (method_exists($this, 'saveBefore')) {
+                call_user_func([$this, 'saveBefore'], $objData);
+            }
+            $objData->save();
+            if (method_exists($this, 'saveAfter')) {
+                call_user_func([$this, 'saveAfter'], $objData);
+            }
+        });
+        $this->dataId = $objData->id;
+        $this->showMessage('xin cha9f');
     }
     public function boot()
     {
         if (!$this->layout) {
-            $this->layout = $this->getLayout();
+            $this->layout = $this->layoutUI();
             if (!$this->layout) return null;
             if (is_object($this->layout)) {
                 $this->layout = [$this->layout];

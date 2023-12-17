@@ -26,9 +26,10 @@ trait WithModelQuery
      * Get a new query builder for the model's table.
      *
      *
-     * @return \Sokeio\Admin\Components\Field\BaseField
+     * @return \Sokeio\Admin\Components\Field\BaseField[]
      */
     public function getColumns()
     {
+        return  $this->columns;
     }
 }

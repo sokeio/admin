@@ -4,7 +4,7 @@ namespace Sokeio\Admin\Components\Field\Concerns;
 
 trait WithFieldBase
 {
-    public function Name($Name)
+    public function Name($Name): static
     {
         return $this->setKeyValue('Name', $Name);
     }
@@ -12,7 +12,7 @@ trait WithFieldBase
     {
         return $this->getValue('Name');
     }
-    public function Placeholder($Placeholder)
+    public function Placeholder($Placeholder): static
     {
         return $this->setKeyValue('Placeholder', $Placeholder);
     }
@@ -20,7 +20,7 @@ trait WithFieldBase
     {
         return $this->getValue('Placeholder');
     }
-    public function Format($Format)
+    public function Format($Format): static
     {
         return $this->setKeyValue('Format', $Format);
     }
@@ -34,7 +34,7 @@ trait WithFieldBase
         return $this->getName();
     }
     private $fieldValueCallback = null;
-    public function FieldValue($callback)
+    public function FieldValue($callback): static
     {
         $this->fieldValueCallback = $callback;
         return $this;
@@ -45,7 +45,7 @@ trait WithFieldBase
         return data_get($row, $this->getName());
     }
 
-    public function AttributeInput($AttributeInput)
+    public function AttributeInput($AttributeInput): static
     {
         return $this->setKeyValue('AttributeInput', $AttributeInput);
     }
@@ -53,7 +53,7 @@ trait WithFieldBase
     {
         return $this->getValue('AttributeInput');
     }
-    public function ClassInput($ClassInput)
+    public function ClassInput($ClassInput): static
     {
         return $this->setKeyValue('ClassInput', $ClassInput);
     }
@@ -61,7 +61,7 @@ trait WithFieldBase
     {
         return $this->getValue('ClassInput');
     }
-    public function AttributeLabel($AttributeLabel)
+    public function AttributeLabel($AttributeLabel): static
     {
         return $this->setKeyValue('AttributeLabel', $AttributeLabel);
     }
@@ -69,7 +69,7 @@ trait WithFieldBase
     {
         return $this->getValue('AttributeLabel');
     }
-    public function ClassLabel($ClassLabel)
+    public function ClassLabel($ClassLabel): static
     {
         return $this->setKeyValue('ClassLabel', $ClassLabel);
     }
@@ -77,7 +77,7 @@ trait WithFieldBase
     {
         return $this->getValue('ClassLabel');
     }
-    public function Label($Label)
+    public function Label($Label): static
     {
         return $this->setKeyValue('Label', $Label);
     }

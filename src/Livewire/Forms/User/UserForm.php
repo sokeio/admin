@@ -5,7 +5,7 @@ namespace Sokeio\Admin\Livewire\Forms\User;
 use Sokeio\Admin\Components\Common\Tab;
 use Sokeio\Admin\Components\UI;
 use Sokeio\Admin\Components\Form;
-use Sokeio\Models\User;
+use Sokeio\Models\Role;
 
 class UserForm extends Form
 {
@@ -15,45 +15,33 @@ class UserForm extends Form
     }
     public function getModel()
     {
-        return User::class;
+        return Role::class;
     }
     public function doTest()
     {
+        $this->validate();
         $this->showMessage('xin cha9f');
     }
-    public function getLayout()
+    public function layoutUI()
     {
         return
             UI::Prex(
                 'data',
                 [
-                    UI::Card([
-                        UI::Button('Xin chào')->WireClick('doTest()')
-                    ])->ClassName('mb-4')->Title('Nội dung dữ liệu'),
                     UI::Tab()
                         ->addTab(
                             Tab::TabItem(__('Thông tin')),
                             [
                                 UI::Row([
                                     UI::Column6([
-                                        UI::Text('name')->Label('Xin chào mọi người')
+                                        UI::Text('name')->Label('Tên role')->required()
                                     ]),
-                                    UI::Column6([
-                                        UI::Text('dfdff')->Label('Nội dung')
-                                    ])
                                 ]),
                             ],
-                        )
-                        ->addTab('SEO', [
-                            UI::Row([
-                                UI::Column6([
-                                    UI::Text('dfdff')
-                                ]),
-                                UI::Column6([
-                                    UI::Text('dfdff')
-                                ])
-                            ]),
-                        ]),
+                        ),
+                    UI::Card([
+                        UI::Button('Lưu')->WireClick('doSave()')
+                    ])->ClassName('mt-1 p-1')->Title('Nội dung dữ liệu')
 
                 ]
             );

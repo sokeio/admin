@@ -31,23 +31,23 @@ trait WithFieldWire
     private $wireModelType = 0;
     private $wireModelDebounce = '150ms';
     private $wireModelThrottle = '150ms';
-    public function WireLive()
+    public function WireLive():static
     {
         $this->wireModelType = 1;
         return $this;
     }
-    public function WireBlur()
+    public function WireBlur():static
     {
         $this->wireModelType = 2;
         return $this;
     }
-    public function WireLiveDebounce($value = '150ms')
+    public function WireLiveDebounce($value = '150ms'):static
     {
         $this->wireModelType = 3;
         $this->wireModelDebounce = $value;
         return $this;
     }
-    public function WireLiveThrottle($value = '150ms')
+    public function WireLiveThrottle($value = '150ms'):static
     {
         $this->wireModelType = 4;
         $this->wireModelThrottle = $value;
