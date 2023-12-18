@@ -41,44 +41,34 @@
                 </div>
             </div>
         </div>
-       
+
     </div>
     @isset($searchlayout)
-    <div class="mt-2  border-bottom py-3 px-3" style="display: none" :style="tableFilter ? { display: 'block' } : { display: 'none' }">
-        @includeIf('admin::components.layout', ['layout' => $searchlayout])
-        <a class="btn btn-primary" aria-label="Button" wire:click="doSearch()">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24"
-                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                <path d="M21 21l-6 -6" />
-            </svg>
-            @lang('Search')
-        </a>
-    </div>
-@endisset
+        <div class="mt-2  border-bottom py-3 px-3" style="display: none"
+            :style="tableFilter ? { display: 'block' } : { display: 'none' }">
+            @includeIf('admin::components.layout', ['layout' => $searchlayout])
+            <a class="btn btn-primary" aria-label="Button" wire:click="doSearch()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24"
+                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                </svg>
+                @lang('Search')
+            </a>
+        </div>
+    @endisset
     <div class="table-responsive">
         <table class="table card-table table-vcenter text-nowrap datatable">
             <thead>
                 <tr>
-                    
+
                     <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
                             aria-label="Select all invoices"></th>
-                    <th class="w-1">No. <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-sm icon-thick" width="24"
-                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M6 15l6 -6l6 6"></path>
-                        </svg>
-                    </th>
-                    <th>Invoice Subject</th>
-                    <th>Client</th>
-                    <th>VAT No.</th>
-                    <th>Created</th>
-                    <th>Status</th>
-                    <th>Price</th>
+                    @foreach ($tablecolumns as $column)
+                        <th>{{ $column->getLabel() }}</th>
+                    @endforeach
                     <th></th>
                 </tr>
             </thead>
@@ -89,22 +79,9 @@
                             <td><input class="form-check-input m-0 align-middle" type="checkbox"
                                     aria-label="Select invoice">
                             </td>
-                            <td><span class="text-secondary">001401</span></td>
-                            <td><a href="invoice.html" class="text-reset" tabindex="-1">Design Works</a></td>
-                            <td>
-                                <span class="flag flag-xs flag-country-us me-2"></span>
-                                Carlson Limited
-                            </td>
-                            <td>
-                                87956621
-                            </td>
-                            <td>
-                                15 Dec 2017
-                            </td>
-                            <td>
-                                <span class="badge bg-success me-1"></span> Paid
-                            </td>
-                            <td>$887</td>
+                            @foreach ($tablecolumns as $column)
+                                <td>{!! $column->getFieldValue($row) !!}</td>
+                            @endforeach
                             <td class="text-end">
                                 <span class="dropdown">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"

@@ -4,6 +4,7 @@ namespace Sokeio\Admin\Concerns;
 
 use Sokeio\Admin\Components\UI;
 use Sokeio\Facades\Theme;
+// use Livewire\Attributes\Url;
 use Sokeio\Form;
 
 trait WithTable
@@ -11,6 +12,7 @@ trait WithTable
     use WithModelQuery;
     private $searchlayout;
     private $tablecolumns;
+    // #[Url]
     public Form $search;
     public Form $orderBy;
 
