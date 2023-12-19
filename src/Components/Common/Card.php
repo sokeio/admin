@@ -20,6 +20,6 @@ class Card extends BaseCommon
     }
     public function getView()
     {
-        return 'admin::components.commons.box';
+        return 'admin::components.common.box';
     }
 }

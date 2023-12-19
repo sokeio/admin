@@ -56,6 +56,6 @@ class Tab extends Base
     }
     public function getView()
     {
-        return 'admin::components.commons.tab';
+        return 'admin::components.common.tab';
     }
 }

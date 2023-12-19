@@ -2,11 +2,12 @@
 
 namespace Sokeio\Admin\Components\Common;
 
+use Sokeio\Admin\Components\Common\Concerns\WithButtonSoke;
 use Sokeio\Admin\Components\Common\Concerns\WithButtonWire;
 
 class Button extends BaseCommon
 {
-    use WithButtonWire;
+    use WithButtonWire, WithButtonSoke;
     protected function __construct($value)
     {
         $this->Title($value);
@@ -36,8 +37,14 @@ class Button extends BaseCommon
         return $this->getValue('Link');
     }
 
+    public function Route($name, $params = [])
+    {
+        return $this->Link(function () use ($name, $params) {
+            return route($name, $params);
+        });
+    }
     public function getView()
     {
-        return 'admin::components.commons.button';
+        return 'admin::components.common.button';
     }
 }

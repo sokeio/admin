@@ -72,6 +72,6 @@ class Column extends BaseCommon
     }
     public function getView()
     {
-        return 'admin::components.commons.column';
+        return 'admin::components.common.column';
     }
 }

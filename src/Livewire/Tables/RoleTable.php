@@ -15,7 +15,7 @@ class RoleTable extends Table
     public function getButtons()
     {
         return [
-            UI::Button('Demo'),
+            UI::Button('Test')->Route('testUser'),
             UI::Button('Demo')
         ];
     }
@@ -24,7 +24,7 @@ class RoleTable extends Table
         return [
             UI::Row([
                 UI::Column6([
-                    UI::Text('name')->Label('Tên Role')
+                    UI::Text('leg.name')->Label('Tên Role')
                 ])
             ])
 

@@ -7,6 +7,6 @@ class TextField extends BaseField
 {
     public function getView()
     {
-        return 'admin::components.fields.text';
+        return 'admin::components.field.text';
     }
 }

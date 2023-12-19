@@ -5,6 +5,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar-menu">
+
+            {!! breadcrumb() !!}
             @php
                 do_action('THEME_ADMIN_LEFT_BEFORE');
             @endphp

@@ -11,7 +11,7 @@ class Row extends BaseCommon
     }
     public function getView()
     {
-        return 'admin::components.commons.row';
+        return 'admin::components.common.row';
     }
 }
 

@@ -12,17 +12,7 @@ trait WithButtonWire
     {
         return $this->getValue('WireClick');
     }
-    private $wireConfirm;
-    public function WireConfirm($message, $title, $yes = 'Yes', $no = 'No')
-    {
-        $this->wireConfirm = [
-            'message' => $message,
-            'title' => $title,
-            'yes' => $yes,
-            'no' => $no,
-        ];
-        return $this;
-    }
+    
     public function getWireAttribute()
     {
         $attr = '';

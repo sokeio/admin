@@ -11,6 +11,6 @@ class Container extends BaseCommon
     }
     public function getView()
     {
-        return 'admin::components.commons.container';
+        return 'admin::components.common.container';
     }
 }
