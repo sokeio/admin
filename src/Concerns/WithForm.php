@@ -15,10 +15,6 @@ trait WithForm
     public $copyId;
     public Form $data;
     private $layout;
-    protected function getButtons()
-    {
-        return [];
-    }
     public function loadData()
     {
         $query = $this->getQuery();
@@ -115,7 +111,6 @@ trait WithForm
     {
         return view($this->getView(), [
             'title' => $this->getTitle(),
-            'buttons' => $this->getButtons(),
             'layout' => $this->layout
         ]);
     }
