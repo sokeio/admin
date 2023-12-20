@@ -1,6 +1,6 @@
 <?php
 
-namespace Sokeio\Admin\Concerns;
+namespace Sokeio\Admin\Components\Concerns;
 
 use Sokeio\Breadcrumb;
 
@@ -8,12 +8,6 @@ trait WithModelQuery
 {
     public function getTitle()
     {
-    }
-    public function getBreadcrumb()
-    {
-        return [
-            Breadcrumb::Item(__('Home'), route('admin.dashboard'))
-        ];
     }
     protected function getModel()
     {
