@@ -9,6 +9,12 @@ trait WithModelQuery
     public function getTitle()
     {
     }
+    public function getBreadcrumb()
+    {
+        return [
+            Breadcrumb::Item(__('Home'), route('admin.dashboard'))
+        ];
+    }
     protected function getModel()
     {
     }
