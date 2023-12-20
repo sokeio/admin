@@ -20,6 +20,15 @@ trait WithTable
     {
         return ['name'];
     }
+    public function doSort($name)
+    {
+        if (isset($this->orderBy->{$name})) {
+            $this->orderBy->{$name} = $this->orderBy->{$name} == 0;
+        } else {
+            $this->orderBy->Clear();
+            $this->orderBy->{$name} = 1;
+        }
+    }
     protected function getButtons()
     {
         return [];
@@ -80,6 +89,16 @@ trait WithTable
                     $subquery->where($field, 'like', '%' . $textSearch . '%');
                 }
             });
+        }
+        $orderBy = $this->orderBy->toArray();
+        if (count(($orderBy))) {
+            foreach ($orderBy as $key => $value) {
+                if ($value == 1) {
+                    $query->orderBy($key, 'desc');
+                } else {
+                    $query->orderBy($key, 'asc');
+                }
+            }
         }
         return  $query->paginate();
     }

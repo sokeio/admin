@@ -67,7 +67,19 @@
                     <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
                             aria-label="Select all invoices"></th>
                     @foreach ($tablecolumns as $column)
-                        <th>{{ $column->getLabel() }}</th>
+                        <th data-field="{{ $column->getName() }}">
+                            <button
+                                class="table-sort
+                                    @isset($orderBy->{$column->getName()})
+                                    @if ($orderBy->{$column->getName()})
+                                    desc
+                                    @else
+                                    asc
+                                    @endif
+                                    @endisset
+                            "
+                                wire:click="doSort('{{ $column->getName() }}')"> {{ $column->getLabel() }} </button>
+                        </th>
                     @endforeach
                     <th></th>
                 </tr>
