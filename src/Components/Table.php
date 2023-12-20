@@ -2,7 +2,7 @@
 
 namespace Sokeio\Admin\Components;
 
-use Sokeio\Admin\Concerns\WithTable;
+use Sokeio\Admin\Components\Concerns\WithTable;
 use Sokeio\Component;
 
 class Table extends Component

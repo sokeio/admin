@@ -1,6 +1,6 @@
 <?php
 
-namespace Sokeio\Admin\Concerns;
+namespace Sokeio\Admin\Components\Concerns;
 
 use Sokeio\Admin\Components\UI;
 use Sokeio\Facades\Theme;

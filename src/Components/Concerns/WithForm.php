@@ -1,6 +1,6 @@
 <?php
 
-namespace Sokeio\Admin\Concerns;
+namespace Sokeio\Admin\Components\Concerns;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Url;
