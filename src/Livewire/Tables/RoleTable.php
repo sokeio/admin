@@ -15,8 +15,10 @@ class RoleTable extends Table
     public function getButtons()
     {
         return [
-            UI::Button('Test')->Route('testUser'),
-            UI::Button('Demo')
+            UI::ButtonGroup([
+                UI::Button('Test')->Route('testUser')->ClassName('w-100'),
+                UI::Button('Demo')->ClassName('w-100')
+            ])
         ];
     }
     public function searchUI()
