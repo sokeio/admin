@@ -21,6 +21,15 @@ class RoleTable extends Table
             ])
         ];
     }
+    public function getTableActions()
+    {
+        return [
+            UI::ButtonGroup([
+                UI::Button('Test')->Route('testUser')->ClassName('w-100'),
+                UI::Button('Demo')->ClassName('w-100')
+            ])
+        ];
+    }
     public function searchUI()
     {
         return [
@@ -41,7 +50,7 @@ class RoleTable extends Table
         return [
             UI::Text('name')->Label(__('Role')),
             UI::Text('slug')->Label(__('Slug'))->FieldValue(function ($row) {
-                return 'test:' . data_get($row, 'slug');
+                return data_get($row, 'slug');
             })
         ];
     }

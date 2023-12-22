@@ -13,6 +13,7 @@ trait WithTable
 
     private $searchlayout;
     private $tablecolumns;
+    private $tableActions;
     // #[Url]
     public Form $search;
     public Form $orderBy;
@@ -43,6 +44,10 @@ trait WithTable
     {
         return [];
     }
+    protected function getTableActions()
+    {
+        return [];
+    }
     public function doSearch()
     {
     }
@@ -53,30 +58,46 @@ trait WithTable
     {
         if (!$this->searchlayout) {
             $this->searchlayout = $this->searchUI();
-            if (!$this->searchlayout) return null;
+            if ($this->searchlayout) {
 
-            if (is_object($this->searchlayout)) {
-                $this->searchlayout = [$this->searchlayout];
+                if (is_object($this->searchlayout)) {
+                    $this->searchlayout = [$this->searchlayout];
+                }
+                $this->searchlayout = [UI::Prex('search', $this->searchlayout)];
+                foreach ($this->searchlayout as $item) {
+                    if ($item) {
+                        $item->Manager($this);
+                        $item->boot();
+                    }
+                }
             }
-            $this->searchlayout = [UI::Prex('search', $this->searchlayout)];
-            foreach ($this->searchlayout as $item) {
-                if ($item) {
-                    $item->Manager($this);
-                    $item->boot();
+        }
+
+        if (!$this->tableActions) {
+            $this->tableActions = $this->getTableActions();
+            if ($this->tableActions) {
+                if (is_object($this->tableActions)) {
+                    $this->tableActions = [$this->tableActions];
+                }
+                foreach ($this->tableActions as $item) {
+                    if ($item) {
+                        $item->Manager($this);
+                        $item->boot();
+                    }
                 }
             }
         }
         if (!$this->tablecolumns) {
             $this->tablecolumns = $this->getColumns();
-            if (!$this->tablecolumns) return null;
-
-            if (is_object($this->tablecolumns)) {
-                $this->tablecolumns = [$this->tablecolumns];
-            }
-            foreach ($this->tablecolumns as $item) {
-                if ($item) {
-                    $item->Manager($this);
-                    $item->boot();
+            if ($this->tablecolumns) {
+                if (is_object($this->tablecolumns)) {
+                    $this->tablecolumns = [$this->tablecolumns];
+                }
+                foreach ($this->tablecolumns as $item) {
+                    if ($item) {
+                        $item->Manager($this);
+                        $item->boot();
+                    }
                 }
             }
         }
@@ -120,7 +141,8 @@ trait WithTable
             'searchlayout' => $this->searchlayout,
             'datatable' => $this->getData(),
             'tablecolumns' => $this->tablecolumns,
-            'pageSizes' => $this->getPageSize()
+            'pageSizes' => $this->getPageSize(),
+            'tableActions' => $this->tableActions ?? []
         ]);
     }
 }

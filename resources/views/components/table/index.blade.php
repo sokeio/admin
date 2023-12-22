@@ -66,6 +66,7 @@
 
                     <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
                             aria-label="Select all invoices"></th>
+                            @isset($tablecolumns)
                     @foreach ($tablecolumns as $column)
                         <th data-field="{{ $column->getName() }}">
                             <button
@@ -81,7 +82,11 @@
                                 wire:click="doSort('{{ $column->getName() }}')"> {{ $column->getLabel() }} </button>
                         </th>
                     @endforeach
-                    <th></th>
+                    @endisset
+                    @if (count($tableActions))
+                        <th>
+                        </th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -91,23 +96,20 @@
                             <td><input class="form-check-input m-0 align-middle" type="checkbox"
                                     aria-label="Select invoice">
                             </td>
+                            @isset($tablecolumns)
                             @foreach ($tablecolumns as $column)
                                 <td>{!! $column->getFieldValue($row) !!}</td>
                             @endforeach
-                            <td class="text-end">
-                                <span class="dropdown">
-                                    <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
-                                        data-bs-toggle="dropdown">Actions</button>
-                                    <div class="dropdown-menu dropdown-menu-end">
-                                        <a class="dropdown-item" href="#">
-                                            Action
-                                        </a>
-                                        <a class="dropdown-item" href="#">
-                                            Another action
-                                        </a>
-                                    </div>
-                                </span>
-                            </td>
+                            @endisset
+
+                            @if (count($tableActions))
+                                <td class="text-end">
+                                    @includeIf('admin::components.layout', [
+                                        'layout' => $tableActions,
+                                        'dataItem' => $row,
+                                    ])
+                                </td>
+                            @endif
                         </tr>
                     @endforeach
                 @endif

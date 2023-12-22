@@ -17,11 +17,14 @@ class Tab extends Base
                 if (isset($item['content'])) {
                     if (is_array($item['content'])) {
                         foreach ($item['content'] as $column) {
+
+                            $column->DataItem($this->getDataItem());
                             $column->Prex($this->getPrex());
                             $column->Manager($this->getManager());
                             $column->boot();
                         }
                     } else {
+                        $item['content']->DataItem($this->getDataItem());
                         $item['content']->Prex($this->getPrex());
                         $item['content']->Manager($this->getManager());
                         $item['content']->boot();

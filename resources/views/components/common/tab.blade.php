@@ -27,7 +27,10 @@
                 <div class="tab-pane @if ($tabActive == $key) active show @endif" id="tabs-{{ $key }}"
                     role="tabpanel">
                     @isset($item['content'])
-                        @includeIf('admin::components.layout', ['layout' => $item['content']])
+                        @includeIf('admin::components.layout', [
+                            'layout' => $item['content'],
+                            'dataItem' => $column->getDataItem(),
+                        ])
                     @endisset
                 </div>
             @endforeach

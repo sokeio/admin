@@ -15,6 +15,7 @@ class BaseCommon extends Base
         if (($content = $this->getContent())) {
             foreach ($content as $item) {
                 if ($item) {
+                    $item->DataItem($this->getDataItem());
                     $item->Prex($this->getPrex());
                     $item->Manager($this->getManager());
                     $item->boot();
