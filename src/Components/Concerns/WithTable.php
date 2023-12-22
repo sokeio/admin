@@ -16,9 +16,14 @@ trait WithTable
     // #[Url]
     public Form $search;
     public Form $orderBy;
+    public  $pageSize = 10;
     protected function getPageName()
     {
         return 'page';
+    }
+    protected function getPageSize()
+    {
+        return [5, 10, 15, 30, 50, 100];
     }
 
     protected function searchFields()
@@ -105,7 +110,7 @@ trait WithTable
                 }
             }
         }
-        return  $query->paginate(null, ['*'], $this->getPageName(), $this->getPage($this->getPageName()));
+        return  $query->paginate($this->pageSize, ['*'], $this->getPageName(), $this->getPage($this->getPageName()));
     }
     public function render()
     {
@@ -114,7 +119,8 @@ trait WithTable
             'buttons' => $this->getButtons(),
             'searchlayout' => $this->searchlayout,
             'datatable' => $this->getData(),
-            'tablecolumns' => $this->tablecolumns
+            'tablecolumns' => $this->tablecolumns,
+            'pageSizes' => $this->getPageSize()
         ]);
     }
 }

@@ -116,15 +116,19 @@
     </div>
     <div class="card-footer d-flex align-items-center">
 
-        <div class="text-secondary">
+        <div class="text-secondary me-1">
             Show
             <div class="mx-2 d-inline-block">
-                <input type="text" class="form-control form-control-sm" value="8" size="3"
-                    aria-label="Invoices count">
+                <select class="form-select" wire:model.live='pageSize'>
+                    @isset($pageSizes)
+                        @foreach ($pageSizes as $item)
+                            <option value="{{ $item }}">{{ $item }}</option>
+                        @endforeach
+                    @endisset
+                </select>
             </div>
             entries
         </div>
-        <p class="m-0 text-secondary">Showing <span>1</span> to <span>8</span> of <span>16</span> entries</p>
         <div class="m-0 ms-auto">
             @if ($datatable)
                 {{ $datatable->links('sokeio::pagination') }}
