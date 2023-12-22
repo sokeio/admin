@@ -9,12 +9,17 @@ use Sokeio\Form;
 
 trait WithTable
 {
-    use WithModelQuery;
+    use WithModelQuery, WithPagination;
+
     private $searchlayout;
     private $tablecolumns;
     // #[Url]
     public Form $search;
     public Form $orderBy;
+    protected function getPageName()
+    {
+        return 'page';
+    }
 
     protected function searchFields()
     {
@@ -100,7 +105,7 @@ trait WithTable
                 }
             }
         }
-        return  $query->paginate();
+        return  $query->paginate(null, ['*'], $this->getPageName(), $this->getPage($this->getPageName()));
     }
     public function render()
     {

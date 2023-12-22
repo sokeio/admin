@@ -4,13 +4,13 @@ namespace Sokeio\Admin\Livewire\Tables;
 
 use Sokeio\Admin\Components\Table;
 use Sokeio\Admin\Components\UI;
-use Sokeio\Models\Role;
+use Sokeio\Models\Permission;
 
 class RoleTable extends Table
 {
     protected function getModel()
     {
-        return Role::class;
+        return Permission::class;
     }
     public function getButtons()
     {
@@ -41,7 +41,7 @@ class RoleTable extends Table
         return [
             UI::Text('name')->Label(__('Role')),
             UI::Text('slug')->Label(__('Slug'))->FieldValue(function ($row) {
-                return 'test:' . data_get($row,'slug');
+                return 'test:' . data_get($row, 'slug');
             })
         ];
     }
