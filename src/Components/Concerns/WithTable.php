@@ -17,6 +17,7 @@ trait WithTable
     private $tablecolumns;
     private $tableActions;
     // #[Url]
+    public  $selectids = [];
     public Form $search;
     public Form $orderBy;
     public  $pageSize = 10;

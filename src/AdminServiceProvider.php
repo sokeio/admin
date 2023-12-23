@@ -89,8 +89,8 @@ class AdminServiceProvider extends ServiceProvider
                  </svg>', function (MenuBuilder $menu) {
                         $menu->setTargetId('user_menu');
                         $menu->route(['name' => 'admin.user-list', 'params' => []], __('User'), '', [], 'admin.user-list');
-                        $menu->route(['name' => 'admin.role-list', 'params' => []], __('Role'), '', [], 'admin.role-list');
-                        $menu->route(['name' => 'admin.permission-list', 'params' => []], __('Permission'), '', [], 'admin.permission-list');
+                        $menu->route(['name' => 'admin.role', 'params' => []], __('Role'), '', [], 'admin.role');
+                        $menu->route(['name' => 'admin.permission', 'params' => []], __('Permission'), '', [], 'admin.permission');
                     }, 9999999999999);
                     menu::subMenu(__('Appearance'), '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brush" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

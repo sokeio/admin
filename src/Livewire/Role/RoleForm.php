@@ -1,18 +1,18 @@
 <?php
 
-namespace Sokeio\Admin\Livewire\Forms\User;
+namespace Sokeio\Admin\Livewire\Role;
 
 use Sokeio\Admin\Components\Common\Tab;
-use Sokeio\Admin\Components\UI;
 use Sokeio\Admin\Components\Form;
+use Sokeio\Admin\Components\UI;
 use Sokeio\Breadcrumb;
-use Sokeio\Models\Permission;
+use Sokeio\Models\Role;
 
-class UserForm extends Form
+class RoleForm extends Form
 {
     public function getTitle()
     {
-        return __('Thêm mới Tài khoản');
+        return __('Role');
     }
     public function getBreadcrumb()
     {
@@ -26,7 +26,7 @@ class UserForm extends Form
     }
     public function getModel()
     {
-        return Permission::class;
+        return Role::class;
     }
     public function layoutUI()
     {

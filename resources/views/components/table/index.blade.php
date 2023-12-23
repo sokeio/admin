@@ -1,9 +1,21 @@
 <div class="card" x-data="{
+
     tableFilter: {{ $showSearchlayout ? 'true' : 'false' }},
     tableLoading() {
         if ($wire.lazyloadingTable == true) {
             $wire.lazyloadingTable = false;
             $wire.doSearch();
+        }
+    },
+    selectAll: false,
+    toggleAllCheckboxes() {
+        this.selectAll = !this.selectAll;
+        if (this.selectAll) {
+            this.$wire.selectids = [...$el.querySelectorAll('.selectable')].map((el) => {
+                return el.value;
+            })
+        } else {
+            this.$wire.selectids = [];
         }
     }
 }" x-init="tableLoading">
@@ -73,7 +85,8 @@
                 <tr>
 
                     <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
-                            aria-label="Select all invoices"></th>
+                            @click="toggleAllCheckboxes()" type="checkbox" x-bind:checked="selectAll"
+                            autocomplete="off" aria-label="Select all"></th>
                     @isset($tablecolumns)
                         @foreach ($tablecolumns as $column)
                             <th data-field="{{ $column->getName() }}">
@@ -101,8 +114,8 @@
                 @if ($datatable)
                     @foreach ($datatable as $row)
                         <tr>
-                            <td><input class="form-check-input m-0 align-middle" type="checkbox"
-                                    aria-label="Select invoice">
+                            <td><input wire:model='selectids' class="form-check-input m-0 align-middle selectable"
+                                    type="checkbox" value="{{ $row->id }}" wire:key='checkbox-{{ $row->id }}'>
                             </td>
                             @isset($tablecolumns)
                                 @foreach ($tablecolumns as $column)
