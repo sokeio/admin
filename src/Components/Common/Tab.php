@@ -10,6 +10,24 @@ class Tab extends Base
     {
         parent::__construct($value);
     }
+    public function DataItem($value)
+    {
+        parent::DataItem($value);
+        if (($tabs = $this->getTabs())) {
+            foreach ($tabs as $item) {
+                if (isset($item['content'])) {
+                    if (is_array($item['content'])) {
+                        foreach ($item['content'] as $column) {
+                            $column->DataItem($this->getDataItem());
+                        }
+                    } else {
+                        $item['content']->DataItem($this->getDataItem());
+                    }
+                }
+            }
+        }
+        return $this;
+    }
     public function boot()
     {
         if (($tabs = $this->getTabs())) {
@@ -17,14 +35,11 @@ class Tab extends Base
                 if (isset($item['content'])) {
                     if (is_array($item['content'])) {
                         foreach ($item['content'] as $column) {
-
-                            $column->DataItem($this->getDataItem());
                             $column->Prex($this->getPrex());
                             $column->Manager($this->getManager());
                             $column->boot();
                         }
                     } else {
-                        $item['content']->DataItem($this->getDataItem());
                         $item['content']->Prex($this->getPrex());
                         $item['content']->Manager($this->getManager());
                         $item['content']->boot();

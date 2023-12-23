@@ -2,6 +2,7 @@
 
 namespace Sokeio\Admin\Components\Concerns;
 
+use Sokeio\Admin\Components\Field\BaseField;
 use Sokeio\Admin\Components\UI;
 use Sokeio\Facades\Theme;
 // use Livewire\Attributes\Url;
@@ -11,6 +12,7 @@ trait WithTable
 {
     use WithModelQuery, WithPagination;
 
+    public $lazyloadingTable = true;
     private $searchlayout;
     private $tablecolumns;
     private $tableActions;
@@ -53,6 +55,10 @@ trait WithTable
     }
     protected function searchUI()
     {
+    }
+    protected function ShowSearchUI()
+    {
+        return false;
     }
     public function boot()
     {
@@ -111,16 +117,13 @@ trait WithTable
         }
         return 'admin::components.table.index';
     }
-    protected function getData()
+    protected function queryOperator($query)
     {
-        $query = $this->getQuery();
-        if ($textSearch = $this->search->textSearch) {
-            $query->orWhere(function ($subquery) use ($textSearch) {
-                foreach ($this->searchFields() as $field) {
-                    $subquery->where($field, 'like', '%' . $textSearch . '%');
-                }
-            });
-        }
+        $operator = $this->search->toArray();
+        return BaseField::OperatorQuery($query, $operator);
+    }
+    protected function queryOrder($query)
+    {
         $orderBy = $this->orderBy->toArray();
         if (count(($orderBy))) {
             foreach ($orderBy as $key => $value) {
@@ -131,6 +134,21 @@ trait WithTable
                 }
             }
         }
+        return $query;
+    }
+    protected function getData()
+    {
+        if ($this->lazyloadingTable) return null;
+        $query = $this->getQuery();
+        if ($textSearch = $this->search->textSearch) {
+            $query->orWhere(function ($subquery) use ($textSearch) {
+                foreach ($this->searchFields() as $field) {
+                    $subquery->where($field, 'like', '%' . $textSearch . '%');
+                }
+            });
+        }
+        $query = $this->queryOperator($query);
+        $query = $this->queryOrder($query);
         return  $query->paginate($this->pageSize, ['*'], $this->getPageName(), $this->getPage($this->getPageName()));
     }
     public function render()
@@ -139,6 +157,7 @@ trait WithTable
             'title' => $this->getTitle(),
             'buttons' => $this->getButtons(),
             'searchlayout' => $this->searchlayout,
+            'showSearchlayout' => $this->ShowSearchUI(),
             'datatable' => $this->getData(),
             'tablecolumns' => $this->tablecolumns,
             'pageSizes' => $this->getPageSize(),

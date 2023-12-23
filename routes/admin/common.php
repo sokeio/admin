@@ -8,4 +8,4 @@ Route::get('/settings', route_theme(\Sokeio\Admin\Livewire\Pages\Setting\Index::
 Route::get('/log-viewers', route_theme(\Sokeio\Admin\Livewire\Pages\LogsViewer\Index::class))->name('admin.log-viewer');
 
 Route::get('/RoleTable', \Sokeio\Admin\Livewire\Tables\RoleTable::class);
-Route::Get('/UserForm', \Sokeio\Admin\Livewire\Forms\User\UserForm::class)->name('testUser');
+Route::post('/UserForm/{dataId?}', \Sokeio\Admin\Livewire\Forms\User\UserForm::class)->name('testUser');

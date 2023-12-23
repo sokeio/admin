@@ -4,6 +4,7 @@ namespace Sokeio\Admin\Components\Concerns;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Url;
+use Sokeio\Admin\Components\Field\BaseField;
 use Sokeio\Facades\Theme;
 use Sokeio\Form;
 
@@ -73,7 +74,7 @@ trait WithForm
             if (!$objData) $objData = new ($this->getModel());
         }
         foreach ($this->getColumns() as $column) {
-            data_set($objData, $column->getName(), data_get($this, $column->getFormField()));
+            data_set($objData, $column->getNameEncode(), data_get($this, $column->getFormFieldEncode()));
         }
         DB::transaction(function () use ($objData) {
             if (method_exists($this, 'saveBefore')) {

@@ -4,6 +4,11 @@ namespace Sokeio\Admin\Components\Field\Concerns;
 
 trait WithFieldBase
 {
+    protected const KEY_FIELD_NAME = '###______###';
+    public static function getFieldName($fieldEncode)
+    {
+        return str_replace(self::KEY_FIELD_NAME, '.', $fieldEncode);
+    }
     public function Name($Name): static
     {
         return $this->setKeyValue('Name', $Name);
@@ -11,6 +16,10 @@ trait WithFieldBase
     public function getName()
     {
         return $this->getValue('Name');
+    }
+    public function getNameEncode()
+    {
+        return self::getFieldName($this->getName());
     }
     public function Placeholder($Placeholder): static
     {
@@ -28,9 +37,16 @@ trait WithFieldBase
     {
         return $this->getValue('Format');
     }
+    public function getFormFieldEncode()
+    {
+        return self::getFieldName($this->getFormField());
+    }
     public function getFormField()
     {
-        if ($this->checkPrex()) return $this->getPrex() . '.' . $this->getName();
+        if ($this->checkPrex()) {
+            $operator = $this->getOperatorField();
+            return $this->getPrex() . '.' . ($operator != '' ?  $operator . '.' : '') . str_replace('.', self::KEY_FIELD_NAME, $this->getName());
+        }
         return $this->getName();
     }
     private $fieldValueCallback = null;

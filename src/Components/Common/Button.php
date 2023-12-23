@@ -37,10 +37,13 @@ class Button extends BaseCommon
         return $this->getValue('Link');
     }
 
-    public function Route($name, $params = [])
+    public function Route($name, $paramOrcallback = [])
     {
-        return $this->Link(function () use ($name, $params) {
-            return route($name, $params);
+        return $this->Link(function ($item, $manager) use ($name, $paramOrcallback) {
+            if ($paramOrcallback && is_callable($paramOrcallback)) {
+                $paramOrcallback = call_user_func($paramOrcallback, $item->getDataItem(), $item, $manager);
+            }
+            return route($name, $paramOrcallback);
         });
     }
     public function getView()

@@ -10,12 +10,23 @@ class BaseCommon extends Base
     {
         $this->Content($value);
     }
+    public function DataItem($value)
+    {
+        parent::DataItem($value);
+        if (($content = $this->getContent())) {
+            foreach ($content as $item) {
+                if ($item) {
+                    $item->DataItem($this->getDataItem());
+                }
+            }
+        }
+        return $this;
+    }
     public function boot()
     {
         if (($content = $this->getContent())) {
             foreach ($content as $item) {
                 if ($item) {
-                    $item->DataItem($this->getDataItem());
                     $item->Prex($this->getPrex());
                     $item->Manager($this->getManager());
                     $item->boot();

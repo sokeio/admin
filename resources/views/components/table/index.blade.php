@@ -1,4 +1,12 @@
-<div class="card" x-data="{ tableFilter: false }">
+<div class="card" x-data="{
+    tableFilter: {{ $showSearchlayout ? 'true' : 'false' }},
+    tableLoading() {
+        if ($wire.lazyloadingTable == true) {
+            $wire.lazyloadingTable = false;
+            $wire.doSearch();
+        }
+    }
+}" x-init="tableLoading">
     <div class="card-body border-bottom py-3">
         <div class="row g-2 align-items-center">
             <div class="col-auto">
@@ -44,7 +52,7 @@
 
     </div>
     @isset($searchlayout)
-        <div class="mt-2  border-bottom py-3 px-3" style="display: none"
+        <div class="border-bottom py-3 px-3" @if (!$showSearchlayout) style="display: none" @endif
             :style="tableFilter ? { display: 'block' } : { display: 'none' }">
             @includeIf('admin::components.layout', ['layout' => $searchlayout])
             <a class="btn btn-primary" aria-label="Button" wire:click="doSearch()">
@@ -66,11 +74,11 @@
 
                     <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
                             aria-label="Select all invoices"></th>
-                            @isset($tablecolumns)
-                    @foreach ($tablecolumns as $column)
-                        <th data-field="{{ $column->getName() }}">
-                            <button
-                                class="table-sort
+                    @isset($tablecolumns)
+                        @foreach ($tablecolumns as $column)
+                            <th data-field="{{ $column->getName() }}">
+                                <button
+                                    class="table-sort
                                     @isset($orderBy->{$column->getName()})
                                     @if ($orderBy->{$column->getName()})
                                     desc
@@ -79,9 +87,9 @@
                                     @endif
                                     @endisset
                             "
-                                wire:click="doSort('{{ $column->getName() }}')"> {{ $column->getLabel() }} </button>
-                        </th>
-                    @endforeach
+                                    wire:click="doSort('{{ $column->getName() }}')"> {{ $column->getLabel() }} </button>
+                            </th>
+                        @endforeach
                     @endisset
                     @if (count($tableActions))
                         <th>
@@ -97,9 +105,9 @@
                                     aria-label="Select invoice">
                             </td>
                             @isset($tablecolumns)
-                            @foreach ($tablecolumns as $column)
-                                <td>{!! $column->getFieldValue($row) !!}</td>
-                            @endforeach
+                                @foreach ($tablecolumns as $column)
+                                    <td>{!! $column->getFieldValue($row) !!}</td>
+                                @endforeach
                             @endisset
 
                             @if (count($tableActions))

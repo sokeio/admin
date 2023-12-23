@@ -8,6 +8,10 @@ use Sokeio\Models\Permission;
 
 class RoleTable extends Table
 {
+    public function getTitle()
+    {
+        return __('Quản lý Role');
+    }
     protected function getModel()
     {
         return Permission::class;
@@ -16,7 +20,7 @@ class RoleTable extends Table
     {
         return [
             UI::ButtonGroup([
-                UI::Button('Test')->Route('testUser')->ClassName('w-100'),
+                UI::Button('Test')->ModalRoute('testUser')->ModalTitle('test')->ClassName('w-100'),
                 UI::Button('Demo')->ClassName('w-100')
             ])
         ];
@@ -25,26 +29,30 @@ class RoleTable extends Table
     {
         return [
             UI::ButtonGroup([
-                UI::Button('Test')->Route('testUser')->ClassName('w-100'),
+                UI::Button('Test')->ModalRoute('testUser', function ($row) {
+                    return [
+                        'dataId' => $row->id
+                    ];
+                })->ClassName('w-100'),
                 UI::Button('Demo')->ClassName('w-100')
             ])
         ];
     }
-    public function searchUI()
-    {
-        return [
-            UI::Row([
-                UI::Column6([
-                    UI::Text('leg.name')->Label('Tên Role')
-                ])
-            ])
+    // public function showSearchUI(){
+    //     return true;
+    // }
+    // public function searchUI()
+    // {
+    //     return [
+    //         UI::Row([
+    //             UI::Column6([
+    //                 UI::Text('name')->LIKE()->Label('Tên Role')
+    //             ])
+    //         ])
 
-        ];
-    }
-    public function getTitle()
-    {
-        return __('Quản lý Role');
-    }
+    //     ];
+    // }
+
     public function getColumns()
     {
         return [

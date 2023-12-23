@@ -6,7 +6,7 @@ use Sokeio\Admin\Components\Common\Tab;
 use Sokeio\Admin\Components\UI;
 use Sokeio\Admin\Components\Form;
 use Sokeio\Breadcrumb;
-use Sokeio\Models\Role;
+use Sokeio\Models\Permission;
 
 class UserForm extends Form
 {
@@ -26,7 +26,7 @@ class UserForm extends Form
     }
     public function getModel()
     {
-        return Role::class;
+        return Permission::class;
     }
     public function layoutUI()
     {

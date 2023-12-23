@@ -4,13 +4,16 @@ namespace Sokeio\Admin\Components\Common\Concerns;
 
 trait WithButtonSoke
 {
-    public function ModalRoute($name, $params = [])
+    public function ModalRoute($name, $paramOrcallback = []):static
     {
-        return $this->ModalUrl(function () use ($name, $params) {
-            return route($name, $params);
+        return $this->ModalUrl(function ($item, $manager) use ($name, $paramOrcallback) {
+            if ($paramOrcallback && is_callable($paramOrcallback)) {
+                $paramOrcallback = call_user_func($paramOrcallback, $item->getDataItem(), $item, $manager);
+            }
+            return route($name, $paramOrcallback);
         });
     }
-    public function ModalUrl($ModalUrl)
+    public function ModalUrl($ModalUrl):static
     {
         return $this->setKeyValue('ModalUrl', $ModalUrl);
     }
@@ -18,7 +21,7 @@ trait WithButtonSoke
     {
         return $this->getValue('ModalUrl');
     }
-    public function ModalSize($ModalSize)
+    public function ModalSize($ModalSize):static
     {
         return $this->setKeyValue('ModalSize', $ModalSize);
     }
@@ -26,7 +29,7 @@ trait WithButtonSoke
     {
         return $this->getValue('ModalSize');
     }
-    public function ModalTitle($ModalTitle)
+    public function ModalTitle($ModalTitle):static
     {
         return $this->setKeyValue('ModalTitle', $ModalTitle);
     }
@@ -35,7 +38,7 @@ trait WithButtonSoke
         return $this->getValue('ModalTitle');
     }
     private $wireConfirm;
-    public function Confirm($message, $title, $yes = 'Yes', $no = 'No')
+    public function Confirm($message, $title, $yes = 'Yes', $no = 'No'):static
     {
         $this->wireConfirm = [
             'message' => $message,
