@@ -66,7 +66,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                         <a href="{{ route('admin.profile') }}" class="dropdown-item">Profile</a>
-                        <a sokeio:modal='{{ route('admin.user-change-password-form') }}'
+                        <a sokeio:modal='{{ route('admin.user.change-password', ['dataId' => auth()->user()->id]) }}'
                             sokeio:modal-title="Change password" class="dropdown-item">Change password</a>
                         <div class="dropdown-divider"></div>
 
