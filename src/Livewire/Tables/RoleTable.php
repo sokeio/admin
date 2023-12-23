@@ -20,7 +20,7 @@ class RoleTable extends Table
     {
         return [
             UI::ButtonGroup([
-                UI::Button('Test')->ModalRoute('testUser')->ModalTitle('test')->ClassName('w-100'),
+                UI::Button('Test')->Route('testUser')->ModalTitle('test')->ClassName('w-100'),
                 UI::Button('Demo')->ClassName('w-100')
             ])
         ];
@@ -29,7 +29,7 @@ class RoleTable extends Table
     {
         return [
             UI::ButtonGroup([
-                UI::Button('Test')->ModalRoute('testUser', function ($row) {
+                UI::Button('Test')->Route('testUser', function ($row) {
                     return [
                         'dataId' => $row->id
                     ];

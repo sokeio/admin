@@ -4,7 +4,6 @@ namespace Sokeio\Admin\Components\Concerns;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Url;
-use Sokeio\Admin\Components\Field\BaseField;
 use Sokeio\Facades\Theme;
 use Sokeio\Form;
 
@@ -16,6 +15,11 @@ trait WithForm
     public $copyId;
     public Form $data;
     private $layout;
+    protected function formMessage($isNew)
+    {
+        if ($isNew) return __('New record created successfully');
+        return __('The record updated successfully');
+    }
     public function loadData()
     {
         $query = $this->getQuery();
@@ -67,7 +71,9 @@ trait WithForm
             $this->validate($rules, $messages, $attributes);
         }
         $objData = new ($this->getModel());
+        $isNew = true;
         if ($this->dataId) {
+            $isNew = false;
             $query = $this->getQuery();
             $query =  $query->where('id', $this->dataId);
             $objData = $query->first();
@@ -86,7 +92,11 @@ trait WithForm
             }
         });
         $this->dataId = $objData->id;
-        $this->showMessage('xin cha9f');
+        $this->showMessage($this->formMessage($isNew));
+        if (!$this->CurrentIsPage()) {
+            $this->refreshRefComponent();
+            $this->closeComponent();
+        }
     }
     public function boot()
     {
