@@ -4,6 +4,7 @@ namespace Sokeio\Admin\Components\Concerns;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Url;
+use Sokeio\Admin\Components\UI;
 use Sokeio\Facades\Theme;
 use Sokeio\Form;
 
@@ -15,6 +16,7 @@ trait WithForm
     public $copyId;
     public Form $data;
     private $layout;
+    private $footer;
     protected function formMessage($isNew)
     {
         if ($isNew) return __('New record created successfully');
@@ -61,7 +63,14 @@ trait WithForm
     protected function layoutUI()
     {
     }
-
+    protected function FooterUI()
+    {
+        return [
+            UI::Div([
+                UI::Button(__('Save'))->WireClick('doSave()')
+            ])->ClassName('p-2 text-center')
+        ];
+    }
     public function doSave()
     {
         ['rules' => $rules, 'messages' => $messages, 'attributes' => $attributes] = $this->FormRules();
@@ -102,14 +111,29 @@ trait WithForm
     {
         if (!$this->layout) {
             $this->layout = $this->layoutUI();
-            if (!$this->layout) return null;
-            if (is_object($this->layout)) {
-                $this->layout = [$this->layout];
+            if ($this->layout) {
+                if (is_object($this->layout)) {
+                    $this->layout = [$this->layout];
+                }
+                foreach ($this->layout as $item) {
+                    if ($item) {
+                        $item->Manager($this);
+                        $item->boot();
+                    }
+                }
             }
-            foreach ($this->layout as $item) {
-                if ($item) {
-                    $item->Manager($this);
-                    $item->boot();
+        }
+        if (!$this->footer) {
+            $this->footer = $this->FooterUI();
+            if ($this->footer) {
+                if (is_object($this->footer)) {
+                    $this->footer = [$this->footer];
+                }
+                foreach ($this->footer as $item) {
+                    if ($item) {
+                        $item->Manager($this);
+                        $item->boot();
+                    }
                 }
             }
         }
@@ -122,7 +146,8 @@ trait WithForm
     {
         return view($this->getView(), [
             'title' => $this->getTitle(),
-            'layout' => $this->layout
+            'layout' => $this->layout,
+            'footer' => $this->footer
         ]);
     }
 }

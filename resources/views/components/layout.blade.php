@@ -1,6 +1,7 @@
 @foreach ($layout as $item)
     @isset($dataItem)
         @php
+            $item->ClearCache();
             $item->DataItem($dataItem);
         @endphp
     @endisset

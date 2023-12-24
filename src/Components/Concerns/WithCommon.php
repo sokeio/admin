@@ -7,6 +7,7 @@ use Sokeio\Admin\Components\Common\ButtonGroup;
 use Sokeio\Admin\Components\Common\ButtonList;
 use Sokeio\Admin\Components\Common\Card;
 use Sokeio\Admin\Components\Common\Container;
+use Sokeio\Admin\Components\Common\Div;
 use Sokeio\Admin\Components\Common\Tab;
 
 trait WithCommon
@@ -18,6 +19,10 @@ trait WithCommon
     public static function Card($value)
     {
         return Card::make($value);
+    }
+    public static function Div($value)
+    {
+        return Div::make($value);
     }
     public static function Container($value)
     {

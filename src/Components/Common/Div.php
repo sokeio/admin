@@ -3,7 +3,7 @@
 namespace Sokeio\Admin\Components\Common;
 
 
-class Action extends BaseCommon
+class Div extends BaseCommon
 {
     protected function __construct($value)
     {
@@ -11,6 +11,6 @@ class Action extends BaseCommon
     }
     public function getView()
     {
-        return 'admin::components.common.row';
+        return 'admin::components.common.div';
     }
 }

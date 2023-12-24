@@ -34,22 +34,18 @@ class RoleForm extends Form
             UI::Prex(
                 'data',
                 [
-                    UI::Tab()
-                        ->addTab(
-                            Tab::TabItem(__('Thông tin')),
-                            [
-                                UI::Row([
-                                    UI::Column6([
-                                        UI::Text('name')->Label('Tên role')->required()
-                                    ]),
-                                ]),
-                            ],
-                        ),
-                    UI::Card([
-                        UI::Button('Lưu')->WireClick('doSave()')
-                    ])->ClassName('mt-1 p-1')->Title('Nội dung dữ liệu')
-
+                    UI::Row([
+                        UI::Column6([
+                            UI::Text('name')->Label(__('Role Name'))->required()
+                        ]),
+                        UI::Column6([
+                            UI::Text('slug')->Label(__('Role Slug'))
+                        ]),
+                        UI::Column6([
+                            UI::Checkbox('status')->Label(__('Role Status'))->Title(__('Active'))
+                        ]),
+                    ]),
                 ]
-            );
+            )->ClassName('p-3');
     }
 }
