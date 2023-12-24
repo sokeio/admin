@@ -10,7 +10,7 @@ use Sokeio\Form;
 
 trait WithTable
 {
-    use WithModelQuery, WithPagination;
+    use WithModelQuery, WithTablePagination;
 
     public $lazyloadingTable = true;
     private $searchlayout;

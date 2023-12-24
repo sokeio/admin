@@ -2,8 +2,8 @@
 
 namespace Sokeio\Admin\Livewire\Extentions;
 
+use Livewire\WithPagination;
 use Sokeio\Component;
-use Sokeio\Concerns\WithPagination;
 
 class Manager extends Component
 {

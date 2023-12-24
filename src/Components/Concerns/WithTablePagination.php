@@ -5,7 +5,7 @@ namespace Sokeio\Admin\Components\Concerns;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Str;
 
-trait WithPagination
+trait WithTablePagination
 {
     public $paginators = [];
 

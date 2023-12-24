@@ -5,6 +5,17 @@ namespace Sokeio\Admin\Components\Field;
 
 class CheckboxField extends BaseField
 {
+    public function getWireAttribute()
+    {
+        $attr = parent::getWireAttribute();
+
+
+        if (data_get($this->getManager(), $this->getFormField())) {
+            $attr .= ' checked ';
+        }
+        $attr .= ' value="' . $this->getCheckboxValue() . '" ';
+        return $attr;
+    }
     public function Title($Title)
     {
         return $this->setKeyValue('Title', $Title);

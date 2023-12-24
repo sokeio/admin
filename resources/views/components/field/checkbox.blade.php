@@ -9,7 +9,7 @@
     <label class="form-label">{{ $modelLabel }}</label>
     <label class="form-check">
         <input type="checkbox" class="form-check-input" name="field-{{ $modelField }}"
-            placeholder="{{ $modelPlaceholder }}" {!! $column->getWireAttribute() !!} value="{{ $column->getCheckboxValue() }}">
+            placeholder="{{ $modelPlaceholder }}" {!! $column->getWireAttribute() !!} />
         <span class="form-check-label">{{ $modelTitle }}</span>
     </label>
     @error($formField)
