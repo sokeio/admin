@@ -10,9 +10,9 @@ trait WithButtonWire
     }
     public function getWireClick()
     {
-        return $this->getValue('WireClick');
+        return $this->getValue('WireClick', null, true);
     }
-    
+
     public function getWireAttribute()
     {
         $attr = '';

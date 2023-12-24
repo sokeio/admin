@@ -43,6 +43,22 @@ trait WithTable
             $this->orderBy->{$name} = 1;
         }
     }
+    public function doRemove($id)
+    {
+        // Retrieve the record you want to delete
+        $record = $this->getQuery()->find($id);
+
+        if ($record) {
+            // Delete the record
+            $record->delete();
+
+            // Record successfully deleted
+            $this->showMessage(__("The record has been deleted successfully."));
+        } else {
+            // Record not found
+            $this->showMessage(__("The record does not exist."));
+        }
+    }
     protected function getButtons()
     {
         return [];

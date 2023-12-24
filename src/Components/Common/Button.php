@@ -2,49 +2,41 @@
 
 namespace Sokeio\Admin\Components\Common;
 
+use Sokeio\Admin\Components\Common\Concerns\WithButtonBasic;
+use Sokeio\Admin\Components\Common\Concerns\WithButtonColor;
 use Sokeio\Admin\Components\Common\Concerns\WithButtonSoke;
 use Sokeio\Admin\Components\Common\Concerns\WithButtonWire;
 
 class Button extends BaseCommon
 {
-    use WithButtonWire, WithButtonSoke;
+    use WithButtonBasic, WithButtonColor, WithButtonWire, WithButtonSoke;
     protected function __construct($value)
     {
-        $this->Title($value);
+        $this->Name($value);
     }
-    public function Title($Title)
+    public function Label($Label): static
     {
-        return $this->setKeyValue('Title', $Title);
+        return $this->setKeyValue('Label', $Label);
     }
-    public function getTitle()
+    public function getLabel()
     {
-        return $this->getValue('Title');
+        return $this->getValue('Label');
     }
-    public function Name($Name)
+    private $fieldValueCallback = null;
+    public function FieldValue($callback): static
     {
-        return $this->setKeyValue('Name', $Name);
+        $this->fieldValueCallback = $callback;
+        return $this;
     }
-    public function getName()
+    public function getFieldValue($row)
     {
-        return $this->getValue('Name');
-    }
-    public function Link($Link)
-    {
-        return $this->setKeyValue('Link', $Link);
-    }
-    public function getLink()
-    {
-        return $this->getValue('Link');
-    }
-
-    public function Route($name, $paramOrcallback = [])
-    {
-        return $this->Link(function ($item, $manager) use ($name, $paramOrcallback) {
-            if ($paramOrcallback && is_callable($paramOrcallback)) {
-                $paramOrcallback = call_user_func($paramOrcallback, $item->getDataItem(), $item, $manager);
-            }
-            return route($name, $paramOrcallback);
-        });
+        $this->ClearCache();
+        $this->DataItem($row);
+        if ($this->fieldValueCallback) return call_user_func($this->fieldValueCallback, $row, $this, $this->getManager());
+        $this->Title(data_get($row, $this->getName()));
+        return view($this->getView(), [
+            'column' => $this
+        ])->render();
     }
     public function getView()
     {

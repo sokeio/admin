@@ -19,7 +19,7 @@ class Login extends Component
     {
         $this->validate();
         if (Auth::attempt(['email' => $this->username, 'password' => $this->password], $this->isRememberMe)) {
-            return redirect(route('admin.dashboard'));
+            return redirect(urldecode(request('ref')) ?? route('admin.dashboard'));
         } else {
             $this->addError('account_error', 'Invalid account or password');
         }
