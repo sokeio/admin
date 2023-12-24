@@ -20,31 +20,16 @@ class UserTable extends Table
     public function getButtons()
     {
         return [
-            UI::Button(__('Create User'))->ModalRoute('admin.User.add')->ModalTitle(__('Create User new'))
+            UI::Button(__('Create User'))->ModalRoute('admin.user.add')->ModalTitle(__('Create User new'))
         ];
     }
-    public function doRemove($id)
-    {
-        // Retrieve the record you want to delete
-        $record = User::find($id);
-
-        if ($record) {
-            // Delete the record
-            $record->delete();
-
-            // Record successfully deleted
-            echo "The record has been deleted successfully.";
-        } else {
-            // Record not found
-            echo "The record does not exist.";
-        }
-    }
+  
     //The record has been deleted successfully.
     public function getTableActions()
     {
         return [
             UI::ButtonGroup([
-                UI::Button(__('edit'))->ModalRoute('admin.User.edit', function ($row) {
+                UI::Button(__('edit'))->ModalRoute('admin.user.edit', function ($row) {
                     return [
                         'dataId' => $row->id
                     ];
