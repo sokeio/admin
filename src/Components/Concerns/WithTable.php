@@ -20,10 +20,14 @@ trait WithTable
     public  $selectids = [];
     public Form $search;
     public Form $orderBy;
-    public  $pageSize = 10;
+    public $pageSize;
     protected function getPageName()
     {
         return 'page';
+    }
+    protected function getDefaultPageSize()
+    {
+        return 10;
     }
     protected function getPageSize()
     {
@@ -76,6 +80,11 @@ trait WithTable
     protected function ShowSearchUI()
     {
         return false;
+    }
+    public function booted()
+    {
+        if (!$this->pageSize)
+            $this->pageSize = $this->getDefaultPageSize() ?? 10;
     }
     public function boot()
     {

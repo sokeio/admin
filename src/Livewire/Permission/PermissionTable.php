@@ -4,15 +4,12 @@ namespace Sokeio\Admin\Livewire\Permission;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
-use Livewire\WithPagination;
 use Sokeio\Admin\Components\Table;
 use Sokeio\Admin\Components\UI;
 use Sokeio\Models\Permission;
 
 class PermissionTable extends Table
 {
-
-    use WithPagination;
     public function getTitle()
     {
         return __('Permission');

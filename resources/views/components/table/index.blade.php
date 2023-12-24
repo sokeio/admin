@@ -24,7 +24,7 @@
             <div class="col-auto">
                 <div class="input-icon">
                     <input type="text" wire:model='search.textSearch' wire:keydown.enter="doSearch()"
-                        class="form-control" placeholder="Search…">
+                        wire:blur="doSearch()" class="form-control" placeholder="Search…">
                     <span class="input-icon-addon">
                         <!-- Download SVG icon from http://tabler-icons.io/i/search -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
