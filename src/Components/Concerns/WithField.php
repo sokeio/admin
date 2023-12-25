@@ -5,6 +5,7 @@ namespace Sokeio\Admin\Components\Concerns;
 use Sokeio\Admin\Components\Field\CheckboxField;
 use Sokeio\Admin\Components\Field\CheckboxMutilField;
 use Sokeio\Admin\Components\Field\PasswordField;
+use Sokeio\Admin\Components\Field\SelectField;
 use Sokeio\Admin\Components\Field\TextField;
 
 trait WithField
@@ -21,9 +22,12 @@ trait WithField
     {
         return CheckboxMutilField::make($value);
     }
-
     public static function Password($value)
     {
         return PasswordField::make($value);
+    }
+    public static function Select($value)
+    {
+        return SelectField::make($value);
     }
 }

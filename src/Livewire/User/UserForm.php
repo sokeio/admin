@@ -2,7 +2,6 @@
 
 namespace Sokeio\Admin\Livewire\User;
 
-use Sokeio\Admin\Components\Common\Tab;
 use Sokeio\Admin\Components\Form;
 use Sokeio\Admin\Components\UI;
 use Sokeio\Breadcrumb;
@@ -47,12 +46,12 @@ class UserForm extends Form
                             UI::Password('password')->Label(__('Password'))->required()
                         ]),
                         UI::Column12([
-                            UI::CheckboxMutil('role')->Label(__('Role'))->DataSource(function () {
+                            UI::Select('role')->Label(__('Role'))->DataSource(function () {
                                 return Role::all();
                             })
                         ]),
                         UI::Column12([
-                            UI::CheckboxMutil('permission')->Label(__('Permission'))->DataSource(function () {
+                            UI::Select('permission')->Label(__('Permission'))->DataSource(function () {
                                 return Permission::all();
                             })
                         ]),
