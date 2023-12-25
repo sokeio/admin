@@ -60,7 +60,7 @@ trait WithForm
         }
         return 'admin::components.form.index';
     }
-    protected function layoutUI()
+    protected function FormUI()
     {
     }
     protected function FooterUI()
@@ -110,7 +110,7 @@ trait WithForm
     public function boot()
     {
         if (!$this->layout) {
-            $this->layout = $this->layoutUI();
+            $this->layout = $this->FormUI();
             if ($this->layout) {
                 if (is_object($this->layout)) {
                     $this->layout = [$this->layout];

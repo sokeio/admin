@@ -6,6 +6,8 @@ use Sokeio\Admin\Components\Common\Tab;
 use Sokeio\Admin\Components\Form;
 use Sokeio\Admin\Components\UI;
 use Sokeio\Breadcrumb;
+use Sokeio\Models\Permission;
+use Sokeio\Models\Role;
 use Sokeio\Models\User;
 
 class UserForm extends Form
@@ -28,28 +30,34 @@ class UserForm extends Form
     {
         return User::class;
     }
-    public function layoutUI()
+    public function FormUI()
     {
         return
             UI::Prex(
                 'data',
                 [
-                    UI::Tab()
-                        ->addTab(
-                            Tab::TabItem(__('Thông tin')),
-                            [
-                                UI::Row([
-                                    UI::Column6([
-                                        UI::Text('name')->Label('Tên User')->required()
-                                    ]),
-                                ]),
-                            ],
-                        ),
-                    UI::Card([
-                        UI::Button('Lưu')->WireClick('doSave()')
-                    ])->ClassName('mt-1 p-1')->Title('Nội dung dữ liệu')
-
+                    UI::Row([
+                        UI::Column6([
+                            UI::Text('name')->Label(__('Fullname'))->required()
+                        ]),
+                        UI::Column6([
+                            UI::Text('email')->Label(__('Email'))->required()
+                        ]),
+                        UI::Column6([
+                            UI::Password('password')->Label(__('Password'))->required()
+                        ]),
+                        UI::Column12([
+                            UI::CheckboxMutil('role')->Label(__('Role'))->DataSource(function () {
+                                return Role::all();
+                            })
+                        ]),
+                        UI::Column12([
+                            UI::CheckboxMutil('permission')->Label(__('Permission'))->DataSource(function () {
+                                return Permission::all();
+                            })
+                        ]),
+                    ]),
                 ]
-            );
+            )->ClassName('p-3');
     }
 }

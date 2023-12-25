@@ -28,7 +28,7 @@ class RoleForm extends Form
     {
         return Role::class;
     }
-    public function layoutUI()
+    public function FormUI()
     {
         return
             UI::Prex(

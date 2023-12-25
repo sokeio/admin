@@ -28,16 +28,14 @@ class UserTable extends Table
     public function getTableActions()
     {
         return [
-            UI::ButtonGroup([
-                UI::Button(__('edit'))->ModalRoute('admin.user.edit', function ($row) {
-                    return [
-                        'dataId' => $row->id
-                    ];
-                })->ModalTitle(__('Update item User'))->ClassName('w-100'),
-                UI::Button(__('remove'))->ClassName('w-100')->Confirm(__('Do you want to delete this record?'), 'Confirm')->WireClick(function ($item) {
-                    return 'doRemove(' . $item->getDataItem()->id . ')';
-                })
-            ])
+            UI::Button(__('Edit'))->Warning()->ModalRoute('admin.user.edit', function ($row) {
+                return [
+                    'dataId' => $row->id
+                ];
+            })->ModalTitle(__('Update item User')),
+            UI::Button(__('Remove'))->Confirm(__('Do you want to delete this record?'), 'Confirm')->WireClick(function ($item) {
+                return 'doRemove(' . $item->getDataItem()->id . ')';
+            })
         ];
     }
     // public function showSearchUI(){

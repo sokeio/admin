@@ -83,7 +83,6 @@
         <table class="table card-table table-vcenter text-nowrap datatable">
             <thead>
                 <tr>
-
                     <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
                             @click="toggleAllCheckboxes()" type="checkbox" x-bind:checked="selectAll"
                             autocomplete="off" aria-label="Select all"></th>
