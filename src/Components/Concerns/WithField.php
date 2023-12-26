@@ -4,6 +4,10 @@ namespace Sokeio\Admin\Components\Concerns;
 
 use Sokeio\Admin\Components\Field\CheckboxField;
 use Sokeio\Admin\Components\Field\CheckboxMutilField;
+use Sokeio\Admin\Components\Field\ToggleField;
+use Sokeio\Admin\Components\Field\ToggleMutilField;
+use Sokeio\Admin\Components\Field\RadioField;
+use Sokeio\Admin\Components\Field\RadioMutilField;
 use Sokeio\Admin\Components\Field\PasswordField;
 use Sokeio\Admin\Components\Field\RangeField;
 use Sokeio\Admin\Components\Field\SelectField;
@@ -23,6 +27,22 @@ trait WithField
     public static function CheckboxMutil($value)
     {
         return CheckboxMutilField::make($value);
+    }
+    public static function Toggle($value)
+    {
+        return ToggleField::make($value);
+    }
+    public static function ToggleMutil($value)
+    {
+        return ToggleMutilField::make($value);
+    }
+    public static function Radio($value)
+    {
+        return RadioField::make($value);
+    }
+    public static function RadioMutil($value)
+    {
+        return RadioMutilField::make($value);
     }
     public static function Password($value)
     {

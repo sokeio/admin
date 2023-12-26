@@ -10,6 +10,6 @@ trait WithFieldOption
     }
     public function getFieldOption()
     {
-        return $this->getValue('DataSource');
+        return $this->getValue('FieldOption');
     }
 }
