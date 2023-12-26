@@ -6,28 +6,16 @@ use Sokeio\Admin\Components\Common\Concerns\WithButtonBasic;
 use Sokeio\Admin\Components\Common\Concerns\WithButtonColor;
 use Sokeio\Admin\Components\Common\Concerns\WithButtonSoke;
 use Sokeio\Admin\Components\Common\Concerns\WithButtonWire;
+use Sokeio\Admin\Components\Concerns\WithColumn;
 
 class Button extends BaseCommon
 {
-    use WithButtonBasic, WithButtonColor, WithButtonWire, WithButtonSoke;
+    use WithButtonBasic, WithButtonColor, WithButtonWire, WithButtonSoke, WithColumn;
     protected function __construct($value)
     {
         $this->Name($value);
     }
-    public function Label($Label): static
-    {
-        return $this->setKeyValue('Label', $Label);
-    }
-    public function getLabel()
-    {
-        return $this->getValue('Label');
-    }
-    private $fieldValueCallback = null;
-    public function FieldValue($callback): static
-    {
-        $this->fieldValueCallback = $callback;
-        return $this;
-    }
+
     public function getFieldValue($row)
     {
         $this->ClearCache();

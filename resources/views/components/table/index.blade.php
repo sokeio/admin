@@ -89,8 +89,11 @@
                     @isset($tablecolumns)
                         @foreach ($tablecolumns as $column)
                             <th data-field="{{ $column->getName() }}">
-                                <button
-                                    class="table-sort
+                                @if ($column->getNoSort())
+                                    {{ $column->getLabel() }}
+                                @else
+                                    <button
+                                        class="table-sort
                                     @isset($orderBy->{$column->getName()})
                                     @if ($orderBy->{$column->getName()})
                                     desc
@@ -99,7 +102,8 @@
                                     @endif
                                     @endisset
                             "
-                                    wire:click="doSort('{{ $column->getName() }}')"> {{ $column->getLabel() }} </button>
+                                        wire:click="doSort('{{ $column->getName() }}')"> {{ $column->getLabel() }} </button>
+                                @endif
                             </th>
                         @endforeach
                     @endisset

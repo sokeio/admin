@@ -17,6 +17,10 @@ trait WithForm
     public Form $data;
     private $layout;
     private $footer;
+    protected function isEdit()
+    {
+        return !!$this->dataId;
+    }
     protected function formMessage($isNew)
     {
         if ($isNew) return __('New record created successfully');

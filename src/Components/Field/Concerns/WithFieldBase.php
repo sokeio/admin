@@ -57,17 +57,6 @@ trait WithFieldBase
         }
         return $this->getName();
     }
-    private $fieldValueCallback = null;
-    public function FieldValue($callback): static
-    {
-        $this->fieldValueCallback = $callback;
-        return $this;
-    }
-    public function getFieldValue($row)
-    {
-        if ($this->fieldValueCallback) return call_user_func($this->fieldValueCallback, $row, $this, $this->getManager());
-        return data_get($row, $this->getName());
-    }
 
     public function AttributeInput($AttributeInput): static
     {
@@ -92,21 +81,5 @@ trait WithFieldBase
     public function getAttributeLabel()
     {
         return $this->getValue('AttributeLabel');
-    }
-    public function ClassLabel($ClassLabel): static
-    {
-        return $this->setKeyValue('ClassLabel', $ClassLabel);
-    }
-    public function getClassLabel()
-    {
-        return $this->getValue('ClassLabel');
-    }
-    public function Label($Label): static
-    {
-        return $this->setKeyValue('Label', $Label);
-    }
-    public function getLabel()
-    {
-        return $this->getValue('Label');
     }
 }
