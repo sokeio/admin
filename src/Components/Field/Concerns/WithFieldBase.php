@@ -29,6 +29,14 @@ trait WithFieldBase
     {
         return $this->getValue('Placeholder');
     }
+    public function NoSave(): static
+    {
+        return $this->setKeyValue('NoSave', true);
+    }
+    public function getNoSave()
+    {
+        return $this->getValue('NoSave');
+    }
     public function Format($Format): static
     {
         return $this->setKeyValue('Format', $Format);

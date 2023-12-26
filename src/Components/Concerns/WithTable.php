@@ -63,13 +63,30 @@ trait WithTable
             $this->showMessage(__("The record does not exist."));
         }
     }
+    protected function getRoute()
+    {
+        return '';
+    }
     protected function getButtons()
     {
-        return [];
+        return [
+            UI::ButtonCreate(__('Create'))->ModalRoute($this->getRoute() . '.add')->ModalTitle(__('Create Data'))
+        ];
     }
-    protected function getTableActions()
+
+    //The record has been deleted successfully.
+    public function getTableActions()
     {
-        return [];
+        return [
+            UI::ButtonEdit(__('Edit'))->ModalRoute($this->getRoute() . '.edit', function ($row) {
+                return [
+                    'dataId' => $row->id
+                ];
+            })->ModalTitle(__('Edit Data')),
+            UI::ButtonRemove(__('Remove'))->Confirm(__('Do you want to delete this record?'), 'Confirm')->WireClick(function ($item) {
+                return 'doRemove(' . $item->getDataItem()->id . ')';
+            })
+        ];
     }
     public function doSearch()
     {

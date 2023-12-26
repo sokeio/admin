@@ -30,10 +30,16 @@ trait WithForm
             $data = $query->first();
             if (!$data) return abort(404);
             $this->data->fill($data);
+            if (method_exists($this, 'loadDataAfter')) {
+                call_user_func([$this, 'loadDataAfter'], $data);
+            }
         } else if ($this->copyId) {
             $query =  $query->where('id', $this->copyId);
             $data = $query->first();
             $this->data->fill($data);
+            if (method_exists($this, 'loadDataAfter')) {
+                call_user_func([$this, 'loadDataAfter'], $data);
+            }
         }
     }
     protected function FormRules()

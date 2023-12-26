@@ -13,7 +13,8 @@ class BaseField extends Base
     use WithFieldWire, WithFieldRule, WithFieldBase, withFieldOperator;
     public function boot()
     {
-        $this->getManager()?->addColumn($this);
+        if (!$this->getNoSave())
+            $this->getManager()?->addColumn($this);
         parent::boot();
     }
     protected function __construct($value)

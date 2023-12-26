@@ -56,6 +56,10 @@ class PermissionTable extends Table
             UI::Button(__('Load Permission'))->ClassName('bg-warning')->WireClick('LoadPermission()')
         ];
     }
+    public function getTableActions()
+    {
+        return [];
+    }
     // public function showSearchUI(){
     //     return true;
     // }

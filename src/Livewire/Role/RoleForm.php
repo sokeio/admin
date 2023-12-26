@@ -6,10 +6,12 @@ use Sokeio\Admin\Components\Common\Tab;
 use Sokeio\Admin\Components\Form;
 use Sokeio\Admin\Components\UI;
 use Sokeio\Breadcrumb;
+use Sokeio\Models\Permission;
 use Sokeio\Models\Role;
 
 class RoleForm extends Form
 {
+    public $permissionids = [];
     public function getTitle()
     {
         return __('Role');
@@ -28,9 +30,20 @@ class RoleForm extends Form
     {
         return Role::class;
     }
+
+    protected function loadDataAfter($role)
+    {
+        $this->permissionids = $role->PermissionIds;
+    }
+    protected function saveAfter($role)
+    {
+        $role->permissions()->sync(collect($this->permissionids)->filter(function ($item) {
+            return $item > 0;
+        })->toArray());
+    }
     public function FormUI()
     {
-        return
+        return UI::Container([
             UI::Prex(
                 'data',
                 [
@@ -46,6 +59,16 @@ class RoleForm extends Form
                         ]),
                     ]),
                 ]
-            )->ClassName('p-3');
+            ),
+            UI::Row([
+                UI::Column12([
+                    UI::CheckboxMutil('permissionids')->Label(__('Permission'))->DataSource(function () {
+                        return Permission::all();
+                    })->NoSave()
+                ]),
+            ])
+        ])
+
+            ->ClassName('p-3');
     }
 }

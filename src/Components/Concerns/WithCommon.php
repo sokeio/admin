@@ -36,6 +36,18 @@ trait WithCommon
     {
         return Button::Make($value);
     }
+    public static function ButtonCreate($value)
+    {
+        return Button::Make($value)->Primary();
+    }
+    public static function ButtonEdit($value)
+    {
+        return Button::Make($value)->Secondary();
+    }
+    public static function ButtonRemove($value)
+    {
+        return Button::Make($value)->Warning();
+    }
     public static function ButtonList($value)
     {
         return ButtonList::Make($value);
