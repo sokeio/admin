@@ -7,6 +7,7 @@
             "email": "nguyenvanhaudev@gmail.com"
         }
     ],
+    "license": "MIT",
     "extra": {
         "laravel": {
             "providers": ["Sokeio\\Admin\\AdminServiceProvider"],
