@@ -11,7 +11,7 @@ use Sokeio\Form;
 trait WithForm
 {
     use WithModelQuery;
-    public $dataId;
+    public $dataId ;
     #[Url]
     public $copyId;
     public Form $data;
@@ -19,7 +19,7 @@ trait WithForm
     private $footer;
     protected function isEdit()
     {
-        return !!$this->dataId;
+        return $this->dataId != null;
     }
     protected function formMessage($isNew)
     {

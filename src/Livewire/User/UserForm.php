@@ -53,14 +53,16 @@ class UserForm extends Form
                             UI::Column6([
                                 UI::Text('email')->Label(__('Email'))->required()
                             ]),
-                            $this->isEdit() ? null : UI::Column6([
+                            UI::Column6([
                                 UI::Password('password')->Label(__('Password'))->required()
-                            ]),
+                            ])->When(function () {
+                                return  !$this->isEdit();
+                            }),
 
                         ]),
                     ]
                 ),
-                $this->isEdit() ? UI::Row([
+                UI::Row([
                     UI::Column12([
                         UI::CheckboxMutil('roleids')->Label(__('Role'))->DataSource(function () {
                             return Role::all();
@@ -71,7 +73,9 @@ class UserForm extends Form
                             return Permission::all();
                         })->NoSave()
                     ]),
-                ]) : null
+                ])->When(function () {
+                    return  $this->isEdit();
+                })
             ])->ClassName('p-3');
     }
 }

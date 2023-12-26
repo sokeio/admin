@@ -16,6 +16,14 @@ class Base extends BaseCallback
     {
         return (new static($value));
     }
+    public function When($When)
+    {
+        return $this->setKeyValue('When', $When);
+    }
+    public function getWhen()
+    {
+        return $this->getValue('When', true);
+    }
     public function Attribute($Attribute)
     {
         return $this->setKeyValue('Attribute', $Attribute);
