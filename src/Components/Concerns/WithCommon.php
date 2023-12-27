@@ -38,7 +38,7 @@ trait WithCommon
     }
     public static function ButtonCreate($value)
     {
-        return Button::Make($value)->Primary();
+        return Button::Make($value)->Green();
     }
     public static function ButtonEdit($value)
     {

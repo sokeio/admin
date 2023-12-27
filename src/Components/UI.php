@@ -9,5 +9,6 @@ use Sokeio\Admin\Components\Concerns\WithField;
 
 class UI
 {
+    public const KEY_FIELD_NAME = '###______###';
     use Macroable, WithLayout, WithCommon, WithField;
 }

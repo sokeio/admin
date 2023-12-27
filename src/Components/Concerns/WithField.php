@@ -4,6 +4,9 @@ namespace Sokeio\Admin\Components\Concerns;
 
 use Sokeio\Admin\Components\Field\CheckboxField;
 use Sokeio\Admin\Components\Field\CheckboxMutilField;
+use Sokeio\Admin\Components\Field\DatePickerField;
+use Sokeio\Admin\Components\Field\ImageField;
+use Sokeio\Admin\Components\Field\NumberField;
 use Sokeio\Admin\Components\Field\ToggleField;
 use Sokeio\Admin\Components\Field\ToggleMutilField;
 use Sokeio\Admin\Components\Field\RadioField;
@@ -11,8 +14,10 @@ use Sokeio\Admin\Components\Field\RadioMutilField;
 use Sokeio\Admin\Components\Field\PasswordField;
 use Sokeio\Admin\Components\Field\RangeField;
 use Sokeio\Admin\Components\Field\SelectField;
+use Sokeio\Admin\Components\Field\TagifyField;
 use Sokeio\Admin\Components\Field\TextareaField;
 use Sokeio\Admin\Components\Field\TextField;
+use Sokeio\Admin\Components\Field\TinymceField;
 
 trait WithField
 {
@@ -59,5 +64,25 @@ trait WithField
     public static function Range($value)
     {
         return RangeField::make($value);
+    }
+    public static function Tinymce($value)
+    {
+        return TinymceField::make($value);
+    }
+    public static function Tagify($value)
+    {
+        return TagifyField::make($value);
+    }
+    public static function DatePicker($value)
+    {
+        return DatePickerField::make($value);
+    }
+    public static function Number($value)
+    {
+        return NumberField::make($value);
+    }
+    public static function Image($value)
+    {
+        return ImageField::make($value);
     }
 }

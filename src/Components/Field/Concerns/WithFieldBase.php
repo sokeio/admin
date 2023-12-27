@@ -2,12 +2,13 @@
 
 namespace Sokeio\Admin\Components\Field\Concerns;
 
+use Sokeio\Admin\Components\UI;
+
 trait WithFieldBase
 {
-    protected const KEY_FIELD_NAME = '###______###';
     public static function getFieldName($fieldEncode)
     {
-        return str_replace(self::KEY_FIELD_NAME, '.', $fieldEncode);
+        return str_replace(UI::KEY_FIELD_NAME, '.', $fieldEncode);
     }
     public function Name($Name): static
     {
@@ -53,7 +54,7 @@ trait WithFieldBase
     {
         if ($this->checkPrex()) {
             $operator = $this->getOperatorField();
-            return $this->getPrex() . '.' . ($operator != '' ?  $operator . '.' : '') . str_replace('.', self::KEY_FIELD_NAME, $this->getName());
+            return $this->getPrex() . '.' . ($operator != '' ?  $operator . '.' : '') . str_replace('.', UI::KEY_FIELD_NAME, $this->getName());
         }
         return $this->getName();
     }

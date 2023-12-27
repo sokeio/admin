@@ -4,7 +4,6 @@ namespace Sokeio\Admin\Livewire\User;
 
 use Sokeio\Admin\Components\Form;
 use Sokeio\Admin\Components\UI;
-use Sokeio\Breadcrumb;
 use Sokeio\Models\Permission;
 use Sokeio\Models\Role;
 use Sokeio\Models\User;
@@ -49,6 +48,9 @@ class UserForm extends Form
                         UI::Row([
                             UI::Column6([
                                 UI::Text('name')->Label(__('Fullname'))->required()
+                            ]),
+                            UI::Column6([
+                                UI::Number('name2')->Label(__('Fullname'))->required()
                             ]),
                             UI::Column6([
                                 UI::Text('email')->Label(__('Email'))->required()
