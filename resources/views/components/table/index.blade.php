@@ -6,20 +6,37 @@
             $wire.lazyloadingTable = false;
             $wire.doSearch();
         }
+        this.checkSelectAll();
+        let self = this;
+        Livewire.hook('request', ({ component, commit, respond, succeed, fail }) => {
+            succeed(({ snapshot, effect }) => {
+                setTimeout(() => {
+                    self.checkSelectAll();
+                }, 0);
+            })
+        })
     },
     selectAll: false,
+    checkSelectAll() {
+        let checkIdsOnPage = [...$el.querySelectorAll('.selectable')].map((el) => {
+            return el.value;
+        });
+        let chooseIdsOnPage = this.$wire.selectIds.filter((item) => checkIdsOnPage.includes(item));
+        this.selectAll = chooseIdsOnPage.length > 0 && chooseIdsOnPage.length == checkIdsOnPage.length;
+    },
     toggleAllCheckboxes() {
         this.selectAll = !this.selectAll;
+        let checkIdsOnPage = [...$el.querySelectorAll('.selectable')].map((el) => {
+            return el.value;
+        });
         if (this.selectAll) {
-            this.$wire.selectIds = [...$el.querySelectorAll('.selectable')].map((el) => {
-                return el.value;
-            })
+            this.$wire.selectIds = [...this.$wire.selectIds, ...checkIdsOnPage];
         } else {
-            this.$wire.selectIds = [];
+            this.$wire.selectIds = this.$wire.selectIds.filter((item) => !checkIdsOnPage.includes(item));
         }
     }
 }" x-init="tableLoading">
-    <div class="card-body border-bottom py-3">
+    <div class="card-body border-bottom py-3" x-init="">
         <div class="row g-2 align-items-center">
             <div class="col-auto">
                 <div class="input-icon">

@@ -48,10 +48,12 @@ class UserForm extends Form
     }
     public function getPermisionByIds($ids)
     {
-        $permison=Permission::query()->where('id', 'in', $ids)->get()->toArray();
-        $this->showMessage(json_encode($permison));
         $this->skipRender();
-        return $permison;
+        if ($ids) {
+            $permison = Permission::query()->whereIn('id',  $ids)->get()->toArray();
+            return $permison;
+        }
+        return [];
     }
     public function FormUI()
     {
@@ -65,6 +67,14 @@ class UserForm extends Form
                                 UI::Text('name')->Label(__('Fullname'))->required()
                             ]),
                             UI::Column6([
+                                UI::Text('email')->Label(__('Email'))->required()
+                            ]),
+                            UI::Column6([
+                                UI::Password('password')->Label(__('Password'))->required()
+                            ])->When(function () {
+                                return  !$this->isEdit();
+                            }),
+                            UI::Column12([
                                 UI::ChooseModal('quyen')->Label(__('Quyền'))->Modal(function () {
                                     return route('admin.permission.choose');
                                 })
@@ -74,14 +84,6 @@ class UserForm extends Form
         </template>')
                                     ->required()
                             ]),
-                            UI::Column6([
-                                UI::Text('email')->Label(__('Email'))->required()
-                            ]),
-                            UI::Column6([
-                                UI::Password('password')->Label(__('Password'))->required()
-                            ])->When(function () {
-                                return  !$this->isEdit();
-                            }),
 
                         ]),
                     ]
