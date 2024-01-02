@@ -83,4 +83,12 @@ trait WithFieldBase
     {
         return $this->getValue('AttributeLabel');
     }
+    public function Disable($Disable = true): static
+    {
+        return $this->setKeyValue('Disable', $Disable);
+    }
+    public function getDisable()
+    {
+        return $this->getValue('Disable');
+    }
 }

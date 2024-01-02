@@ -38,6 +38,14 @@ class UserForm extends Form
             return $item > 0;
         })->toArray());
     }
+    protected function removeBefore($user)
+    {
+        if ($user->hasRole(Role::SupperAdmin())) {
+            $this->showMessage(__('You cannot delete an admin account.'));
+            return false;
+        }
+        return true;
+    }
     public function FormUI()
     {
         return
@@ -48,9 +56,6 @@ class UserForm extends Form
                         UI::Row([
                             UI::Column6([
                                 UI::Text('name')->Label(__('Fullname'))->required()
-                            ]),
-                            UI::Column6([
-                                UI::Number('name2')->Label(__('Fullname'))->required()
                             ]),
                             UI::Column6([
                                 UI::Text('email')->Label(__('Email'))->required()

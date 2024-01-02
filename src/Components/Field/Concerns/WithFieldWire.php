@@ -18,6 +18,9 @@ trait WithFieldWire
                 break;
         }
         $attr .= '="' .  $this->getFormField() . '" ';
+        if ($this->getDisable()) {
+            $attr .= ' disabled ';
+        }
         return $attr;
     }
     /*

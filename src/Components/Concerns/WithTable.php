@@ -53,9 +53,15 @@ trait WithTable
         $record = $this->getQuery()->find($id);
 
         if ($record) {
+            if (method_exists($this, 'removeBefore') && !$this->removeBefore($record)) {
+                return;
+            }
             // Delete the record
             $record->delete();
 
+            if (method_exists($this, 'removeAfter') && !$this->removeAfter($record)) {
+                return;
+            }
             // Record successfully deleted
             $this->showMessage(__("The record has been deleted successfully."));
         } else {
