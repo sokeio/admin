@@ -5,13 +5,15 @@ namespace Sokeio\Admin\Livewire;
 use Sokeio\Component;
 use Sokeio\Models\Notification;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Reactive;
 
 class Notifications extends Component
 {
     public $title = 'Last updates';
     public $notifications = [];
     public $showNewNotification = false;
-
+    #[Reactive]
+    public $showIcon = true;
     #[On('echo:notifications,NotificationAdd')]
     public function notifyNew()
     {

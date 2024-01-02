@@ -74,16 +74,16 @@ class UserForm extends Form
                             ])->When(function () {
                                 return  !$this->isEdit();
                             }),
-        //                     UI::Column12([
-        //                         UI::ChooseModal('quyen')->Label(__('Quyền'))->Modal(function () {
-        //                             return route('admin.permission.choose');
-        //                         })
-        //                             ->Template('
-        //                         <template x-if="$wire.data.quyen" x-for="itemTextContent in $wire.getPermisionByIds(dataItemIds())">
-        //     <label x-show="itemTextContent" class="px-2 py-1 me-2 mb-2 border" x-text="itemTextContent.name"></label>
-        // </template>')
-        //                             ->required()
-        //                     ]),
+                            //                     UI::Column12([
+                            //                         UI::ChooseModal('quyen')->Label(__('Quyền'))->Modal(function () {
+                            //                             return route('admin.permission.choose');
+                            //                         })
+                            //                             ->Template('
+                            //                         <template x-if="$wire.data.quyen" x-for="itemTextContent in $wire.getPermisionByIds(dataItemIds())">
+                            //     <label x-show="itemTextContent" class="px-2 py-1 me-2 mb-2 border" x-text="itemTextContent.name"></label>
+                            // </template>')
+                            //                             ->required()
+                            //                     ]),
 
                         ]),
                     ]
