@@ -8,7 +8,7 @@ use Sokeio\Admin\Components\Field\Concerns\WithFieldRange;
 class DatePickerField extends BaseField
 {
     use WithFieldOption, WithFieldRange;
-    public function getView()
+    public function getFieldView()
     {
         return 'admin::components.field.flatpickr';
     }

@@ -15,7 +15,7 @@ class NumberField extends BaseField
     {
         return $this->getValue('Digits', 2);
     }
-    public function getView()
+    public function getFieldView()
     {
         return 'admin::components.field.number';
     }

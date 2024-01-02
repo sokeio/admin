@@ -5,7 +5,7 @@ namespace Sokeio\Admin\Components\Field;
 
 class RangeField extends BaseField
 {
-    public function getView()
+    public function getFieldView()
     {
         return 'admin::components.field.range';
     }

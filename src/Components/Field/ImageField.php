@@ -13,7 +13,7 @@ class ImageField extends BaseField
     {
         return $this->getValue('Mutil');
     }
-    public function getView()
+    public function getFieldView()
     {
         return 'admin::components.field.image';
     }

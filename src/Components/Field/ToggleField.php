@@ -31,7 +31,7 @@ class ToggleField extends BaseField
     {
         return $this->getValue('CheckboxValue', 1);
     }
-    public function getView()
+    public function getFieldView()
     {
         return 'admin::components.field.toggle';
     }

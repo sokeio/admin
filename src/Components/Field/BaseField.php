@@ -11,7 +11,11 @@ use Sokeio\Admin\Components\Field\Concerns\WithFieldWire;
 
 class BaseField extends Base
 {
-    use WithFieldWire, WithFieldRule, WithFieldBase, withFieldOperator,WithColumn;
+    use WithFieldWire, WithFieldRule, WithFieldBase, withFieldOperator, WithColumn;
+    public function getView()
+    {
+        return 'admin::components.layout-field';
+    }
     public function boot()
     {
         if (!$this->getNoSave())
