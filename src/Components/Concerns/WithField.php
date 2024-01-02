@@ -6,6 +6,7 @@ use Sokeio\Admin\Components\Field\CheckboxField;
 use Sokeio\Admin\Components\Field\CheckboxMutilField;
 use Sokeio\Admin\Components\Field\DatePickerField;
 use Sokeio\Admin\Components\Field\ImageField;
+use Sokeio\Admin\Components\Field\ModalField;
 use Sokeio\Admin\Components\Field\NumberField;
 use Sokeio\Admin\Components\Field\ToggleField;
 use Sokeio\Admin\Components\Field\ToggleMutilField;
@@ -84,5 +85,9 @@ trait WithField
     public static function Image($value)
     {
         return ImageField::make($value);
+    }
+    public static function ChooseModal($value)
+    {
+        return ModalField::make($value);
     }
 }

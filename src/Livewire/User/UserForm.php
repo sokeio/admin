@@ -46,6 +46,13 @@ class UserForm extends Form
         }
         return true;
     }
+    public function getPermisionByIds($ids)
+    {
+        $permison=Permission::query()->where('id', 'in', $ids)->get()->toArray();
+        $this->showMessage(json_encode($permison));
+        $this->skipRender();
+        return $permison;
+    }
     public function FormUI()
     {
         return
@@ -56,6 +63,16 @@ class UserForm extends Form
                         UI::Row([
                             UI::Column6([
                                 UI::Text('name')->Label(__('Fullname'))->required()
+                            ]),
+                            UI::Column6([
+                                UI::ChooseModal('quyen')->Label(__('Quyền'))->Modal(function () {
+                                    return route('admin.permission.choose');
+                                })
+                                    ->Template('
+                                <template x-if="$wire.data.quyen" x-for="itemTextContent in $wire.getPermisionByIds(dataItemIds())">
+            <label x-show="itemTextContent" class="px-2 py-1 me-2 mb-2 border" x-text="itemTextContent.name"></label>
+        </template>')
+                                    ->required()
                             ]),
                             UI::Column6([
                                 UI::Text('email')->Label(__('Email'))->required()

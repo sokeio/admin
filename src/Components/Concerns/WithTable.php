@@ -2,6 +2,7 @@
 
 namespace Sokeio\Admin\Components\Concerns;
 
+use Livewire\Attributes\Reactive;
 use Sokeio\Admin\Components\Field\BaseField;
 use Sokeio\Admin\Components\UI;
 use Sokeio\Facades\Theme;
@@ -17,10 +18,11 @@ trait WithTable
     private $tablecolumns;
     private $tableActions;
     // #[Url]
-    public  $selectids = [];
+    public $selectIds = [];
     public Form $search;
     public Form $orderBy;
     public $pageSize;
+    
     protected function getPageName()
     {
         return 'page';

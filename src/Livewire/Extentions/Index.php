@@ -2,7 +2,9 @@
 
 namespace Sokeio\Admin\Livewire\Extentions;
 
+use Sokeio\Breadcrumb;
 use Sokeio\Component;
+use Sokeio\Facades\Theme;
 
 class Index extends Component
 {
@@ -21,11 +23,19 @@ class Index extends Component
 
         $this->viewType = 'upload';
     }
+    public function getTitle()
+    {
+        return str($this->ExtentionType)->studly();
+    }
     public function render()
     {
+        Theme::setTitle($this->getTitle());
+        breadcrumb()->Title($this->getTitle())->Breadcrumb([
+            Breadcrumb::Item(__('Home'), route('admin.dashboard'))
+        ]);
         return view('admin::extentions.index', [
             'mode_dev' => sokeio_mode_dev(),
-            'page_title' => str($this->ExtentionType)->studly()
+            'page_title' => $this->getTitle()
         ]);
     }
 }

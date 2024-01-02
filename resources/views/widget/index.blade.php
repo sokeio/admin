@@ -6,7 +6,7 @@
     wire:key='widget-{{ $widgetId }}'>
     <div class="card">
         <div class="card-body p-1">
-            @if (!$locked)
+            {{-- @if (!$locked)
                 <span wire:sortable.handle class=" position-absolute" style="z-index: 10;top:2px;right:2px">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-move" width="24"
                         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -22,7 +22,7 @@
                         <path d="M12 3v6"></path>
                     </svg>
                 </span>
-            @endif
+            @endif --}}
             <div>
                 @if ($widget)
                     @includeIf($widget->getView(), $widget->getData())

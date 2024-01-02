@@ -11,11 +11,11 @@
     toggleAllCheckboxes() {
         this.selectAll = !this.selectAll;
         if (this.selectAll) {
-            this.$wire.selectids = [...$el.querySelectorAll('.selectable')].map((el) => {
+            this.$wire.selectIds = [...$el.querySelectorAll('.selectable')].map((el) => {
                 return el.value;
             })
         } else {
-            this.$wire.selectids = [];
+            this.$wire.selectIds = [];
         }
     }
 }" x-init="tableLoading">
@@ -117,7 +117,7 @@
                 @if ($datatable)
                     @foreach ($datatable as $row)
                         <tr>
-                            <td><input wire:model='selectids' class="form-check-input m-0 align-middle selectable"
+                            <td><input wire:model='selectIds' class="form-check-input m-0 align-middle selectable"
                                     type="checkbox" value="{{ $row->id }}" wire:key='checkbox-{{ $row->id }}'>
                             </td>
                             @isset($tablecolumns)

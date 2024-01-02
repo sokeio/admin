@@ -11,10 +11,5 @@
                 </li>
             @endforeach
         @endif
-        {{-- <li class="dropdown-item">
-            <button @click="$wire.selectIds=[];checkAll=false;" class="btn btn-block">
-                Clear selection
-            </button>
-        </li> --}}
     </ul>
 </div>
