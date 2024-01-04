@@ -13,7 +13,7 @@ Route::group(['as' => 'admin.'], function () {
     Route::post('permission', PermissionTable::class)->name('permission.choose');
     Route::post('user/{dataId}/change-password', PermissionTable::class)->name('user.change-password');
     route_crud('role', RoleTable::class, RoleForm::class);
-    route_crud('user', UserTable::class,UserForm::class);
+    route_crud('user', UserTable::class, UserForm::class);
     // UserCrud::RoutePage('user');
     // RoleCrud::RoutePage('role');
     // PermissionCrud::RoutePage('permission');

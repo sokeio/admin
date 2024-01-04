@@ -1,6 +1,6 @@
 <?php
 
-namespace Sokeio\Admin\Livewire\Setting;
+namespace Sokeio\Admin\Livewire;
 
 use Sokeio\Admin\Facades\Dashboard;
 use Sokeio\Component;

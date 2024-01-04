@@ -93,9 +93,9 @@ class AdminServiceProvider extends ServiceProvider
                  </svg>', function (MenuBuilder $menu) {
                         $menu->setTargetId('system_appearance_menu');
                         $menu->route(['name' => 'admin.theme', 'params' => []], 'Themes', '', [], 'admin.theme');
-                        if (Theme::SiteDataInfo()) {
-                            $menu->route(['name' => 'admin.theme-options', 'params' => []], 'Theme Options', '', [], 'admin.theme-options');
-                        }
+                        // if (Theme::SiteDataInfo()) {
+                        //     $menu->route(['name' => 'admin.theme-options', 'params' => []], 'Theme Options', '', [], 'admin.theme-options');
+                        // }
                     }, 9999999999999);
                     menu::subMenu('Settings', '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -103,7 +103,7 @@ class AdminServiceProvider extends ServiceProvider
        <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
     </svg>', function (MenuBuilder $menu) {
                         $menu->setTargetId('system_setting_menu');
-                        $menu->route('admin.setting', 'Setting', '', [], 'admin.setting');
+                        $menu->route('admin.setting', 'Overview', '', [], 'admin.setting');
                         $menu->route(['name' => 'admin.module', 'params' => []], 'Modules', '', [], 'admin.module');
                         $menu->route(['name' => 'admin.plugin', 'params' => []], 'Plugins', '', [], 'admin.plugin');
                     }, 99999999999999);
