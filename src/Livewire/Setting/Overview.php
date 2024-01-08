@@ -8,6 +8,6 @@ class Overview extends FormSetting
 {
     public function getTitle()
     {
-        return __('Setting Overview');
+        return __('System Overview');
     }
 }
