@@ -5,14 +5,11 @@ namespace Sokeio\Admin;
 use Illuminate\Support\Facades\Request;
 use Sokeio\Admin\Widgets\WidgetServiceProvider;
 use Sokeio\Admin\Facades\Menu;
-use Sokeio\Admin\Facades\SettingForm;
 use Sokeio\Admin\Menu\MenuBuilder;
 use Illuminate\Support\ServiceProvider;
 use Sokeio\Laravel\ServicePackage;
 use Sokeio\Concerns\WithServiceProvider;
 use Sokeio\Facades\Platform;
-use Sokeio\Facades\Theme;
-use Sokeio\Admin\Item;
 
 class AdminServiceProvider extends ServiceProvider
 {
