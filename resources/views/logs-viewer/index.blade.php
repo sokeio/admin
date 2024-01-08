@@ -8,7 +8,7 @@
             </select>
         </div>
 
-        @include('admin::pages.logs-viewer.paginator')
+        @include('admin::logs-viewer.paginator')
 
         @if ($log->count() > 0)
             <ul class='font-mono text-xs bg-indigo text-indigo-fg p-2 '>

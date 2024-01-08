@@ -1,12 +1,12 @@
 <?php
 
-namespace Sokeio\Admin\Livewire\Pages\LogsViewer;
+namespace Sokeio\Admin\Livewire;
 
 use Sokeio\Component;
 use Illuminate\Support\Facades\File;
 use SplFileInfo;
 
-class Index extends Component
+class LogsViewer extends Component
 {
     public $file = 0;
     public $page = 1;
@@ -27,7 +27,7 @@ class Index extends Component
 
         $log = $log->slice(($this->page - 1) * $this->perPage, $this->perPage)->values();
 
-        return view('admin::pages.logs-viewer..index', [
+        return view('admin::logs-viewer.index', [
             'files' => $files,
             'log' => $log,
             ''
