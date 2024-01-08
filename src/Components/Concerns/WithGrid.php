@@ -5,7 +5,7 @@ namespace Sokeio\Admin\Components\Concerns;
 use Sokeio\Admin\Components\Common\Column;
 use Sokeio\Admin\Components\Common\Row;
 
-trait WithLayout
+trait WithGrid
 {
     public static function Row($value)
     {

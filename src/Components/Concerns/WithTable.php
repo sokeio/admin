@@ -12,6 +12,7 @@ use Sokeio\Form;
 trait WithTable
 {
     use WithModelQuery, WithTablePagination;
+    use WithLayoutUI;
 
     public $lazyloadingTable = true;
     private $searchlayout;
@@ -114,49 +115,13 @@ trait WithTable
     public function boot()
     {
         if (!$this->searchlayout) {
-            $this->searchlayout = $this->searchUI();
-            if ($this->searchlayout) {
-
-                if (is_object($this->searchlayout)) {
-                    $this->searchlayout = [$this->searchlayout];
-                }
-                $this->searchlayout = [UI::Prex('search', $this->searchlayout)];
-                foreach ($this->searchlayout as $item) {
-                    if ($item) {
-                        $item->Manager($this);
-                        $item->boot();
-                    }
-                }
-            }
+            $this->searchlayout = $this->reLayout([UI::Prex('search',$this->searchUI()));
         }
-
         if (!$this->tableActions) {
-            $this->tableActions = $this->getTableActions();
-            if ($this->tableActions) {
-                if (is_object($this->tableActions)) {
-                    $this->tableActions = [$this->tableActions];
-                }
-                foreach ($this->tableActions as $item) {
-                    if ($item) {
-                        $item->Manager($this);
-                        $item->boot();
-                    }
-                }
-            }
+            $this->tableActions = $this->reLayout($this->getTableActions());
         }
         if (!$this->tablecolumns) {
-            $this->tablecolumns = $this->getColumns();
-            if ($this->tablecolumns) {
-                if (is_object($this->tablecolumns)) {
-                    $this->tablecolumns = [$this->tablecolumns];
-                }
-                foreach ($this->tablecolumns as $item) {
-                    if ($item) {
-                        $item->Manager($this);
-                        $item->boot();
-                    }
-                }
-            }
+            $this->tablecolumns = $this->reLayout($this->getColumns());
         }
     }
     protected function getView()

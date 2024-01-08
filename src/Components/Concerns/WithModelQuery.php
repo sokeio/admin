@@ -6,15 +6,6 @@ use Sokeio\Breadcrumb;
 
 trait WithModelQuery
 {
-    public function getTitle()
-    {
-    }
-    public function getBreadcrumb()
-    {
-        return [
-            Breadcrumb::Item(__('Home'), route('admin.dashboard'))
-        ];
-    }
     protected function getModel()
     {
     }
@@ -27,20 +18,5 @@ trait WithModelQuery
     {
         return ($this->getModel())::query();
     }
-    private $columns = [];
-    public function addColumn($column)
-    {
-        $this->columns[] = $column;
-        return $this;
-    }
-    /**
-     * Get a new query builder for the model's table.
-     *
-     *
-     * @return \Sokeio\Admin\Components\Field\BaseField[]
-     */
-    protected function getColumns()
-    {
-        return  $this->columns;
-    }
+    
 }

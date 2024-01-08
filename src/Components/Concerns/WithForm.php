@@ -11,6 +11,7 @@ use Sokeio\Form;
 trait WithForm
 {
     use WithModelQuery;
+    use WithLayoutUI;
     public $dataId ;
     #[Url]
     public $copyId;
@@ -81,14 +82,17 @@ trait WithForm
             ])->ClassName('p-2 text-center')
         ];
     }
-    public function doSave()
-    {
+    protected function doValidate(){
         ['rules' => $rules, 'messages' => $messages, 'attributes' => $attributes] = $this->FormRules();
         // $this->showMessage(json_encode(['rules' => $rules, 'messages' => $messages, 'attributes' => $attributes]));
         // return;
         if ($rules && count($rules)) {
             $this->validate($rules, $messages, $attributes);
         }
+    }
+    public function doSave()
+    {
+        $this->doValidate();
         $objData = new ($this->getModel());
         $isNew = true;
         if ($this->dataId) {
@@ -120,32 +124,10 @@ trait WithForm
     public function boot()
     {
         if (!$this->layout) {
-            $this->layout = $this->FormUI();
-            if ($this->layout) {
-                if (is_object($this->layout)) {
-                    $this->layout = [$this->layout];
-                }
-                foreach ($this->layout as $item) {
-                    if ($item) {
-                        $item->Manager($this);
-                        $item->boot();
-                    }
-                }
-            }
+            $this->layout =$this->reLayout($this->FormUI());
         }
         if (!$this->footer) {
-            $this->footer = $this->FooterUI();
-            if ($this->footer) {
-                if (is_object($this->footer)) {
-                    $this->footer = [$this->footer];
-                }
-                foreach ($this->footer as $item) {
-                    if ($item) {
-                        $item->Manager($this);
-                        $item->boot();
-                    }
-                }
-            }
+            $this->footer = $this->reLayout($this->FooterUI());
         }
     }
     public function mount()
