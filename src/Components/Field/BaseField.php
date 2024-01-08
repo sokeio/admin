@@ -18,8 +18,9 @@ class BaseField extends Base
     }
     public function boot()
     {
-        if (!$this->getNoSave())
+        if (!$this->getNoSave()){
             $this->getManager()?->addColumn($this);
+        }
         parent::boot();
     }
     protected function __construct($value)

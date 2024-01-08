@@ -37,6 +37,7 @@ class BaseCommon extends Base
     }
     public function Content($Content)
     {
+        if (is_object($Content)) $Content = [$Content];
         return $this->setKeyValue('Content', $Content);
     }
     public function getContent()

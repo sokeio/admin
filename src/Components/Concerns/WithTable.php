@@ -23,7 +23,7 @@ trait WithTable
     public Form $search;
     public Form $orderBy;
     public $pageSize;
-    
+
     protected function getPageName()
     {
         return 'page';
@@ -115,7 +115,7 @@ trait WithTable
     public function boot()
     {
         if (!$this->searchlayout) {
-            $this->searchlayout = $this->reLayout([UI::Prex('search',$this->searchUI()));
+            $this->searchlayout = $this->reLayout(UI::Prex('search', $this->searchUI()));
         }
         if (!$this->tableActions) {
             $this->tableActions = $this->reLayout($this->getTableActions());

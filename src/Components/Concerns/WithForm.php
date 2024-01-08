@@ -12,7 +12,7 @@ trait WithForm
 {
     use WithModelQuery;
     use WithLayoutUI;
-    public $dataId ;
+    public $dataId;
     #[Url]
     public $copyId;
     public Form $data;
@@ -74,6 +74,11 @@ trait WithForm
     protected function FormUI()
     {
     }
+    protected function getFormClass()
+    {
+        return null;
+    }
+
     protected function FooterUI()
     {
         return [
@@ -82,7 +87,8 @@ trait WithForm
             ])->ClassName('p-2 text-center')
         ];
     }
-    protected function doValidate(){
+    protected function doValidate()
+    {
         ['rules' => $rules, 'messages' => $messages, 'attributes' => $attributes] = $this->FormRules();
         // $this->showMessage(json_encode(['rules' => $rules, 'messages' => $messages, 'attributes' => $attributes]));
         // return;
@@ -124,7 +130,7 @@ trait WithForm
     public function boot()
     {
         if (!$this->layout) {
-            $this->layout =$this->reLayout($this->FormUI());
+            $this->layout = $this->reLayout($this->FormUI());
         }
         if (!$this->footer) {
             $this->footer = $this->reLayout($this->FooterUI());
@@ -139,7 +145,8 @@ trait WithForm
         return view($this->getView(), [
             'title' => $this->getTitle(),
             'layout' => $this->layout,
-            'footer' => $this->footer
+            'footer' => $this->footer,
+            'formUIClass' => $this->getFormClass()
         ]);
     }
 }

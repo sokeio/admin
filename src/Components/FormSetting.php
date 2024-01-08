@@ -2,17 +2,23 @@
 
 namespace Sokeio\Admin\Components;
 
+use Illuminate\Support\Facades\DB;
 use Sokeio\Admin\Components\Concerns\WithForm;
 use Sokeio\Component;
-use Sokeio\Facades\Theme;
 
 class FormSetting extends Component
 {
     use  WithForm;
-    protected function FormUI(){
-        return UI::Card($this->SettingUI());
+    protected function getFormClass()
+    {
+        return 'card p-3';
     }
-    protected function SettingUI(){
+    protected function FormUI()
+    {
+        return UI::Prex('data', $this->SettingUI());
+    }
+    protected function SettingUI()
+    {
         return [];
     }
     public function loadData()
@@ -21,13 +27,13 @@ class FormSetting extends Component
             call_user_func([$this, 'loadDataAfter']);
         }
         foreach ($this->getColumns() as $column) {
-            data_set($column->getNameEncode(), setting($column->getFormFieldEncode()));
+            data_set($this, $column->getFormFieldEncode(), setting($column->getNameEncode()));
         }
     }
     public function doSave()
     {
         $this->doValidate();
-        DB::transaction(function (){
+        DB::transaction(function () {
             foreach ($this->getColumns() as $column) {
                 set_setting($column->getNameEncode(), data_get($this, $column->getFormFieldEncode()));
             }

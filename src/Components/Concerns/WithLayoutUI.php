@@ -2,8 +2,7 @@
 
 namespace Sokeio\Admin\Components\Concerns;
 
-use Sokeio\Admin\Components\Common\Column;
-use Sokeio\Admin\Components\Common\Row;
+use Sokeio\Breadcrumb;
 
 trait WithLayoutUI
 {
@@ -30,9 +29,10 @@ trait WithLayoutUI
      */
     protected function getColumns()
     {
-        return  $this->columns;
+        return $this->columns;
     }
-    protected reLayout($layout){
+    protected function reLayout($layout)
+    {
         if ($layout) {
             if (is_object($layout)) {
                 $layout = [$layout];
