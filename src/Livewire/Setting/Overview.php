@@ -2,8 +2,8 @@
 
 namespace Sokeio\Admin\Livewire\Setting;
 
-use Sokeio\Admin\Components\FormSetting;
-use Sokeio\Admin\Components\UI;
+use Sokeio\Components\FormSetting;
+use Sokeio\Components\UI;
 
 class Overview extends FormSetting
 {

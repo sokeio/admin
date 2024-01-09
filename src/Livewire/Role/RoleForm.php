@@ -2,9 +2,9 @@
 
 namespace Sokeio\Admin\Livewire\Role;
 
-use Sokeio\Admin\Components\Common\Tab;
-use Sokeio\Admin\Components\Form;
-use Sokeio\Admin\Components\UI;
+use Sokeio\Components\Common\Tab;
+use Sokeio\Components\Form;
+use Sokeio\Components\UI;
 use Sokeio\Breadcrumb;
 use Sokeio\Models\Permission;
 use Sokeio\Models\Role;

@@ -2,8 +2,8 @@
 
 namespace Sokeio\Admin\Livewire\User;
 
-use Sokeio\Admin\Components\Table;
-use Sokeio\Admin\Components\UI;
+use Sokeio\Components\Table;
+use Sokeio\Components\UI;
 use Sokeio\Models\User;
 
 class UserTable extends Table

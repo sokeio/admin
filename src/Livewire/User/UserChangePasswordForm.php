@@ -2,8 +2,8 @@
 
 namespace Sokeio\Admin\Livewire\User;
 
-use Sokeio\Admin\Components\Form;
-use Sokeio\Admin\Components\UI;
+use Sokeio\Components\Form;
+use Sokeio\Components\UI;
 use Sokeio\Breadcrumb;
 use Sokeio\Models\User;
 

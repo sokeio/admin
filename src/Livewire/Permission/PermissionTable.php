@@ -4,8 +4,8 @@ namespace Sokeio\Admin\Livewire\Permission;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
-use Sokeio\Admin\Components\Table;
-use Sokeio\Admin\Components\UI;
+use Sokeio\Components\Table;
+use Sokeio\Components\UI;
 use Sokeio\Models\Permission;
 
 class PermissionTable extends Table
