@@ -1,24 +1,24 @@
 <?php
 
-namespace Sokeio\Admin\Livewire\Role;
+namespace Sokeio\Admin\Livewire\Language;
 
 use Sokeio\Components\Table;
 use Sokeio\Components\UI;
-use Sokeio\Models\Role;
+use Sokeio\Models\Language;
 
-class RoleTable extends Table
+class LanguageTable extends Table
 {
     protected function getModel()
     {
-        return Role::class;
+        return Language::class;
     }
     public function getTitle()
     {
-        return __('Role');
+        return __('Language');
     }
     protected function getRoute()
     {
-        return 'admin.role';
+        return 'admin.language';
     }
 
     public function doChangeStatus($id, $status)
@@ -29,7 +29,7 @@ class RoleTable extends Table
     {
         return [
             UI::Text('name')->Label(__('Name')),
-            UI::Text('slug')->Label(__('Slug')),
+            UI::Text('code')->Label(__('Code')),
             UI::Button('status')->Label(__('Status'))->NoSort()->WireClick(function ($item) {
                 if ($item->getDataItem()->status) {
                     $item->Title(__('Active'));
