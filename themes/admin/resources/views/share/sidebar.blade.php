@@ -7,7 +7,11 @@
         <h1 class="navbar-brand navbar-brand-autodark">
             {!! apply_filters(
                 'THEME_ADMIN_SIDEBAR_LOGO',
-                ' <a href="' . route('admin.dashboard') . '"><span class=" fw-bold fs-1 p-1">Sokeio</span></a>',
+                ' <a href="' .
+                    route('admin.dashboard') .
+                    '"><span class=" fw-bold fs-1 p-1">' .
+                    setting('PLATFORM_SYSTEM_NAME', 'Admin') .
+                    '</span></a>',
             ) !!}
 
         </h1>

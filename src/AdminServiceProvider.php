@@ -100,7 +100,7 @@ class AdminServiceProvider extends ServiceProvider
        <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
     </svg>', function (MenuBuilder $menu) {
                         $menu->setTargetId('system_setting_menu');
-                        $menu->route('admin.setting', 'Overview', '', [], 'admin.setting');
+                        $menu->route('admin.setting', 'System', '', [], 'admin.setting');
                         $menu->route('admin.log-viewer', 'Log', '', [], 'admin.log-viewer');
                         $menu->route(['name' => 'admin.module', 'params' => []], 'Modules', '', [], 'admin.module');
                         $menu->route(['name' => 'admin.plugin', 'params' => []], 'Plugins', '', [], 'admin.plugin');
