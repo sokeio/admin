@@ -30,6 +30,7 @@ class LanguageTable extends Table
         return [
             UI::Text('name')->Label(__('Name')),
             UI::Text('code')->Label(__('Code')),
+            UI::Text('flag')->Label(__('Flag')),
             UI::Button('status')->Label(__('Status'))->NoSort()->WireClick(function ($item) {
                 if ($item->getDataItem()->status) {
                     $item->Title(__('Active'));

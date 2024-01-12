@@ -2,16 +2,13 @@
 
 namespace Sokeio\Admin\Livewire\Language;
 
-use Sokeio\Components\Common\Tab;
 use Sokeio\Components\Form;
 use Sokeio\Components\UI;
 use Sokeio\Breadcrumb;
-use Sokeio\Models\Permission;
 use Sokeio\Models\Language;
 
 class LanguageForm extends Form
 {
-    public $permissionids = [];
     public function getTitle()
     {
         return __('Language');
@@ -30,17 +27,6 @@ class LanguageForm extends Form
     {
         return Language::class;
     }
-
-    protected function loadDataAfter($role)
-    {
-        $this->permissionids = $role->PermissionIds;
-    }
-    protected function saveAfter($role)
-    {
-        $role->permissions()->sync(collect($this->permissionids)->filter(function ($item) {
-            return $item > 0;
-        })->toArray());
-    }
     public function FormUI()
     {
         return UI::Container([
@@ -48,25 +34,21 @@ class LanguageForm extends Form
                 'data',
                 [
                     UI::Row([
-                        UI::Column6([
-                            UI::Text('name')->Label(__('Language Name'))->required()
+                        UI::Column12([
+                            UI::Text('name')->Label(__('Name'))->required()
                         ]),
-                        UI::Column6([
-                            UI::Text('slug')->Label(__('Language Slug'))
+                        UI::Column12([
+                            UI::Text('code')->Label(__('Code'))
                         ]),
-                        UI::Column6([
-                            UI::Checkbox('status')->Label(__('Language Status'))->Title(__('Active'))
+                        UI::Column12([
+                            UI::Text('flag')->Label(__('Flag'))
+                        ]),
+                        UI::Column12([
+                            UI::Checkbox('status')->Label(__('Status'))->Title(__('Active'))
                         ]),
                     ]),
                 ]
             ),
-            UI::Row([
-                UI::Column12([
-                    UI::CheckboxMutil('permissionids')->Label(__('Permission'))->DataSource(function () {
-                        return Permission::all();
-                    })->NoSave()
-                ]),
-            ])
         ])
 
             ->ClassName('p-3');
