@@ -23,7 +23,7 @@ class Overview extends FormSetting
                     ->Label(__('System Language'))
                     ->FieldKey('code')
                     ->DataSource(function () {
-                        return Language::all();
+                        return Language::query()->where('status', 1)->get();
                     })
             ])
         ]);
