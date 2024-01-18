@@ -14,7 +14,7 @@ class Overview extends FormSetting
     }
     protected function SettingUI()
     {
-        return UI::Row([
+        return UI::Row(apply_filters('SOKEIO_ADMIN_SETTING_OVERVIEW', [
             UI::Column6([
                 UI::Text('PLATFORM_SYSTEM_NAME')->Label(__('System Admin Name')),
             ]),
@@ -26,6 +26,6 @@ class Overview extends FormSetting
                         return Language::query()->where('status', 1)->get();
                     })
             ])
-        ]);
+        ]));
     }
 }
