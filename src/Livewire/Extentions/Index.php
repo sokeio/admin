@@ -4,6 +4,7 @@ namespace Sokeio\Admin\Livewire\Extentions;
 
 use Sokeio\Breadcrumb;
 use Sokeio\Component;
+use Sokeio\Facades\Assets;
 use Sokeio\Facades\Theme;
 
 class Index extends Component
@@ -29,7 +30,7 @@ class Index extends Component
     }
     public function render()
     {
-        Theme::setTitle($this->getTitle());
+        Assets::setTitle($this->getTitle());
         breadcrumb()->Title($this->getTitle())->Breadcrumb([
             Breadcrumb::Item(__('Home'), route('admin.dashboard'))
         ]);
