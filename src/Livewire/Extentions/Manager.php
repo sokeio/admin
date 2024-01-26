@@ -13,6 +13,7 @@ class Manager extends Component
     public function ItemChangeStatus($itemId, $status)
     {
         platform_by($this->ExtentionType)->find($itemId)->status = $status;
+        return  $this->redirectCurrent();
     }
     public function render()
     {

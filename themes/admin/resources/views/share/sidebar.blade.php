@@ -19,7 +19,7 @@
         </div>
         <div class="collapse navbar-collapse" id="sidebar-menu">
             {!! apply_filters('THEME_SIDEBAR_BEFORE', '') !!}
-            {!! menu_render() !!}
+            {!! menu_admin(true) !!}
             {!! apply_filters('THEME_SIDEBAR_AFTTER', '') !!}
             <div class=" text-center p-1 text-bold">
                 <a href="https://sokeio.com" target="_blank">Sokeio Framework {{ sokeio_version() }}</a>
