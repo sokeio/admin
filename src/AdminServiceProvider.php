@@ -110,14 +110,7 @@ class AdminServiceProvider extends ServiceProvider
                             $menu->route(['name' => 'admin.plugin', 'params' => []], 'Plugins', '', [], 'admin.plugin');
                         }, 99999999999999);
                 });
-                if (Request::isMethod('get')) {
-                    add_filter(PLATFORM_CONFIG_JS, function ($rs) {
-                        return [
-                            ...$rs,
-                            'sokeio_shortcode_setting' => route('admin.shortcode-setting'),
-                        ];
-                    });
-                }
+                
             }
         });
         Platform::ReadyAfter(function () {
