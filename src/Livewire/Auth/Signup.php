@@ -26,7 +26,7 @@ class Signup extends Component
         $user->status = 1;
         $user->save();
         if ($role = env('SOKEIO_SIGUP_ROLE_DEFAULT')) {
-            $role =   (config('sokeio.model.role', \Sokeio\Admin\Models\Role::class))::where('slug', $role)->first();
+            $role =   (config('sokeio.model.role'))::where('slug', $role)->first();
             if ($role)
                 $user->roles()->sync([$role->id]);
         }
