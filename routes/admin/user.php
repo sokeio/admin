@@ -1,6 +1,5 @@
 <?php
 
-use Sokeio\Admin\Crud\UserCrud;
 use Illuminate\Support\Facades\Route;
 use Sokeio\Admin\Livewire\Language\LanguageForm;
 use Sokeio\Admin\Livewire\Language\LanguageTable;
