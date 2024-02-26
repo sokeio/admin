@@ -104,7 +104,6 @@ class AdminServiceProvider extends ServiceProvider
                             $menu->setTargetId('system_setting_menu');
                             $menu->route('admin.setting', 'System', '', [], 'admin.setting');
                             $menu->route('admin.cache', 'Cache System', '', [], 'admin.cache');
-                            $menu->route('admin.permalink-setting', 'Permalink', '', [], 'admin.permalink-setting');
                             $menu->route('admin.language', 'Language', '', [], 'admin.language');
 
                             $menu->route('admin.log-viewer', 'Log', '', [], 'admin.log-viewer');
