@@ -42,6 +42,11 @@ class AdminServiceProvider extends ServiceProvider
         Platform::Ready(function () {
 
             if (sokeio_is_admin()) {
+                if (THeme::SiteId()) {
+                    add_action('THEME_ADMIN_RIGHT', function () {
+                        echo '<div class="nav-item"><a class="nav-link fw-bold" target="_blank" href="' . url('/') . '">' . __('Visit Website') . '</a></div>';
+                    });
+                }
                 // SettingForm::Register(function (\Sokeio\Admin\ItemManager $form) {
                 //     $form->Title(__('General'))->Item([
                 //         Item::Add('page_logo')->Type('images')->Title('Logo')->Attribute(function () {
@@ -111,7 +116,6 @@ class AdminServiceProvider extends ServiceProvider
                             $menu->route(['name' => 'admin.plugin', 'params' => []], 'Plugins', '', [], 'admin.plugin');
                         }, 99999999999999);
                 });
-                
             }
         });
         Platform::ReadyAfter(function () {
