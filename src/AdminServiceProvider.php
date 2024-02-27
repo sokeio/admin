@@ -42,7 +42,7 @@ class AdminServiceProvider extends ServiceProvider
         Platform::Ready(function () {
 
             if (sokeio_is_admin()) {
-                if (THeme::SiteId()) {
+                if (Theme::SiteId()) {
                     add_action('THEME_ADMIN_RIGHT', function () {
                         echo '<div class="nav-item"><a class="nav-link fw-bold" target="_blank" href="' . url('/') . '">' . __('Visit Website') . '</a></div>';
                     });
@@ -99,6 +99,7 @@ class AdminServiceProvider extends ServiceProvider
                             $menu->route(['name' => 'admin.theme', 'params' => []], 'Themes', '', [], 'admin.theme');
                             if (theme_option()->checkOptionUI()) {
                                 $menu->route(['name' => 'admin.theme-options', 'params' => []], 'Theme Options', '', [], 'admin.theme-options');
+                                $menu->route(['name' => 'admin.menu', 'params' => []], 'Menus', '', [], 'admin.menu');
                             }
                         }, 9999999999999)
                         ->subMenu('Settings', '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
