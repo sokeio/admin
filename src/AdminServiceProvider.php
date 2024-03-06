@@ -44,7 +44,7 @@ class AdminServiceProvider extends ServiceProvider
             if (sokeio_is_admin()) {
                 if (Theme::SiteDataInfo()) {
                     add_action('THEME_ADMIN_RIGHT', function () {
-                        echo '<div class="nav-item"><a class="nav-link fw-bold" target="_blank" href="' . url('/') . '">' . __('Visit Website') . '</a></div>';
+                        echo '<div class="nav-item"><a class="nav-link fw-bold" target="_blank" href="' . url('/') . '">' . __('Go to Site') . '</a></div>';
                     });
                 }
                 Menu::Register(function () {
