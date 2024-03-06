@@ -18,7 +18,7 @@ class RoleTable extends Table
     }
     protected function getRoute()
     {
-        return 'admin.role';
+        return 'admin.system.role';
     }
 
     public function doChangeStatus($id, $status)

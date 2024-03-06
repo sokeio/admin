@@ -76,7 +76,7 @@ class UserForm extends Form
                             }),
                             //                     UI::Column12([
                             //                         UI::ChooseModal('quyen')->Label(__('Quyền'))->Modal(function () {
-                            //                             return route('admin.permission.choose');
+                            //                             return route('admin.system.permission.choose');
                             //                         })
                             //                             ->Template('
                             //                         <template x-if="$wire.data.quyen" x-for="itemTextContent in $wire.getPermisionByIds(dataItemIds())">

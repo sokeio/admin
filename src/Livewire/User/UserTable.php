@@ -18,7 +18,7 @@ class UserTable extends Table
     }
     protected function getRoute()
     {
-        return 'admin.user';
+        return 'admin.system.user';
     }
 
     public function getColumns()

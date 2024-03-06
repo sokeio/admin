@@ -18,7 +18,7 @@ class LanguageTable extends Table
     }
     protected function getRoute()
     {
-        return 'admin.language';
+        return 'admin.system.language';
     }
 
     public function doChangeStatus($id, $status)

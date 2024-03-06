@@ -77,7 +77,7 @@
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                        <a sokeio:modal='{{ route('admin.user.change-password', ['dataId' => auth()->user()->id]) }}'
+                        <a sokeio:modal='{{ route('admin.system.user.change-password', ['dataId' => auth()->user()->id]) }}'
                             sokeio:modal-title="Change password" class="dropdown-item">Change password</a>
                         <div class="dropdown-divider"></div>
 
