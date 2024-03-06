@@ -8,12 +8,12 @@ use Sokeio\Component;
 use Sokeio\Facades\Assets;
 use Sokeio\Facades\Platform;
 
-class AssetManager extends Component
+class ToolSystem extends Component
 {
     public function mount()
     {
-        Assets::setTitle(__('Asset Tools'));
-        breadcrumb()->Title(__('Asset Tools'))->Add(__('Home'), route('admin.dashboard'));
+        Assets::setTitle(__('Tool System'));
+        breadcrumb()->Title(__('Tool System'))->Add(__('Home'), route('admin.dashboard'));
     }
     public function clearCache($message)
     {
@@ -28,7 +28,7 @@ class AssetManager extends Component
     }
     public function render()
     {
-        return view('admin::asset-manager.index', [
+        return view('admin::tool-system.index', [
             'tools' => [
                 [
                     'title' => __('Clear Cache'),
