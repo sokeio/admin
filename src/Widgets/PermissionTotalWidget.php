@@ -16,6 +16,6 @@ class PermissionTotalWidget extends Widget
                 'widgetTitle' => __('Permission Total'),
                 'widgetData' => Permission::count()
             ];
-        })->Column('col4');
+        })->column('col4');
     }
 }

@@ -19,13 +19,13 @@
         </div>
         <div class="collapse navbar-collapse" id="sidebar-menu">
             {!! apply_filters('THEME_SIDEBAR_BEFORE', '') !!}
-            {!! menu_admin(true) !!}
+            {!! menuAdmin(true) !!}
             {!! apply_filters('THEME_SIDEBAR_AFTTER', '') !!}
             <div class=" text-center p-1 text-bold">
-                <a href="https://sokeio.com" target="_blank">Sokeio Framework {{ sokeio_version() }}</a>
+                <a href="https://sokeio.com" target="_blank">Sokeio Framework {{ sokeioVersion() }}</a>
             </div>
 
-            <div class="text-center">Page Loaded:{{ sokeio_time() }}ms</div>
+            <div class="text-center">Page Loaded:{{ sokeioTime() }}ms</div>
         </div>
     </div>
 </aside>

@@ -32,38 +32,62 @@ class AdminServiceProvider extends ServiceProvider
             ->hasTranslations()
             ->runsMigrations();
     }
-    public function extending()
-    {
-    }
     public function packageRegistered()
     {
         $this->app->register(WidgetServiceProvider::class);
-        $this->extending();
-        Platform::Ready(function () {
-
-            if (sokeio_is_admin()) {
+        Platform::ready(function () {
+            if (sokeioIsAdmin()) {
                 if (Theme::SiteDataInfo()) {
                     add_action('THEME_ADMIN_RIGHT', function () {
-                        echo '<div class="nav-item"><a class="nav-link fw-bold" target="_blank" href="' . url('/') . '">' . __('Go to Site') . '</a></div>';
+                        echo '<div class="nav-item">
+                        <a class="nav-link fw-bold" target="_blank" href="' . url('/') . '">' . __('Go to Site') . '</a>
+                        </div>';
                     });
                 }
                 Menu::Register(function () {
-                    if (!sokeio_is_admin()) return;
-                    menu_admin()->route('admin.dashboard', __('Dashboard'), '<i class="ti ti-dashboard fs-2"></i>', [], '', 1)
+                    menuAdmin()
+                        ->route('admin.dashboard', __('Dashboard'), '<i class="ti ti-dashboard fs-2"></i>', [], '', 1)
                         ->subMenu(__('User'), '<i class="ti ti-user-shield fs-2"></i>', function (MenuBuilder $menu) {
                             $menu->setTargetId('user_menu');
-                            $menu->route(['name' => 'admin.system.user', 'params' => []], __('User'), '', [], 'admin.system.user');
-                            $menu->route(['name' => 'admin.system.role', 'params' => []], __('Role'), '', [], 'admin.system.role');
-                            $menu->route(['name' => 'admin.system.permission', 'params' => []], __('Permission'), '', [], 'admin.system.permission');
+                            $menu->route([
+                                'name' => 'admin.system.user',
+                                'params' => []
+                            ], __('User'), '', [], 'admin.system.user');
+                            $menu->route(
+                                ['name' => 'admin.system.role', 'params' => []],
+                                __('Role'),
+                                '',
+                                [],
+                                'admin.system.role'
+                            );
+                            $menu->route([
+                                'name' => 'admin.system.permission',
+                                'params' => []
+                            ], __('Permission'), '', [], 'admin.system.permission');
                         }, 9999999999999)
                         ->subMenu(__('Appearance'), '<i class="ti ti-brush fs-2"></i>', function (MenuBuilder $menu) {
                             $menu->setTargetId('system_appearance_menu');
-                            $menu->route(['name' => 'admin.extension.theme', 'params' => []], 'Theme', '', [], 'admin.extension.theme');
-                            if (theme_option()->checkOptionUI()) {
-                                $menu->route(['name' => 'admin.extension.theme.option', 'params' => []], 'Theme Option', '', [], 'admin.extension.theme.option');
+                            $menu->route(
+                                [
+                                    'name' => 'admin.extension.theme',
+                                    'params' => []
+                                ],
+                                'Theme',
+                                '',
+                                [],
+                                'admin.extension.theme'
+                            );
+                            if (themeOption()->checkOptionUI()) {
+                                $menu->route([
+                                    'name' => 'admin.extension.theme.option',
+                                    'params' => []
+                                ], 'Theme Option', '', [], 'admin.extension.theme.option');
                             }
                             if (Theme::SiteDataInfo()) {
-                                $menu->route(['name' => 'admin.extension.theme.menu', 'params' => []], 'Menu', '', [], 'admin.extension.theme.menu');
+                                $menu->route([
+                                    'name' => 'admin.extension.theme.menu',
+                                    'params' => []
+                                ], 'Menu', '', [], 'admin.extension.theme.menu');
                             }
                         }, 9999999999999)
                         ->subMenu('Settings', '<i class="ti ti-settings fs-2"></i>', function (MenuBuilder $menu) {
@@ -73,16 +97,22 @@ class AdminServiceProvider extends ServiceProvider
                             $menu->route('admin.system.language', 'Language', '', [], 'admin.system.language');
 
                             $menu->route('admin.system.log-viewer', 'Log', '', [], 'admin.system.log-viewer');
-                            $menu->route(['name' => 'admin.extension.module', 'params' => []], 'Module', '', [], 'admin.extension.module');
-                            $menu->route(['name' => 'admin.extension.plugin', 'params' => []], 'Plugin', '', [], 'admin.extension.plugin');
+                            $menu->route([
+                                'name' => 'admin.extension.module',
+                                'params' => []
+                            ], 'Module', '', [], 'admin.extension.module');
+                            $menu->route(
+                                ['name' => 'admin.extension.plugin', 'params' => []],
+                                'Plugin',
+                                '',
+                                [],
+                                'admin.extension.plugin'
+                            );
                         }, 99999999999999);
                 });
-            }
-        });
-        Platform::ReadyAfter(function () {
-
-            if (sokeio_is_admin()) {
-                Menu::DoRegister();
+                Platform::readyAfter(function () {
+                    Menu::doRegister();
+                });
             }
         });
     }

@@ -24,9 +24,9 @@ class UserTable extends Table
     public function getColumns()
     {
         return [
-            UI::Text('name')->Label(__('Name')),
-            UI::Text('email')->Label(__('Email')),
-            UI::Text('slug')->Label(__('Slug'))
+            UI::text('name')->label(__('Name')),
+            UI::text('email')->label(__('Email')),
+            UI::text('slug')->label(__('Slug'))
         ];
     }
 }

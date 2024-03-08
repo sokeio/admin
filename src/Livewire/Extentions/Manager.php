@@ -12,13 +12,13 @@ class Manager extends Component
     public $pageSize = 10;
     public function ItemChangeStatus($itemId, $status)
     {
-        platform_by($this->ExtentionType)->find($itemId)->status = $status;
+        platformBy($this->ExtentionType)->find($itemId)->status = $status;
         return  $this->redirectCurrent();
     }
     public function render()
     {
         return view('admin::extentions.manager', [
-            'dataItems' => collect(platform_by($this->ExtentionType)->getDataAll())->paginate($this->pageSize),
+            'dataItems' => collect(platformBy($this->ExtentionType)->getDataAll())->paginate($this->pageSize),
             'pageSizeList' => [5, 10, 20, 50]
         ]);
     }

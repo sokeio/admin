@@ -12,7 +12,7 @@ class UserForm extends Form
 {
     public $roleids = [];
     public $permissionids = [];
-    public function getModel()
+    protected function getModel():string
     {
         return User::class;
     }
@@ -46,62 +46,43 @@ class UserForm extends Form
         }
         return true;
     }
-    // public function getPermisionByIds($ids)
-    // {
-    //     $this->skipRender();
-    //     if ($ids) {
-    //         $permison = Permission::query()->whereIn('id',  $ids)->get()->toArray();
-    //         return $permison;
-    //     }
-    //     return [];
-    // }
-    public function FormUI()
+    public function formUI()
     {
         return
-            UI::Container([
-                UI::Prex(
+            UI::container([
+                UI::prex(
                     'data',
                     [
-                        UI::Row([
-                            UI::Column6([
-                                UI::Text('name')->Label(__('Fullname'))->required()
+                        UI::row([
+                            UI::column6([
+                                UI::text('name')->label(__('Fullname'))->required()
                             ]),
-                            UI::Column6([
-                                UI::Text('email')->Label(__('Email'))->required()
+                            UI::column6([
+                                UI::text('email')->label(__('Email'))->required()
                             ]),
-                            UI::Column6([
-                                UI::Password('password')->Label(__('Password'))->required()
+                            UI::column6([
+                                UI::Password('password')->label(__('Password'))->required()
                             ])->When(function () {
                                 return  !$this->isEdit();
                             }),
-                            //                     UI::Column12([
-                            //                         UI::ChooseModal('quyen')->Label(__('Quyền'))->Modal(function () {
-                            //                             return route('admin.system.permission.choose');
-                            //                         })
-                            //                             ->Template('
-                            //                         <template x-if="$wire.data.quyen" x-for="itemTextContent in $wire.getPermisionByIds(dataItemIds())">
-                            //     <label x-show="itemTextContent" class="px-2 py-1 me-2 mb-2 border" x-text="itemTextContent.name"></label>
-                            // </template>')
-                            //                             ->required()
-                            //                     ]),
 
                         ]),
                     ]
                 ),
-                UI::Row([
-                    UI::Column12([
-                        UI::CheckboxMutil('roleids')->Label(__('Role'))->DataSource(function () {
+                UI::row([
+                    UI::column12([
+                        UI::checkBoxMutil('roleids')->label(__('Role'))->dataSource(function () {
                             return Role::all();
-                        })->NoSave()
+                        })->noSave()
                     ]),
-                    UI::Column12([
-                        UI::CheckboxMutil('permissionids')->Label(__('Permission'))->DataSource(function () {
+                    UI::column12([
+                        UI::checkBoxMutil('permissionids')->label(__('Permission'))->dataSource(function () {
                             return Permission::all();
-                        })->NoSave()
+                        })->noSave()
                     ]),
                 ])->When(function () {
                     return  $this->isEdit();
                 })
-            ])->ClassName('p-3');
+            ])->className('p-3');
     }
 }

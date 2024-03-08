@@ -8,7 +8,7 @@ use Sokeio\Models\Role;
 
 class RoleTable extends Table
 {
-    protected function getModel()
+    protected function getModel(): string
     {
         return Role::class;
     }
@@ -28,17 +28,18 @@ class RoleTable extends Table
     public function getColumns()
     {
         return [
-            UI::Text('name')->Label(__('Name')),
-            UI::Text('slug')->Label(__('Slug')),
-            UI::Button('status')->Label(__('Status'))->NoSort()->WireClick(function ($item) {
+            UI::text('name')->label(__('Name')),
+            UI::text('slug')->label(__('Slug')),
+            UI::button('status')->label(__('Status'))->NoSort()->wireClick(function ($item) {
                 if ($item->getDataItem()->status) {
                     $item->Title(__('Active'));
-                    $item->Primary();
+                    $item->primary();
                 } else {
                     $item->Title(__('Block'));
-                    $item->Warning();
+                    $item->warning();
                 }
-                return 'doChangeStatus(' . $item->getDataItem()->id . ',' . ($item->getDataItem()->status ? 0 : 1) . ')';
+                $status = $item->getDataItem()->status ? 0 : 1;
+                return 'doChangeStatus(' . $item->getDataItem()->id . ',' . $status . ')';
             })
         ];
     }

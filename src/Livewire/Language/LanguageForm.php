@@ -27,30 +27,30 @@ class LanguageForm extends Form
     {
         return Language::class;
     }
-    public function FormUI()
+    public function formUI()
     {
-        return UI::Container([
-            UI::Prex(
+        return UI::container([
+            UI::prex(
                 'data',
                 [
-                    UI::Row([
-                        UI::Column12([
-                            UI::Text('name')->Label(__('Name'))->required()
+                    UI::row([
+                        UI::column12([
+                            UI::text('name')->label(__('Name'))->required()
                         ]),
-                        UI::Column12([
-                            UI::Text('code')->Label(__('Code'))
+                        UI::column12([
+                            UI::text('code')->label(__('Code'))
                         ]),
-                        UI::Column12([
-                            UI::Text('flag')->Label(__('Flag'))
+                        UI::column12([
+                            UI::text('flag')->label(__('Flag'))
                         ]),
-                        UI::Column12([
-                            UI::Checkbox('status')->Label(__('Status'))->Title(__('Active'))
+                        UI::column12([
+                            UI::checkBox('status')->label(__('Status'))->Title(__('Active'))
                         ]),
                     ]),
                 ]
             ),
         ])
 
-            ->ClassName('p-3');
+            ->className('p-3');
     }
 }
