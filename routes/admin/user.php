@@ -14,7 +14,7 @@ Route::group(['as' => 'admin.system.'], function () {
     Route::get('permission', PermissionTable::class)->name('permission');
     Route::post('permission', PermissionTable::class)->name('permission.choose');
     Route::post('user/{dataId}/change-password', UserChangePasswordForm::class)->name('user.change-password');
-    route_crud('role', RoleTable::class, RoleForm::class);
-    route_crud('user', UserTable::class, UserForm::class);
-    route_crud('language', LanguageTable::class, LanguageForm::class);
+    routeCrud('role', RoleTable::class, RoleForm::class);
+    routeCrud('user', UserTable::class, UserForm::class);
+    routeCrud('language', LanguageTable::class, LanguageForm::class);
 });

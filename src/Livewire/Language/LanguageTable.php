@@ -28,16 +28,16 @@ class LanguageTable extends Table
     public function getColumns()
     {
         return [
-            UI::Text('name')->Label(__('Name')),
-            UI::Text('code')->Label(__('Code')),
-            UI::Text('flag')->Label(__('Flag')),
-            UI::Button('status')->Label(__('Status'))->NoSort()->WireClick(function ($item) {
+            UI::text('name')->label(__('Name')),
+            UI::text('code')->label(__('Code')),
+            UI::text('flag')->label(__('Flag')),
+            UI::button('status')->label(__('Status'))->NoSort()->wireClick(function ($item) {
                 if ($item->getDataItem()->status) {
                     $item->Title(__('Active'));
-                    $item->Primary();
+                    $item->primary();
                 } else {
                     $item->Title(__('Block'));
-                    $item->Warning();
+                    $item->warning();
                 }
                 return 'doChangeStatus(' . $item->getDataItem()->id . ',' . ($item->getDataItem()->status ? 0 : 1) . ')';
             })

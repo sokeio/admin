@@ -18,21 +18,21 @@ class Widget
     }
     private function getStatus()
     {
-        return PlatformStatus::Key(self::DASHBOARD_WIDGET_STATUS);
+        return PlatformStatus::key(self::DASHBOARD_WIDGET_STATUS);
     }
     public function isActive()
     {
-        return $this->getStatus()->Check($this->key);
+        return $this->getStatus()->check($this->key);
     }
 
     public function Active()
     {
-        return $this->getStatus()->Active($this->key);
+        return $this->getStatus()->active($this->key);
     }
 
-    public function UnActive()
+    public function block()
     {
-        return $this->getStatus()->UnActive($this->key);
+        return $this->getStatus()->block($this->key);
     }
     private $action = [];
     public function Action($action, $callback)

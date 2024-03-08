@@ -7,16 +7,16 @@ use Sokeio\Facades\Locale;
 
 class Languages extends Component
 {
-    public function DoSwtich($locale)
+    public function doSwtich($locale)
     {
-        Locale::SwitchLocale($locale);
+        Locale::switchLocale($locale);
         return $this->redirectCurrent();
     }
     public function render()
     {
         return view_scope('admin::languages', [
-            'locales' => Locale::SupportedLocales(),
-            'currentLocale' => Locale::CurrentLocale()
+            'locales' => Locale::supportedLocales(),
+            'currentLocale' => Locale::currentLocale()
         ]);
     }
 }

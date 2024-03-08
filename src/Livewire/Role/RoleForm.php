@@ -41,34 +41,34 @@ class RoleForm extends Form
             return $item > 0;
         })->toArray());
     }
-    public function FormUI()
+    public function formUI()
     {
-        return UI::Container([
-            UI::Prex(
+        return UI::container([
+            UI::prex(
                 'data',
                 [
-                    UI::Row([
-                        UI::Column6([
-                            UI::Text('name')->Label(__('Role Name'))->required()
+                    UI::row([
+                        UI::column6([
+                            UI::text('name')->label(__('Role Name'))->required()
                         ]),
-                        UI::Column6([
-                            UI::Text('slug')->Label(__('Role Slug'))
+                        UI::column6([
+                            UI::text('slug')->label(__('Role Slug'))
                         ]),
-                        UI::Column6([
-                            UI::Checkbox('status')->Label(__('Role Status'))->Title(__('Active'))
+                        UI::column6([
+                            UI::checkBox('status')->label(__('Role Status'))->Title(__('Active'))
                         ]),
                     ]),
                 ]
             ),
-            UI::Row([
-                UI::Column12([
-                    UI::CheckboxMutil('permissionids')->Label(__('Permission'))->DataSource(function () {
+            UI::row([
+                UI::column12([
+                    UI::checkBoxMutil('permissionids')->label(__('Permission'))->dataSource(function () {
                         return Permission::all();
-                    })->NoSave()
+                    })->noSave()
                 ]),
             ])
         ])
 
-            ->ClassName('p-3');
+            ->className('p-3');
     }
 }

@@ -34,20 +34,20 @@ class UserChangePasswordForm extends Form
     {
         parent::doValidate();
     }
-    public function FormUI()
+    public function formUI()
     {
         return
             UI::Div(
-                UI::Row([
-                    UI::Column12([
-                        UI::Password('password_old')->Label(__('Password Old'))->required(),
-                        UI::Password('password_new')->Label(__('Password New'))->required(),
-                        // UI::Button(__('Test'))->Attribute('@click="$wire.callActionUI(\'test\')"')->actionUI('test', function ($component) {
+                UI::row([
+                    UI::column12([
+                        UI::Password('password_old')->label(__('Password Old'))->required(),
+                        UI::Password('password_new')->label(__('Password New'))->required(),
+                        // UI::button(__('Test'))->attribute('@click="$wire.callActionUI(\'test\')"')->actionUI('test', function ($component) {
                         //     $component->showMessage('test');
                         // }),
                     ]),
 
                 ])
-            )->ClassName('p-3');
+            )->className('p-3');
     }
 }

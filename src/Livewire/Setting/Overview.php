@@ -14,15 +14,15 @@ class Overview extends FormSetting
     }
     protected function SettingUI()
     {
-        return UI::Row(apply_filters('SOKEIO_ADMIN_SETTING_OVERVIEW', [
-            UI::Column6([
-                UI::Text('PLATFORM_SYSTEM_NAME')->Label(__('System Admin Name')),
+        return UI::row(apply_filters('SOKEIO_ADMIN_SETTING_OVERVIEW', [
+            UI::column6([
+                UI::text('PLATFORM_SYSTEM_NAME')->label(__('System Admin Name')),
             ]),
-            UI::Column6([
-                UI::Select('PLATFORM_SYSTEM_LOCALE_DEFAULT')
-                    ->Label(__('System Language'))
-                    ->FieldKey('code')
-                    ->DataSource(function () {
+            UI::column6([
+                UI::select('PLATFORM_SYSTEM_LOCALE_DEFAULT')
+                    ->label(__('System Language'))
+                    ->fieldKey('code')
+                    ->dataSource(function () {
                         return Language::query()->where('status', 1)->get();
                     })
             ])

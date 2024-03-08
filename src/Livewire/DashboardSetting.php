@@ -12,8 +12,8 @@ class DashboardSetting extends Component
         $widget = Dashboard::getWidgetByKey($id);
         if ($widget) {
             if ($widget->isActive())
-                $widget->UnActive();
-            else $widget->Active();
+                $widget->block();
+            else $widget->active();
         }
         $this->refreshRefComponent();
     }

@@ -13,7 +13,7 @@ class ToolSystem extends Component
     public function mount()
     {
         Assets::setTitle(__('Tool System'));
-        breadcrumb()->Title(__('Tool System'))->Add(__('Home'), route('admin.dashboard'));
+        breadcrumb()->Title(__('Tool System'))->add(__('Home'), route('admin.dashboard'));
     }
     public function clearCache($message)
     {

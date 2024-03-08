@@ -7,7 +7,7 @@
     @stack('styles')
 </head>
 
-<body class="{{ theme_class() }}" :data-bs-theme="themeDark && 'dark'" x-data="{ themeDark: false }">
+<body class="{{ themeClass() }}" :data-bs-theme="themeDark && 'dark'" x-data="{ themeDark: false }">
     @ThemeBody(before)
     <div class="page">
         <!-- Sidebar -->

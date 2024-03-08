@@ -66,7 +66,7 @@
             </ul>
         </div>
         <div class="card-body">
-            @livewire('admin::extentions.' . $viewType, ['ExtentionType' => $ExtentionType], key($viewType . $___number_loading))
+            @livewire('admin::extentions.' . $viewType, ['ExtentionType' => $ExtentionType], key($viewType . $soNumberLoading))
         </div>
     </div>
 </div>

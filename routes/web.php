@@ -16,15 +16,15 @@ use Sokeio\Admin\Livewire\Auth\ForgotPassword;
 use Sokeio\Admin\Livewire\Auth\Login;
 use Sokeio\Admin\Livewire\Auth\Signup;
 
-Route::prefix(admin_url())->middleware(\Sokeio\Middleware\ThemeAdmin::class)->group(function () {
+Route::prefix(adminUrl())->middleware(\Sokeio\Middleware\ThemeAdmin::class)->group(function () {
     Route::name('admin.')->prefix('auth')->middleware('themelayout:none')->group(function () {
-        Route::get('login', route_theme(Login::class))->name('login');
-        Route::get('logout', route_theme(function () {
+        Route::get('login', routeTheme(Login::class))->name('login');
+        Route::get('logout', routeTheme(function () {
             auth()->logout();
             return redirect(route('admin.login'));
         }))->name('logout');
-        Route::get('sign-up', route_theme(Signup::class))->name('sign-up');
-        Route::get('forgot-password', route_theme(ForgotPassword::class))->name('forgot-password');
+        Route::get('sign-up', routeTheme(Signup::class))->name('sign-up');
+        Route::get('forgot-password', routeTheme(ForgotPassword::class))->name('forgot-password');
     });
 });
 

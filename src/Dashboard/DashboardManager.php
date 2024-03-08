@@ -6,7 +6,7 @@ class DashboardManager
 {
     private $widgets = [];
     private $temps = null;
-    public function Register($key, $widget = null)
+    public function register($key, $widget = null)
     {
         $this->temps = null;
         if ($widget == null) {

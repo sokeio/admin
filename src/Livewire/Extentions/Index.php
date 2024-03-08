@@ -35,7 +35,7 @@ class Index extends Component
             Breadcrumb::Item(__('Home'), route('admin.dashboard'))
         ]);
         return view('admin::extentions.index', [
-            'mode_dev' => sokeio_mode_dev(),
+            'mode_dev' => sokeioModeDev(),
             'page_title' => $this->getTitle()
         ]);
     }

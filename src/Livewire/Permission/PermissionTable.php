@@ -21,16 +21,20 @@ class PermissionTable extends Table
         Schema::enableForeignKeyConstraints();
         $listRoutes = Route::getRoutes()->getRoutes();
 
-        $IGNORES = apply_filters(PLATFORM_PERMISSION_IGNORE, []);
+        $ignores = apply_filters(PLATFORM_PERMISSION_IGNORE, []);
         foreach ($listRoutes as $item) {
-            if (($name = $item->getName()) && ($middlewares = $item->gatherMiddleware())) {
-                if (!str_starts_with($name, '_') && (count($IGNORES) == 0 || !in_array($name, $IGNORES))) {
-                    foreach ($middlewares as $mid) {
-                        if (is_a($mid, \Illuminate\Auth\Middleware\Authenticate::class, true)) {
-                            Permission::query()->create([
-                                'name' => $name, 'group' => $name, 'slug' => $name
-                            ]);
-                        }
+            $name = $item->getName();
+            if (
+                $name &&
+                ($middlewares = $item->gatherMiddleware()) &&
+                !str_starts_with($name, '_') &&
+                (count($ignores) == 0 || !in_array($name, $ignores))
+            ) {
+                foreach ($middlewares as $mid) {
+                    if (is_a($mid, \Illuminate\Auth\Middleware\Authenticate::class, true)) {
+                        Permission::query()->create([
+                            'name' => $name, 'group' => $name, 'slug' => $name
+                        ]);
                     }
                 }
             }
@@ -38,22 +42,23 @@ class PermissionTable extends Table
         $customes = apply_filters(PLATFORM_PERMISSION_CUSTOME, []);
         if ($customes && count($customes)) {
             foreach ($customes as $name) {
-                if (count($IGNORES) == 0 || !in_array($name, $IGNORES))
+                if (count($ignores) == 0 || !in_array($name, $ignores)) {
                     Permission::query()->create([
                         'name' => $name, 'group' => $name, 'slug' => $name
                     ]);
+                }
             }
         }
         $this->showMessage(__('Update Permission success'));
     }
-    protected function getModel()
+    protected function getModel(): string
     {
         return Permission::class;
     }
     public function getButtons()
     {
         return [
-            UI::Button(__('Load Permission'))->ClassName('bg-warning')->WireClick('LoadPermission()')
+            UI::button(__('Load Permission'))->className('bg-warning')->wireClick('LoadPermission()')
         ];
     }
     public function getTableActions()
@@ -66,9 +71,9 @@ class PermissionTable extends Table
     // public function searchUI()
     // {
     //     return [
-    //         UI::Row([
-    //             UI::Column6([
-    //                 UI::Text('name')->LIKE()->Label('Tên Role')
+    //         UI::row([
+    //             UI::column6([
+    //                 UI::text('name')->LIKE()->label('Tên Role')
     //             ])
     //         ])
 
@@ -78,8 +83,8 @@ class PermissionTable extends Table
     public function getColumns()
     {
         return [
-            UI::Text('name')->Label(__('Name')),
-            UI::Text('slug')->Label(__('Slug'))
+            UI::text('name')->label(__('Name')),
+            UI::text('slug')->label(__('Slug'))
         ];
     }
 }
