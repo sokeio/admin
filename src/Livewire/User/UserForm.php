@@ -62,7 +62,7 @@ class UserForm extends Form
                             ]),
                             UI::column6([
                                 UI::Password('password')->label(__('Password'))->required()
-                            ])->When(function () {
+                            ])->when(function () {
                                 return  !$this->isEdit();
                             }),
 
@@ -80,7 +80,7 @@ class UserForm extends Form
                             return Permission::all();
                         })->noSave()
                     ]),
-                ])->When(function () {
+                ])->when(function () {
                     return  $this->isEdit();
                 })
             ])->className('p-3');
