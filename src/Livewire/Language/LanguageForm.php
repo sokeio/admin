@@ -44,7 +44,7 @@ class LanguageForm extends Form
                             UI::text('flag')->label(__('Flag'))
                         ]),
                         UI::column12([
-                            UI::checkBox('status')->label(__('Status'))->Title(__('Active'))
+                            UI::checkBox('status')->label(__('Status'))->title(__('Active'))
                         ]),
                     ]),
                 ]

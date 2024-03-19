@@ -31,7 +31,7 @@ class Index extends Component
     public function render()
     {
         Assets::setTitle($this->getTitle());
-        breadcrumb()->Title($this->getTitle())->Breadcrumb([
+        breadcrumb()->title($this->getTitle())->breadcrumb([
             Breadcrumb::Item(__('Home'), route('admin.dashboard'))
         ]);
         return view('admin::extentions.index', [

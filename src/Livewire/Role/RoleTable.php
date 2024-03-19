@@ -32,10 +32,10 @@ class RoleTable extends Table
             UI::text('slug')->label(__('Slug')),
             UI::button('status')->label(__('Status'))->NoSort()->wireClick(function ($item) {
                 if ($item->getDataItem()->status) {
-                    $item->Title(__('Active'));
+                    $item->title(__('Active'));
                     $item->primary();
                 } else {
-                    $item->Title(__('Block'));
+                    $item->title(__('Block'));
                     $item->warning();
                 }
                 $status = $item->getDataItem()->status ? 0 : 1;

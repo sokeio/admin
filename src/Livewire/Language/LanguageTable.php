@@ -33,10 +33,10 @@ class LanguageTable extends Table
             UI::text('flag')->label(__('Flag')),
             UI::button('status')->label(__('Status'))->NoSort()->wireClick(function ($item) {
                 if ($item->getDataItem()->status) {
-                    $item->Title(__('Active'));
+                    $item->title(__('Active'));
                     $item->primary();
                 } else {
-                    $item->Title(__('Block'));
+                    $item->title(__('Block'));
                     $item->warning();
                 }
                 return 'doChangeStatus(' . $item->getDataItem()->id . ',' . ($item->getDataItem()->status ? 0 : 1) . ')';

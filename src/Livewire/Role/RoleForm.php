@@ -55,7 +55,7 @@ class RoleForm extends Form
                             UI::text('slug')->label(__('Role Slug'))
                         ]),
                         UI::column6([
-                            UI::checkBox('status')->label(__('Role Status'))->Title(__('Active'))
+                            UI::checkBox('status')->label(__('Role Status'))->title(__('Active'))
                         ]),
                     ]),
                 ]
