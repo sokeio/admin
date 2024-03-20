@@ -14,7 +14,7 @@ class Languages extends Component
     }
     public function render()
     {
-        return view_scope('admin::languages', [
+        return viewScope('admin::languages', [
             'locales' => Locale::supportedLocales(),
             'currentLocale' => Locale::currentLocale()
         ]);

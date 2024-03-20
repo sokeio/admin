@@ -38,7 +38,7 @@ class AdminServiceProvider extends ServiceProvider
         Platform::ready(function () {
             if (sokeioIsAdmin()) {
                 if (Theme::SiteDataInfo()) {
-                    add_action('THEME_ADMIN_RIGHT', function () {
+                    addAction('THEME_ADMIN_RIGHT', function () {
                         echo '<div class="nav-item">
                         <a class="nav-link fw-bold" target="_blank" href="' . url('/') . '">' . __('Go to Site') . '</a>
                         </div>';
@@ -118,7 +118,7 @@ class AdminServiceProvider extends ServiceProvider
     private function bootGate()
     {
         if (!$this->app->runningInConsole()) {
-            add_filter(PLATFORM_PERMISSION_IGNORE, function ($prev) {
+            addFilter(PLATFORM_PERMISSION_IGNORE, function ($prev) {
                 return [
                     'admin.dashboard',
                     'admin.system.user-change-password-form',
@@ -126,7 +126,7 @@ class AdminServiceProvider extends ServiceProvider
                     ...$prev
                 ];
             });
-            add_filter(PLATFORM_PERMISSION_CUSTOME, function ($prev) {
+            addFilter(PLATFORM_PERMISSION_CUSTOME, function ($prev) {
                 return [
                     'admin.system.user-change-status',
                     'admin.system.role-change-status',

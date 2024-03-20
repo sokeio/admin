@@ -37,7 +37,7 @@ class Signup extends Component
     }
     public function render()
     {
-        return view_scope('admin::auth.sign-up', [
+        return viewScope('admin::auth.sign-up', [
             'page_title' => __('Sigup account')
         ]);
     }

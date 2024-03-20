@@ -21,7 +21,7 @@ class PermissionTable extends Table
         Schema::enableForeignKeyConstraints();
         $listRoutes = Route::getRoutes()->getRoutes();
 
-        $ignores = apply_filters(PLATFORM_PERMISSION_IGNORE, []);
+        $ignores = applyFilters(PLATFORM_PERMISSION_IGNORE, []);
         foreach ($listRoutes as $item) {
             $name = $item->getName();
             if (
@@ -39,7 +39,7 @@ class PermissionTable extends Table
                 }
             }
         }
-        $customes = apply_filters(PLATFORM_PERMISSION_CUSTOME, []);
+        $customes = applyFilters(PLATFORM_PERMISSION_CUSTOME, []);
         if ($customes && count($customes)) {
             foreach ($customes as $name) {
                 if (count($ignores) == 0 || !in_array($name, $ignores)) {

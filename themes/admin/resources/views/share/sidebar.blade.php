@@ -5,7 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <h1 class="navbar-brand navbar-brand-autodark">
-            {!! apply_filters(
+            {!! applyFilters(
                 'THEME_ADMIN_SIDEBAR_LOGO',
                 ' <a href="' .
                     route('admin.dashboard') .
@@ -18,9 +18,9 @@
         <div class="navbar-nav flex-row d-lg-none">
         </div>
         <div class="collapse navbar-collapse" id="sidebar-menu">
-            {!! apply_filters('THEME_SIDEBAR_BEFORE', '') !!}
+            {!! applyFilters('THEME_SIDEBAR_BEFORE', '') !!}
             {!! menuAdmin(true) !!}
-            {!! apply_filters('THEME_SIDEBAR_AFTTER', '') !!}
+            {!! applyFilters('THEME_SIDEBAR_AFTTER', '') !!}
             <div class=" text-center p-1 text-bold">
                 <a href="https://sokeio.com" target="_blank">Sokeio Framework {{ sokeioVersion() }}</a>
             </div>

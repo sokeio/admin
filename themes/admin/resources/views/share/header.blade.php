@@ -8,18 +8,18 @@
 
             {!! breadcrumb() !!}
             @php
-                do_action('THEME_ADMIN_LEFT_BEFORE');
+                doAction('THEME_ADMIN_LEFT_BEFORE');
             @endphp
             @php
-                do_action('THEME_ADMIN_LEFT');
+                doAction('THEME_ADMIN_LEFT');
             @endphp
             @php
-                do_action('THEME_ADMIN_LEFT_AFTER');
+                doAction('THEME_ADMIN_LEFT_AFTER');
             @endphp
         </div>
         <div class="navbar-nav flex-row order-md-last">
             @php
-                do_action('THEME_ADMIN_RIGHT');
+                doAction('THEME_ADMIN_RIGHT');
             @endphp
             <div class="nav-item">
                 <livewire:admin::languages />
