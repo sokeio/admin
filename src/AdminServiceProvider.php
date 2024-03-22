@@ -112,6 +112,22 @@ class AdminServiceProvider extends ServiceProvider
                 Platform::readyAfter(function () {
                     Menu::doRegister();
                 });
+            } else {
+
+                addAction(PLATFORM_HEAD_BEFORE, function () {
+                    $key = setting('GOOGLE_GA_ID');
+                    if (!$key) {
+                        return;
+                    }
+                    echo "<script async src=\"https://www.googletagmanager.com/gtag/js?id={$key}\"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '{$key}');
+</script>";
+                });
             }
         });
     }

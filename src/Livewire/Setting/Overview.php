@@ -25,7 +25,10 @@ class Overview extends FormSetting
                     ->dataSource(function () {
                         return Language::query()->where('status', 1)->get();
                     })
-            ])
+            ]),
+            UI::column6([
+                UI::text('GOOGLE_GA_ID')->label(__('Google Analytics ID')),
+            ]),
         ]));
     }
 }
