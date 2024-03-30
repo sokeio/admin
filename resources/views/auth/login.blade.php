@@ -25,7 +25,7 @@
                             <input wire:model='password' type="password" :type="showPass ? 'text' : 'password'"
                                 class="form-control" placeholder="Your password" autocomplete="off">
                             <span class="input-group-text">
-                                <a href="#" class="link-secondary" @click=" showPass = showPass?false:true "
+                                <a href="#" class="link-secondary" @click=" showPass = !showPass "
                                     title="Show password" data-bs-toggle="tooltip">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
