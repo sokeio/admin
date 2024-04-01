@@ -40,13 +40,16 @@ class AdminServiceProvider extends ServiceProvider
                 if (Theme::SiteDataInfo()) {
                     addAction('THEME_ADMIN_RIGHT', function () {
                         echo '<div class="nav-item">
-                        <a class="nav-link fw-bold" target="_blank" href="' . url('/') . '">' . __('Go to Site') . '</a>
+                        <a class="nav-link fw-bold" target="_blank" href="' . url('/') . '">
+                        ' . __('Visit website') . '
+                        </a>
                         </div>';
                     });
                 }
                 Menu::Register(function () {
                     menuAdmin()
                         ->route('admin.dashboard', __('Dashboard'), '<i class="ti ti-dashboard fs-2"></i>', [], '', 1)
+                       
                         ->subMenu(__('User'), '<i class="ti ti-user-shield fs-2"></i>', function (MenuBuilder $menu) {
                             $menu->setTargetId('user_menu');
                             $menu->route([
@@ -90,23 +93,19 @@ class AdminServiceProvider extends ServiceProvider
                                 ], 'Menu', '', [], 'admin.extension.theme.menu');
                             }
                         }, 9999999999999)
+                        ->route(
+                            ['name' => 'admin.extension.module', 'params' => []],
+                            __('Module'),
+                            '<i class="ti ti-package fs-2"></i>',
+                            [],
+                            '',
+                            9999999999999
+                        )
                         ->subMenu('Settings', '<i class="ti ti-settings fs-2"></i>', function (MenuBuilder $menu) {
                             $menu->setTargetId('system_setting_menu');
                             $menu->route('admin.setting.general', 'System', '', [], 'admin.setting.general');
                             $menu->route('admin.system.language', 'Language', '', [], 'admin.system.language');
-
                             $menu->route('admin.system.log-viewer', 'Log', '', [], 'admin.system.log-viewer');
-                            $menu->route([
-                                'name' => 'admin.extension.module',
-                                'params' => []
-                            ], 'Module', '', [], 'admin.extension.module');
-                            $menu->route(
-                                ['name' => 'admin.extension.plugin', 'params' => []],
-                                'Plugin',
-                                '',
-                                [],
-                                'admin.extension.plugin'
-                            );
                         }, 99999999999999);
                 });
                 Platform::readyAfter(function () {
