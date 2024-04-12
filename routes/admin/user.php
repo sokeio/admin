@@ -16,5 +16,5 @@ Route::group(['as' => 'admin.system.'], function () {
     Route::post('user/{dataId}/change-password', UserChangePasswordForm::class)->name('user.change-password');
     routeCrud('role', RoleTable::class, RoleForm::class);
     routeCrud('user', UserTable::class, UserForm::class);
-    routeCrud('language', LanguageTable::class, LanguageForm::class);
+    // routeCrud('language', LanguageTable::class, LanguageForm::class);
 });

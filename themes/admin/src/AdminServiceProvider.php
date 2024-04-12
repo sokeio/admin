@@ -3,14 +3,10 @@
 namespace SokeioTheme\Admin;
 
 use Illuminate\Support\ServiceProvider;
+use Sokeio\Components\UI;
 use Sokeio\Laravel\ServicePackage;
-use Sokeio\Admin\Menu\MenuBuilder;
-use Sokeio\Admin\Menu\MenuItemBuilder;
-use Sokeio\Admin\Facades\Menu;
 use Sokeio\Concerns\WithServiceProvider;
-use Sokeio\Admin\Facades\SettingForm;
-use Sokeio\Facades\Theme;
-use Sokeio\Admin\Item;
+use Sokeio\Facades\Platform;
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -31,23 +27,37 @@ class AdminServiceProvider extends ServiceProvider
             ->hasTranslations()
             ->runsMigrations();
     }
-    public function configurePackaged()
-    {
-    }
-    public function extending()
-    {
-    }
-    public function packageRegistered()
-    {
-        $this->extending();
-    }
-    private function bootGate()
-    {
-    }
     public function packageBooted()
     {
-        $this->bootGate();
 
-      
+        Platform::ReadyAfter(function () {
+            if (sokeioIsAdmin()) {
+
+                addFilter('SOKEIO_ADMIN_SETTING_OVERVIEW', function ($prev) {
+                    return [
+                        UI::column6([
+                            UI::select('PLATFORM_ADMIN_LAYOUT_DEFAULT')
+                                ->label(__('Layout Of Admin'))
+                                ->dataSource(function () {
+                                    return [
+                                        [
+                                            'id' => 'default',
+                                            'name' => 'Default'
+                                        ],
+                                        [
+                                            'id' => 'default-navbar',
+                                            'name' => 'Navbar'
+                                        ]
+                                    ];
+                                })
+                        ]),
+                        ...$prev
+                    ];
+                });
+                addFilter('PLATFORM_THEME_LAYOUT_DEFAULT', function ($prev) {
+                    return setting('PLATFORM_ADMIN_LAYOUT_DEFAULT', 'default');
+                });
+            }
+        });
     }
 }

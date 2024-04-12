@@ -104,8 +104,7 @@ class AdminServiceProvider extends ServiceProvider
                         ->subMenu('Settings', '<i class="ti ti-settings fs-2"></i>', function (MenuBuilder $menu) {
                             $menu->setTargetId('system_setting_menu');
                             $menu->route('admin.setting.general', 'System', '', [], 'admin.setting.general');
-                            $menu->route('admin.system.language', 'Language', '', [], 'admin.system.language');
-                            $menu->route('admin.system.log-viewer', 'Log', '', [], 'admin.system.log-viewer');
+                            // $menu->route('admin.system.language', 'Language', '', [], 'admin.system.language');
                         }, 99999999999999);
                 });
                 Platform::readyAfter(function () {

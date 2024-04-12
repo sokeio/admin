@@ -19,7 +19,7 @@
     </div>
     @ThemeBody(after)
     @stack('scripts')
-   
+
 </body>
 
 </html>
